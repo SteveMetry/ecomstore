@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ECOM STORE BY STEVE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet"/>
+</head>
+<body onload="chkoutLoad()">
+  <nav class="custom-navbar chkout shadow-2xl">
+    <span onclick="document.location='index.html'" class="return-previous-page">&#11152</span>
+    <img class="nav-img cursor-not-allowed" src="img/Logo.png">
+    <button>Profile</button>
+    <div class="chkout-header" onclick="document.location='checkout.html'"><span class="cursor-pointer">MY CART</span></div>
+    <button>
+      about
+    </button>
+    <button>
+      contact
+    </button>
+  </nav>
+  <div class="navgap"></div>
+  <span id="starIcon" style="display: none;">&#127775</span>
+  <span id="closeIcon" style="display: none;">&#8984</span>
+  <span id="cartIcon" style="display: none;">&#128717</span>
+  <main class="main-cart-container"> 
+    <div id="cartPageContainer" class="cart-page-container"></div>
+    <div id="cartInfoContainer" class="cart-page-checkout"> 
+      <table>
+        <tr class="cart-info-row">
+          <td>Discount</td>
+          <td id="discountTotal">$0</td>
+        </tr>
+        <tr class="cart-info-row">
+          <td>Tax</td>
+          <td id="taxTotal">$0</td>
+        </tr>
+        <tr class="cart-info-row">
+          <td>Total</td>
+          <td id="overallTotal"></td>
+        </tr>
+      </table>
+      <a href="" class="btn proceed-to-checkout text-center mt-12">Checkout</a>
+    </div>
+    <div class="navgap"></div>
+
+    <div id="overlay" class="bg-black opacity-70 fixed top-0 w-screen h-screen" onclick="closeModal()" style="display: none;"></div>
+    <div id="customModal" class="fixed top-1/2 left-1/2 bg-white custom-modal" style="display: none;"></div>
+  </main>
+  
+
+  <footer></footer>
+  <script src="checkout.js"></script>
+</body>
+</html>
