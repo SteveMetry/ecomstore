@@ -1,7 +1,6 @@
 const customModal = document.getElementById("customModal");
 const overlay = document.getElementById("overlay");
 const productPage = document.getElementById("productCardsContainer");
-const productRandomList = [];
 const cartIcon = document.getElementById("cartIcon").cloneNode(true);
 const pageHeader = document.getElementById("pageHeader");
 const cartAmountSpan = document.getElementById("cartAmount");
@@ -28,7 +27,6 @@ function categoryBtns() {
     fetch(`https://dummyjson.com/products/categories`)
     .then((response) => response.json())
     .then((categories) => {
-      console.log(categories);
       for (let i = 0; i < categories.length; i++) {
         const categoryButton = document.createElement('button');
         categoryButton.onclick = () => onCategoryClick(categories[i]);
@@ -47,9 +45,7 @@ function onCategoryClick(category) {
   fetch(`https://dummyjson.com/products/category/${category}`)
     .then((response) => response.json())
     .then((results) => {
-      console.log(results);
       resultProducts = results.products;
-      console.log(resultProducts);
       for (let i = 0; i < resultProducts.length; i++) {
         // creating each product-card element & add element to productPage
         singleProduct(resultProducts[i]);
@@ -107,6 +103,35 @@ function deleteItem(cartItem) {
 }
 
 function onLoad() {
+  productPage.innerText = "";
+  if (localStorage.getItem("productRandomList") == null) {
+    localStorage.setItem("productRandomList", "[]");
+    const productRandomList = JSON.parse(localStorage.getItem("productRandomList"));
+    fetch(`https://dummyjson.com/products`)
+      .then((response) => response.json())
+      .then((productList) => {
+        let productListTotal = (productList.total - 2);
+        productPage.innerText = "";
+        for(let i = 1; i <= 10; i++){   
+          productRandomList[i] = Math.floor(Math.random() * productListTotal) + 2;
+          localStorage.setItem("productRandomList", JSON.stringify(productRandomList));
+          fetch(`https://dummyjson.com/products/${productRandomList[i]}`)
+          .then((response) => response.json())
+          .then((results) => {singleProduct(results);})
+        }
+      });
+  } else {
+    const productRandomList = JSON.parse(localStorage.getItem("productRandomList"));
+    for(let i = 1; i <= 10; i++){
+      fetch(`https://dummyjson.com/products/${productRandomList[i]}`)
+        .then((response) => response.json())
+        .then((results) => {
+          singleProduct(results);
+        });
+    }
+  }
+
+  categoryBtns();
   if (localStorage.getItem("cartItems") == null) {
     localStorage.setItem("cartItems", "[]");
   } else {
@@ -121,21 +146,6 @@ function onLoad() {
       cartAmountSpan.innerText = totalAmount;
     }
   }
-  fetch(`https://dummyjson.com/products`)
-    .then((response) => response.json())
-    .then((productList) => {
-      let productListTotal = productList.total - 2;
-      productPage.innerText = "";
-      for(let i = 1; i <= 10; i++){   
-        productRandomList[i] = Math.floor(Math.random() * productListTotal) + 2;
-        fetch(`https://dummyjson.com/products/${productRandomList[i]}`)
-        .then((response) => response.json())
-        .then((results) => {
-          singleProduct(results);
-        })
-      }
-      categoryBtns();
-    });
 }
 
 function searchProducts()  {
@@ -149,7 +159,6 @@ function searchProducts()  {
   fetch(`https://dummyjson.com/products/search?q=${userSearch}`)
     .then((response) => response.json())
     .then((searchResults) => {
-      console.log(searchResults);
       resultProducts = searchResults.products;
       for (let i = 0; i < resultProducts.length; i++) {
         singleProduct(resultProducts[i]);
@@ -159,7 +168,6 @@ function searchProducts()  {
 
 function addToCartOnClick(resultProducts, productQuantitySelect) {
   cartProducts.innerText = "";
-  console.log(cartProducts);
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;
   cartAmountSpan.style = "";
@@ -224,67 +232,7 @@ function singleProduct(resultProducts) {
   eachProductPrice.innerText = `inc GST: $${resultProducts.price}`;
   eachProductBrand.innerText = resultProducts.brand;
   eachProductThumbnail.src = resultProducts.thumbnail;
-  viewMoreButton.onclick = () => {
-    const eachProductStock = document.createElement("p");
-    const eachProductRating = document.createElement("p");
-    const modalBottom = document.createElement("div");
-    const productAddToCartBtn = document.createElement("button");
-    let productQuantitySelect = document.createElement("select");
-    productQuantitySelect.className = "modal-select rounded p-1 mx-1";
-    for (let i = 1; i <= 10; i++) {
-      let productQuantityOption = document.createElement("option");
-      productQuantityOption.value = i;
-      productQuantityOption.innerText = i;
-      productQuantitySelect.appendChild(productQuantityOption);
-    }
-    modalBottom.className="cart-container justify-between flex p-8";
-    productAddToCartBtn.className="add-to-cart ";
-    productAddToCartBtn.innerText="Add to Cart " + cartIcon.innerText;
-    productAddToCartBtn.onclick = () => addToCartOnClick(resultProducts, productQuantitySelect);
-    const eachProductCategory = document.createElement("p");
-    eachProductStock.innerText = "Stock: " + resultProducts.stock + " LEFT IN STOCK!";
-    const starIcon = document.getElementById("starIcon").cloneNode(true);
-    eachProductRating.innerText = "Rating: " + resultProducts.rating + starIcon.innerText;
-    eachProductCategory.innerText = "Category: " + resultProducts.category;
-    const modalBrand = eachProductBrand.cloneNode(true);
-    modalBrand.style.textAlign = "left";
-    const closeButton = document.createElement("button");
-    const closeIcon = document.getElementById("closeIcon").cloneNode(true);
-    closeButton.innerText = closeIcon.innerText;
-    closeButton.className = "inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";
-    closeButton.style.padding = "10px 15px";
-    closeButton.onclick = () => closeModal();
-    const modalTop = document.createElement("div");
-    modalTop.className = "flex justify-between items-center p-2";
-    modalTop.appendChild(modalBrand);
-    modalTop.appendChild(closeButton);
-    customModal.appendChild(modalTop);
-    const modalTitlePrice = eachProductTitlePrice.cloneNode(true);
-    customModal.appendChild(modalTitlePrice);
-    const modalThumbnail = eachProductThumbnail.cloneNode(true);
-    customModal.appendChild(modalThumbnail);
-    const modalDescription = eachProductDescription.cloneNode(true);
-    customModal.appendChild(modalDescription);
-    customModal.appendChild(eachProductStock);
-    customModal.appendChild(eachProductRating);
-    const productBottom = document.createElement("div");
-    productBottom.className = "modal-btm-container";
-    const productQuantityContainer = document.createElement("div");
-    productQuantityContainer.className = "quantity-container flex justify-between font-normal text-gray-700 border border-solid border-gray-300 rounded";
-    const productQuantityTitle = document.createElement("span");
-    productQuantityTitle.style.alignSelf = "center";
-    productQuantityTitle.style.color = "white";
-    productQuantityTitle.innerText = "Quantity: ";
-    productQuantityContainer.appendChild(productQuantityTitle);
-    productQuantityContainer.appendChild(productQuantitySelect);
-    productBottom.appendChild(productQuantityContainer);
-    productBottom.appendChild(productAddToCartBtn);
-    modalBottom.appendChild(eachProductCategory);
-    modalBottom.appendChild(productBottom);
-    customModal.appendChild(modalBottom);
-    customModal.style.display = "block";
-    overlay.style.display = "block";
-  };
+  viewMoreButton.onclick = () => openModal(resultProducts, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
   //Appending the Children
   eachProduct.appendChild(eachProductThumbnail);
   eachProduct.appendChild(eachProductBrand);
@@ -295,4 +243,70 @@ function singleProduct(resultProducts) {
   productPage.appendChild(eachProductContainer);
 }
 
-
+function openModal(resultProducts, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription) {
+  const eachProductStock = document.createElement("p");
+  const eachProductRating = document.createElement("p");
+  const modalBottom = document.createElement("div");
+  const productAddToCartBtn = document.createElement("button");
+  let productQuantitySelect = document.createElement("select");
+  productQuantitySelect.className = "modal-select rounded p-1 mx-1";
+  let stckNum =  resultProducts.stock;
+  if (stckNum > 90){
+    stckNum = stckNum / 4;
+  }else if (stckNum > 30) {
+    stckNum = stckNum / 2;
+  }
+  for (let i = 1; i <= stckNum; i++) {
+    let productQuantityOption = document.createElement("option");
+    productQuantityOption.value = i;
+    productQuantityOption.innerText = i;
+    productQuantitySelect.appendChild(productQuantityOption);
+  }
+  modalBottom.className="cart-container justify-between flex p-8";
+  productAddToCartBtn.className="add-to-cart ";
+  productAddToCartBtn.innerText="Add to Cart " + cartIcon.innerText;
+  productAddToCartBtn.onclick = () => addToCartOnClick(resultProducts, productQuantitySelect);
+  const eachProductCategory = document.createElement("p");
+  eachProductStock.innerText = "Stock: " + resultProducts.stock + " LEFT IN STOCK!";
+  const starIcon = document.getElementById("starIcon").cloneNode(true);
+  eachProductRating.innerText = "Rating: " + resultProducts.rating + starIcon.innerText;
+  eachProductCategory.innerText = "Category: " + resultProducts.category;
+  const modalBrand = eachProductBrand.cloneNode(true);
+  modalBrand.style.textAlign = "left";
+  const closeButton = document.createElement("button");
+  const closeIcon = document.getElementById("closeIcon").cloneNode(true);
+  closeButton.innerText = closeIcon.innerText;
+  closeButton.className = "inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";
+  closeButton.style.padding = "10px 15px";
+  closeButton.onclick = () => closeModal();
+  const modalTop = document.createElement("div");
+  modalTop.className = "flex justify-between items-center p-2";
+  modalTop.appendChild(modalBrand);
+  modalTop.appendChild(closeButton);
+  customModal.appendChild(modalTop);
+  const modalTitlePrice = eachProductTitlePrice.cloneNode(true);
+  customModal.appendChild(modalTitlePrice);
+  const modalThumbnail = eachProductThumbnail.cloneNode(true);
+  customModal.appendChild(modalThumbnail);
+  const modalDescription = eachProductDescription.cloneNode(true);
+  customModal.appendChild(modalDescription);
+  customModal.appendChild(eachProductStock);
+  customModal.appendChild(eachProductRating);
+  const productBottom = document.createElement("div");
+  productBottom.className = "modal-btm-container";
+  const productQuantityContainer = document.createElement("div");
+  productQuantityContainer.className = "quantity-container flex justify-between font-normal text-gray-700 border border-solid border-gray-300 rounded";
+  const productQuantityTitle = document.createElement("span");
+  productQuantityTitle.style.alignSelf = "center";
+  productQuantityTitle.style.color = "white";
+  productQuantityTitle.innerText = "Quantity: ";
+  productQuantityContainer.appendChild(productQuantityTitle);
+  productQuantityContainer.appendChild(productQuantitySelect);
+  productBottom.appendChild(productQuantityContainer);
+  productBottom.appendChild(productAddToCartBtn);
+  modalBottom.appendChild(eachProductCategory);
+  modalBottom.appendChild(productBottom);
+  customModal.appendChild(modalBottom);
+  customModal.style.display = "block";
+  overlay.style.display = "block";
+}
