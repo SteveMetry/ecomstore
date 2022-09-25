@@ -1,0 +1,184 @@
+body {
+  display: grid;
+  grid-template-rows: 0.05fr 0.9fr 0.05fr;
+  justify-items: center;
+  align-content: center;
+  background-color: #ffecde;
+}
+
+
+.login-nav {
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: royalblue;
+  margin-bottom: 2rem;
+}
+
+.login {
+  margin: 0.5rem;
+  padding: 1.2rem;
+  border-radius: 5px;
+  border: 0.01rem solid black;
+  grid-template-rows: 0.05fr 0.9fr 0.05fr;
+  background-color: #e9deff;
+  box-shadow: 2px 4px 15px 4px royalblue;
+  width: 80vw;
+  height: 80vh;
+}
+
+.login label {
+  margin-top: 1rem;
+}
+.login small {
+  text-align: center;
+}
+.console-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 100vw;
+  height: 100%;
+}
+.profile-container {
+  width: 60%;
+  height: 75vh;
+  justify-self: center;
+  display: grid;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rgb(246, 233, 253);
+  border: rgb(173, 198, 249) solid 1px;
+  border-radius: 4px;
+  box-shadow: 2px 9px 10px #dfdfdf;
+}
+
+.demo-sites-container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  width: 85%;
+  margin: 0 1rem;
+  font-weight: 400;
+  text-align: center;
+  background-color: aliceblue;
+}
+.demo-sites-container {
+  display: grid;
+  grid-template-rows: 0.1fr 0.9fr;
+  height: 100%;
+}
+.demo-sites {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  overflow-y: scroll;
+  margin: 1rem;
+  height: 100%;
+}
+.demo-sites a {
+  font-weight: 150;
+  color: white;
+  margin: 0.5rem;
+  padding: 0.2rem;
+  border-radius: 5px;
+  background-color: rgb(173, 198, 249);
+  border: 1px solid rgb(173, 235, 255);
+  text-align: center;
+}
+.parent-input-container{
+  display: grid;
+  grid-template-rows: 0.9fr 0.9fr 0.9fr 0.9fr 0.9fr 0.5fr;
+  row-gap: 1rem;
+  width: 100%;
+}
+.input-container {
+  display: flex;
+  height: 1.5rem;
+  width: 100%;
+}
+
+.profile-image {
+ display: grid;
+ grid-template-rows: 0.9fr 0.1fr;
+}
+
+.save-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  width: 8rem;
+  height: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 140;
+  color: royalblue;
+  background-color: rgb(173, 198, 249);;
+  border: 1px solid rgb(173, 235, 255);
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 550px) {
+  .login {
+    margin: 5rem;
+    width: 60vw;
+    height: 65vh;
+  }
+  .profile-container {
+    height: 65vh;
+  }
+  .input-container {
+    display: flex;
+    height: 1.8rem;
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .login {
+    width: 45vw;
+  }
+  .console-container {
+    margin: 1rem;
+    grid-template-columns: 0.7fr 0.3fr;
+    height:100%;
+    width: 100%;
+  }
+  .profile-container {
+    grid-template-columns: 0.7fr 0.3fr;
+    width: 55%;
+    height: 100%;
+  }
+  .demo-sites a {
+    font-weight: 250;
+    font-size: 0.8rem;
+  }
+  .input-container {
+    width: 80%;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .login {
+    width: 40vw;
+  }
+  .demo-sites a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 250;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .login {
+    width: 30vw;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .login {
+    width: 30vw;
+  }
+}

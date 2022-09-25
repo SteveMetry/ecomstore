@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ECOM STORE BY STEVE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="custom.css" rel="stylesheet"/>
+</head>
+<body onload="consoleLoad()">
+<nav class="login-nav" onmouseenter="disableInput()">
+  <div class="area-left">&#11152;</div>
+  <div id="navUsrnameDiv" class="area-middle">WELCOME <span id ="navUsrnameSpan"></span></div>
+  <div class="area-right">&#129730;</div>
+</nav>
+<div id="consoleContainer" class="console-container">
+  <div id="profileContainer" class="profile-container">
+    <div id="inputContainer" class="parent-input-container"></div>
+    <div class="profile-image">
+      <img id="profileImg"/>
+      <a onclick="onSave()" class="save-btn">Save this</a>
+    </div>
+    
+  </div>
+  <div class="demo-sites-container" onmouseenter="disableInput()">
+    <h1>View Demo Sites</h1>
+    <div class="demo-sites">
+      <a href="">Dating Registration</a>
+      <a href="">PokeCard</a>
+      <a href="">Ecommerce</a>
+      <a href="">React JS</a>
+      <a href="">Next JS</a>
+    </div>
+  </div>
+</div>
+<span id="editBtn" style="display:none;">&#9998;</span>
+<script src="console.js"></script>
+</body>
+</html>
