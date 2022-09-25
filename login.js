@@ -1,3 +1,4 @@
+localStorage.removeItem("user")
 const loginPage = document.getElementById("userInfo")
 const loginContainer = document.getElementById("loginBtn");
 const invalidSpan = document.getElementById("onInvalid");
@@ -9,9 +10,6 @@ loginBtn.className = "text-center my-5 w-full px-6 py-2.5 bg-black text-sky-600 
 loginContainer.appendChild(loginBtn);
 
 function loadSite() {
-  if (localStorage.getItem("user") == null) {
-    localStorage.setItem("user", "{}");
-  }
      const loginData = [
       {
         id: 005,
@@ -53,7 +51,7 @@ function loadSite() {
       
     }
   ];
-    localStorage.setItem("login", JSON.stringify(loginData));
+  localStorage.setItem("login", JSON.stringify(loginData));
 }
 
 function msgDelay(){
@@ -82,6 +80,10 @@ function loginUsr(resultProducts, productQuantitySelect) {
   } else {
     onInvalidInput();
   };
+}
+
+function openIndex() {
+  window.open("index.html", "_self");
 }
 
 // let userObj = {

@@ -8,9 +8,9 @@
 </head>
 <body onload="consoleLoad()">
 <nav class="login-nav" onmouseenter="disableInput()">
-  <div class="area-left">&#11152;</div>
-  <div id="navUsrnameDiv" class="area-middle">WELCOME <span id ="navUsrnameSpan"></span></div>
-  <div class="area-right">&#129730;</div>
+  <div style="cursor: pointer;" onclick="openLogin()">&#11152;</div>
+  <div id="navUsrnameDiv" >WELCOME <span id ="navUsrnameSpan"></span></div>
+  <div >&#129730;</div>
 </nav>
 <div id="consoleContainer" class="console-container">
   <div id="profileContainer" class="profile-container">
@@ -19,16 +19,15 @@
       <img id="profileImg"/>
       <a onclick="onSave()" class="save-btn">Save this</a>
     </div>
-    
   </div>
   <div class="demo-sites-container" onmouseenter="disableInput()">
     <h1>View Demo Sites</h1>
     <div class="demo-sites">
-      <a href="">Dating Registration</a>
-      <a href="">PokeCard</a>
-      <a href="">Ecommerce</a>
-      <a href="">React JS</a>
-      <a href="">Next JS</a>
+      <a>Dating Registration</a>
+      <a>PokeCard</a>
+      <a onclick="openIndex()" style="cursor: pointer;">Ecommerce</a>
+      <a>React JS</a>
+      <a>Next JS</a>
     </div>
   </div>
 </div>

@@ -4,14 +4,14 @@ const profileContainer = document.getElementById("profileContainer");
 const inputContainer = document.getElementById("inputContainer");
 const navUsrnameDiv = document.getElementById("navUsrnameDiv");
 let userInfo = localStorage.getItem("user");
-
 navUsrnameDiv.appendChild(navUsrSpan);
 const body = document.getElementById("body");
 const editSpan = document.getElementById("editBtn");
 const profileImg = document.getElementById("profileImg");
+
 function consoleLoad() {
   userInfo = JSON.parse(userInfo);
-  if(localStorage.getItem(JSON.stringify(userInfo.id)) == null){
+  if (localStorage.getItem(JSON.stringify(userInfo.id)) == null) {
     localStorage.setItem(JSON.stringify(userInfo.id), JSON.stringify(userInfo));
   } else {
     let usersInfo = localStorage.getItem(`${userInfo.id}`);
@@ -69,3 +69,9 @@ function createInput(key, value) {
   inputContainer.appendChild(usersFNameContainer);
 }
 
+function openIndex() {
+  window.open("index.html", "_self");
+}
+function openLogin() {
+  window.open("login.html", "_self");
+}

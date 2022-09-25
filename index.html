@@ -19,10 +19,7 @@
       <button
         type="button"
         class="btn text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
-        onclick="searchProducts()"
-      >
-        &#128270
-      </button>
+        onclick="searchProducts()">&#128270</button>
     </div>
     <button>
       about
@@ -31,7 +28,7 @@
       contact
     </button>
     <div class="menu-container">
-      <img class="nav-profile" src="img/HalfPersonIcon.png">
+      <img class="nav-profile" src="img/HalfPersonIcon.png" onclick="openLogin()">
       <span class="cart-icon-container" onclick="toggleCart()">
         &#128722
         <sup><sup>
@@ -60,9 +57,7 @@
     <div id="cartProducts" class="cart-items"></div>
     <a class="btn proceed-to-checkout" href="checkout.html">Proceed To Checkout</a>
   </div>
-
   <footer></footer>
   <script src="home.js"></script>
 </body>
-
 </html>

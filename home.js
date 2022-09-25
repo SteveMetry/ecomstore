@@ -310,3 +310,11 @@ function openModal(resultProducts, eachProductBrand, eachProductTitlePrice, each
   customModal.style.display = "block";
   overlay.style.display = "block";
 }
+
+function openLogin() {
+  if (localStorage.getItem("user") == null) {
+      window.open("login.html", "_self");
+  } else {
+    window.open("console.html", "_self");
+  }
+}
