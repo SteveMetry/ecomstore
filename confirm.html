@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ECOM STORE BY STEVE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="confirm.css" rel="stylesheet"/>
+</head>
+<body class="confirm-body" onload="preload()">
+  <nav class="custom-navbar chkout shadow-2xl">
+    <span onclick="document.location='index.html'" class="return-previous-page">&#11152</span>
+    <img class="nav-img cursor-not-allowed" src="img/Logo.png"> 
+    <button>Profile</button> 
+    <div class="chkout-header" onclick="document.location='checkout.html'"><span class="cursor-pointer">MY CART</span></div>
+    <button>about</button>
+    <button>contact</button> 
+  </nav>
+  <header>
+    <h1 class="">YOU MADE IT!!</h1>
+    <br>
+    <sup class="">thank you for your purchase</sup>
+  </header>
+  <main id="confirmContainer" class="confirm-container">
+    <div id="profileContainer" class="profile-container">
+      <div id="userInfoContainer" class="display-user-container"> 
+      </div>
+      <img id="confirmProfileImg" class="confrm-prfle-img">
+    </div>
+    <div id="cartInfoContainer" class="confrm-checkout-page"> 
+      <table>
+        <tr class="cart-info-row">
+          <td>Discount</td>
+          <td id="discountTotal">$0</td>
+        </tr>
+        <tr class="cart-info-row">
+          <td>Tax</td>
+          <td id="taxTotal">$0</td>
+        </tr>
+        <tr class="cart-info-row">
+          <td>Total</td>
+          <td id="overallTotal"></td>
+        </tr>
+      </table>
+    </div>
+    </div>
+  </main>
+  <div id="confrmedCartCntainer" class="confrm-crt-container"></div>
+  <script src="confirm.js"></script>
+</body>
+</html>

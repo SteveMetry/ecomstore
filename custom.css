@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: space-between;
   background-color: royalblue;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .login {
@@ -119,11 +119,26 @@ body {
   cursor: pointer;
 }
 
+.save-btn:hover {
+  color: green;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: royalblue;
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .2);
+}
+::-webkit-scrollbar{
+  background-color: #000;
+  -webkit-appearance: none;
+  width: 9px;
+}
+
 @media only screen and (min-width: 550px) {
   .login {
     margin: 5rem;
     width: 60vw;
-    height: 65vh;
+    height: 70vh;
   }
   .profile-container {
     height: 65vh;

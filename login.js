@@ -1,8 +1,7 @@
-localStorage.removeItem("user")
-const loginPage = document.getElementById("userInfo")
+const loginPage = document.getElementById("userInfo");
 const loginContainer = document.getElementById("loginBtn");
 const invalidSpan = document.getElementById("onInvalid");
-const invalidMsgElement = document.createElement('p');
+const invalidMsgElement = document.createElement('span');
 const loginBtn = document.createElement("div");
 loginBtn.innerText = "Login";
 loginBtn.onclick = () => loginUsr();
@@ -10,34 +9,34 @@ loginBtn.className = "text-center my-5 w-full px-6 py-2.5 bg-black text-sky-600 
 loginContainer.appendChild(loginBtn);
 
 function loadSite() {
-     const loginData = [
-      {
-        id: 005,
-        mode:"client",
-        username:"client",
-        password:"client",
-        email: "client@example.com",
-        firstname: "hello",
-        lastname: "Smith",
-        age: 19,
-        gender: "Man",
-        image: "https://robohash.org/client"
-        
-      },
-      {
-        id: 006,
-        mode:"customer",
-        username:"customer",
-        password:"customer",
-        email: "customer@example.com",
-        firstname: "Kenny",
-        lastname: "Smith",
-        age: 19,
-        gender: "Man",
-        image: "https://robohash.org/customer"
-        
-      },
-      {
+  const loginData = [
+    {
+      id: 005,
+      mode:"client",
+      username:"client",
+      password:"client",
+      email: "client@example.com",
+      firstname: "hello",
+      lastname: "Smith",
+      age: 19,
+      gender: "Man",
+      image: "https://robohash.org/client",
+      cartItems: []
+    },
+    {
+      id: 006,
+      mode:"customer",
+      username:"customer",
+      password:"customer",
+      email: "customer@example.com",
+      firstname: "Kenny",
+      lastname: "Smith",
+      age: 19,
+      gender: "Man",
+      image: "https://robohash.org/customer",
+      cartItems: []
+    },
+    {
       id: 007,
       mode:"admin",
       username:"steveM",
@@ -47,11 +46,38 @@ function loadSite() {
       lastname: "metry",
       age: 19,
       gender: "Man",
-      image: "https://robohash.org/admin"
-      
+      image: "https://robohash.org/admin",
+      cartItems: []
+    },
+    {
+      id: 010,
+      mode:"admin",
+      username:"e",
+      password:"e",
+      email: "Admin@tech.com",
+      firstname: "e",
+      lastname: "yusif",
+      age: 18,
+      gender: "Man",
+      image: "https://robohash.org/techlife",
+      cartItems: []
     }
   ];
+
+  loginData.forEach((item, index) => {
+    if (localStorage.getItem(item.id.toString()) == null) {
+      localStorage.setItem(item.id.toString(), JSON.stringify(item));
+    } else {
+      let newUserInfo = localStorage.getItem(item.id.toString());
+      newUserInfo = JSON.parse(newUserInfo);
+      loginData[index].username = newUserInfo.username;
+      loginData[index].password = newUserInfo.password;
+    }
+  })
   localStorage.setItem("login", JSON.stringify(loginData));
+  if (localStorage.getItem("user") != null) {
+    window.open("console.html", "_self");
+  }
 }
 
 function msgDelay(){
@@ -72,11 +98,15 @@ function loginUsr(resultProducts, productQuantitySelect) {
   let userName = document.getElementById("userNameInput");
   let userPassword = document.getElementById("passwordInput");
   const loginUser = JSON.parse(localStorage.getItem("login"));
-  const Currentlogin = loginUser.find(item => item.username === userName.value && item.password === userPassword.value);
-  if(Currentlogin){
+  const currentLogin = loginUser.find(item => item.username === userName.value && item.password === userPassword.value);
+  if (currentLogin) {
     invalidMsgElement.style.display = "none";
-    localStorage.setItem("user", JSON.stringify(Currentlogin));
-    window.open("console.html", "_self");
+    localStorage.setItem("user", JSON.stringify(currentLogin));
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    const redirectVal = params.redirect;
+    window.open(`${redirectVal != null ? redirectVal : "console"}.html`, "_self");
   } else {
     onInvalidInput();
   };

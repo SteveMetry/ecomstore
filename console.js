@@ -11,11 +11,11 @@ const profileImg = document.getElementById("profileImg");
 
 function consoleLoad() {
   userInfo = JSON.parse(userInfo);
-  if (localStorage.getItem(JSON.stringify(userInfo.id)) == null) {
-    localStorage.setItem(JSON.stringify(userInfo.id), JSON.stringify(userInfo));
+  if(localStorage.getItem(userInfo.id.toString()) == null){
+    localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
   } else {
-    let usersInfo = localStorage.getItem(`${userInfo.id}`);
-    userInfo = JSON.parse(usersInfo);
+    userInfo = JSON.parse(localStorage.getItem(userInfo.id.toString()));
+    console.log(userInfo);
   }
   ["username","password","email","firstname","lastname"].forEach(item => {
     createInput(item, userInfo[item]);
@@ -42,7 +42,7 @@ function onSave() {
       userInfo[item.id] = item.value;
     }
   })
-  localStorage.setItem(JSON.stringify(userInfo.id), JSON.stringify(userInfo));
+  localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
   console.log(JSON.parse(localStorage.getItem(JSON.stringify(userInfo.id))));
 }
 
@@ -73,5 +73,11 @@ function openIndex() {
   window.open("index.html", "_self");
 }
 function openLogin() {
+  localStorage.removeItem("user");
   window.open("login.html", "_self");
+}
+
+function clearLocal() {
+  localStorage.clear();
+  openLogin();
 }

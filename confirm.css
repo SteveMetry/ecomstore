@@ -1,0 +1,93 @@
+body {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  background-color: #ffecde;
+}
+
+hr {
+  border: 1px solid aliceblue;
+}
+
+.confirm-body {
+  padding-top: 5rem;
+}
+
+.confirm-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  height: 130vh;
+  padding-right: 3rem;
+}
+
+.profile-container {
+  width: 80%;
+  height: 70vh;
+  justify-self: center;
+  display: grid;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rgb(246, 233, 253);
+  border: rgb(173, 198, 249) solid 1px;
+  border-radius: 4px;
+  box-shadow: 2px 9px 10px #dfdfdf;
+}
+
+.confrm-checkout-page {
+  display: flex;
+  flex-direction: column;
+  margin: 0.9rem;
+  padding: 1rem;
+  background-color: rgb(171, 186, 251);
+  border: royalblue solid 1.4px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 6px rgb(171, 186, 251);
+  height: 30vh;
+  width: 100%;
+  max-height: 70vh;
+}
+
+.confrm-crt-container {
+  min-height: 90vh;
+  width: 92%;
+  margin: 1rem 2rem;
+  border: 1px solid ;
+}
+
+@media only screen and (min-width: 550px) {
+  .confirm-container {
+    grid-template-rows: 0.7fr 0.3fr;
+    height: 120vh;
+  }
+  .profile-container {
+    height: 65vh;
+  }
+  .input-container {
+    display: flex;
+    height: 1.8rem;
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .confirm-container {
+    grid-template-columns: 0.7fr 0.3fr;
+    height: 60vh;
+  }
+  .login {
+    width: 45vw;
+  }
+  .profile-container {
+    grid-template-columns: 0.7fr 0.3fr;
+    width: 55%;
+    height: 100%;
+  }
+  .confrm-checkout-page {
+    margin: 2.5rem 0rem;
+    padding: 1rem;
+    width:24vw;
+    height: 30vh;
+    max-height: 70vh;
+  }
+}

@@ -130,7 +130,6 @@ function onLoad() {
         });
     }
   }
-
   categoryBtns();
   if (localStorage.getItem("cartItems") == null) {
     localStorage.setItem("cartItems", "[]");
@@ -167,6 +166,8 @@ function searchProducts()  {
 }
 
 function addToCartOnClick(resultProducts, productQuantitySelect) {
+  let eachUser = JSON.parse(localStorage.getItem("user"));
+  
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;
@@ -185,7 +186,7 @@ function addToCartOnClick(resultProducts, productQuantitySelect) {
       thumbnail: "",
       description: ""
     });
-  }
+  };
   for (let i = 0; i < cartItems.length; i++) {
     cartAmount += cartItems[i].amount;
     fetch(`https://dummyjson.com/products/${cartItems[i].id}`)
@@ -224,7 +225,7 @@ function singleProduct(resultProducts) {
   eachProductTitlePrice.className = "flex justify-between";
   const eachProductDescription = document.createElement("p");
   eachProductDescription.className = "product-description lowercase";
-  const viewMoreButton = document.createElement('button')
+  const viewMoreButton = document.createElement('button');
   viewMoreButton.innerText = "Click Me";
   //inserting the information into the element
   eachProductTitle.innerText = resultProducts.title;
@@ -313,8 +314,8 @@ function openModal(resultProducts, eachProductBrand, eachProductTitlePrice, each
 
 function openLogin() {
   if (localStorage.getItem("user") == null) {
-      window.open("login.html", "_self");
+    window.open("login.html", "_self");
   } else {
     window.open("console.html", "_self");
   }
-}
+};

@@ -19,7 +19,10 @@
       <button
         type="button"
         class="btn text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
-        onclick="searchProducts()">&#128270</button>
+        onclick="searchProducts()"
+      >
+        &#128270
+      </button>
     </div>
     <button>
       about
@@ -28,7 +31,7 @@
       contact
     </button>
     <div class="menu-container">
-      <img class="nav-profile" src="img/HalfPersonIcon.png" onclick="openLogin()">
+      <img class="nav-profile" style="cursor: pointer;" src="img/HalfPersonIcon.png" onclick="openLogin()">
       <span class="cart-icon-container" onclick="toggleCart()">
         &#128722
         <sup><sup>
@@ -49,11 +52,15 @@
     <div id="customModal" class="fixed top-1/2 left-1/2 bg-white custom-modal" style="display: none;"></div>
   </main>
   <div id="cartContainer" class="preview-cart-container" style="display:none;">
-    <h3 style="
-      font-variant: small-caps;
-      font-weight: 400;
-      font-size: 1.5 em;
-    ">my cart</h3>
+    <h3
+      style="
+        font-variant: small-caps;
+        font-weight: 400;
+        font-size: 1.5 em;
+      "
+    >
+      my cart
+    </h3>
     <div id="cartProducts" class="cart-items"></div>
     <a class="btn proceed-to-checkout" href="checkout.html">Proceed To Checkout</a>
   </div>
