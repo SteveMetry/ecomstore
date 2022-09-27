@@ -11,9 +11,9 @@ const profileImg = document.getElementById("profileImg");
 
 function consoleLoad() {
   userInfo = JSON.parse(userInfo);
-  if(localStorage.getItem(userInfo.id.toString()) == null){
-    localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
-  } else {
+  userInfo.cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+  localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
+  if (localStorage.getItem(userInfo.id.toString()) != null) {
     userInfo = JSON.parse(localStorage.getItem(userInfo.id.toString()));
     console.log(userInfo);
   }

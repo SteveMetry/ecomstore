@@ -103,6 +103,11 @@ function deleteItem(cartItem) {
 }
 
 function onLoad() {
+  if (localStorage.getItem("user") != null) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    user.cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    localStorage.setItem(user.id.toString(), JSON.stringify(user));
+  }
   productPage.innerText = "";
   if (localStorage.getItem("productRandomList") == null) {
     localStorage.setItem("productRandomList", "[]");

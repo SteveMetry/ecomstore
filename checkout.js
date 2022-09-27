@@ -31,6 +31,11 @@ function deleteItem(cartItem) {
 }
 
 function chkoutLoad() {
+  if (localStorage.getItem("user") != null) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    user.cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    localStorage.setItem(user.id.toString(), JSON.stringify(user));
+  }
   let starIcon = document.getElementById("starIcon");
   starIcon = starIcon.cloneNode(true);
   starIcon = starIcon.innerText;
