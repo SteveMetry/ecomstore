@@ -63,7 +63,7 @@ function loadSite() {
       cartItems: []
     }
   ];
-
+  localStorage.setItem("login", JSON.stringify(loginData));
   loginData.forEach((item, index) => {
     if (localStorage.getItem(item.id.toString()) == null) {
       localStorage.setItem(item.id.toString(), JSON.stringify(item));
@@ -74,7 +74,7 @@ function loadSite() {
       loginData[index].password = newUserInfo.password;
     }
   })
-  localStorage.setItem("login", JSON.stringify(loginData));
+  localStorage.setItem("updatdLogin", JSON.stringify(loginData));
   if (localStorage.getItem("user") != null) {
     window.open("console.html", "_self");
   }
@@ -84,9 +84,9 @@ function msgDelay(){
   invalidMsgElement.className="text-center w-full text-red-600 my-5";
 }
 
-function onInvalidInput() {
+function onInvalidInput(oldLogin) {
   invalidMsgElement.style = "";
-  invalidMsgElement.innerText = "Invalid Entry";
+  invalidMsgElement.innerText = `${oldLogin != null ? "we dont judge people for their mistakes, BUT our system does :( please enter the new password" : "Wrong :("}`;
   invalidMsgElement.className="animate-ping text-center w-full text-red-600 my-5";
   invalidSpan.innerText = "";
   invalidSpan.appendChild(invalidMsgElement);
@@ -98,18 +98,33 @@ function loginUsr(resultProducts, productQuantitySelect) {
   let userName = document.getElementById("userNameInput");
   let userPassword = document.getElementById("passwordInput");
   const loginUser = JSON.parse(localStorage.getItem("login"));
-  const currentLogin = loginUser.find(item => item.username === userName.value && item.password === userPassword.value);
-  if (currentLogin) {
+  const oldLogin = loginUser.find(item => item.username === userName.value && item.password === userPassword.value);
+  const updatdLogin = JSON.parse(localStorage.getItem("updatdLogin"));
+  const currntLogin = updatdLogin.find(item => item.username === userName.value && item.password === userPassword.value);
+  if(currntLogin){
     invalidMsgElement.style.display = "none";
-    localStorage.setItem("user", JSON.stringify(currentLogin));
+    localStorage.setItem("user", JSON.stringify(currntLogin));
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
     const redirectVal = params.redirect;
     window.open(`${redirectVal != null ? redirectVal : "console"}.html`, "_self");
+  } else if (oldLogin) {
+    onInvalidInput(oldLogin);
   } else {
     onInvalidInput();
-  };
+  }
+  // if (oldLogin) {
+  //   invalidMsgElement.style.display = "none";
+  //   localStorage.setItem("user", JSON.stringify(oldLogin));
+  //   const params = new Proxy(new URLSearchParams(window.location.search), {
+  //     get: (searchParams, prop) => searchParams.get(prop),
+  //   });
+  //   const redirectVal = params.redirect;
+  //   window.open(`${redirectVal != null ? redirectVal : "console"}.html`, "_self");
+  // } else {
+  //   onInvalidInput();
+  // };
 }
 
 function openIndex() {

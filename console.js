@@ -15,7 +15,6 @@ function consoleLoad() {
   localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
   if (localStorage.getItem(userInfo.id.toString()) != null) {
     userInfo = JSON.parse(localStorage.getItem(userInfo.id.toString()));
-    console.log(userInfo);
   }
   ["username","password","email","firstname","lastname"].forEach(item => {
     createInput(item, userInfo[item]);
@@ -43,7 +42,6 @@ function onSave() {
     }
   })
   localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
-  console.log(JSON.parse(localStorage.getItem(JSON.stringify(userInfo.id))));
 }
 
 function createInput(key, value) {
