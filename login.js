@@ -83,6 +83,13 @@ function onInvalidInput() {
   setTimeout(msgDelay, 600);  
 }
 
+function getParam() {
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  return params.redirect;
+}
+
 function loginUsr(resultProducts, productQuantitySelect) {
   let userName = document.getElementById("userNameInput");
   let userPassword = document.getElementById("passwordInput");
@@ -91,10 +98,7 @@ function loginUsr(resultProducts, productQuantitySelect) {
   if (curUser) {
     invalidMsgElement.style.display = "none";
     localStorage.setItem("user", JSON.stringify(curUser));
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    });
-    const redirectVal = params.redirect;
+    const redirectVal = getParam();
     window.open(`${redirectVal != null ? redirectVal : "console"}.html`, "_self");
   } else {
     onInvalidInput();
@@ -110,5 +114,6 @@ function openCreateUser() {
 }
 
 function openNewUser() {
-  window.open("new_user.html?redirect=confirm", "_self");
+  const redirectVal = getParam();
+  window.open(`new_user.html${redirectVal != null ? "?redirect=confirm" : ""}`, "_self");
 }
