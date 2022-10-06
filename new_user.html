@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ECOM STORE BY STEVE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="confirm.css" rel="stylesheet"/>
+</head>
+<body class="confirm-body">
+  <nav class="custom-navbar chkout shadow-2xl">
+    <span onclick="document.location='login.html'" class="return-previous-page">&#11152</span>
+    <img class="nav-img cursor-not-allowed" src="img/Logo.png"> 
+    <button>Profile</button> 
+    <div class="chkout-header"><span class="cursor-pointer">New User</span></div>
+    <button>about</button>
+    <button>contact</button> 
+  </nav>
+  <form id="newUser" class="grid gap-5 grid-cols-1 m-5 w-96" onsubmit="event.preventDefault(); validateNewUser();">
+    <div class="flex flex-col">
+      <input name="username" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" placeholder="Username" />
+      <p id="usernameError" class="text-red-600" style="display: none;">Invalid username!</p>
+    </div>
+    <div class="flex flex-col">
+      <input name="password" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" placeholder="Password" type="password" />
+      <!-- <p id="passwordError" class="text-red-600" style="display: none;">Password too weak!</p> -->
+    </div>
+    <div class="flex flex-col">
+      <input name="email" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" placeholder="Email" type="email" />
+      <p id="emailError" class="text-red-600" style="display: none;">Invalid email!</p>
+    </div>
+    <div class="flex flex-col">
+      <input name="firstName" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" placeholder="First name" />
+      <p id="firstNameError" class="text-red-600" style="display: none;">Invalid first name!</p>
+    </div>
+    <div class="flex flex-col">
+      <input name="lastName" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" placeholder="Last name" />
+      <p id="lastNameError" class="text-red-600" style="display: none;">Invalid last name!</p>
+    </div>
+    <div class="flex flex-col">
+      <input name="age" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" placeholder="Age" type="number" min="18" max="100" />
+      <p id="ageError" class="text-red-600" style="display: none;">Invalid age!</p>
+    </div>
+    <select name="gender" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
+      <option value="male" selected>Male</option>
+      <option value="female">Female</option>
+    </select>
+    <div class="text-center">
+      <button type="submit" class="border border-gray-700 bg-gray-700 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-800 focus:outline-none focus:shadow-outline w-36">Save Info</button>
+    </div>
+  </form>
+  <script src="user.js"></script>
+</body>
+</html>

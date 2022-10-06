@@ -1,22 +1,21 @@
+if (localStorage.getItem("user") == null) {
+  window.open("login.html", "_self");
+}
 const navUsrSpan = document.getElementById("navUsrnameSpan");
 const consoleContainer = document.getElementById("consoleContainer");
 const profileContainer = document.getElementById("profileContainer");
 const inputContainer = document.getElementById("inputContainer");
 const navUsrnameDiv = document.getElementById("navUsrnameDiv");
-let userInfo = localStorage.getItem("user");
 navUsrnameDiv.appendChild(navUsrSpan);
 const body = document.getElementById("body");
 const editSpan = document.getElementById("editBtn");
 const profileImg = document.getElementById("profileImg");
+const inputKeys = ["username","password","email","firstname","lastname"];
 
 function consoleLoad() {
-  userInfo = JSON.parse(userInfo);
+  const userInfo = JSON.parse(localStorage.getItem("user"));
   userInfo.cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-  localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
-  if (localStorage.getItem(userInfo.id.toString()) != null) {
-    userInfo = JSON.parse(localStorage.getItem(userInfo.id.toString()));
-  }
-  ["username","password","email","firstname","lastname"].forEach(item => {
+  inputKeys.forEach(item => {
     createInput(item, userInfo[item]);
   });
   profileImg.src = userInfo.image;
@@ -24,32 +23,37 @@ function consoleLoad() {
 }
 
 function disableInput() {
-  let keys = ["username","password","email","firstname","lastname"];
-  keys.forEach(item => {
-    let inputBox = document.getElementById(item);
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  inputKeys.forEach(item => {
+    let inputBox = document.getElementById(`user${userInfo.id}-${item}`);
     inputBox.disabled = true;
   })
 }
 
 function onSave() {
   disableInput()
-  let usrInputLst = document.getElementsByName("profleInput");
-  usrInputLst.forEach(item => {
-    let eachUsrInfo = userInfo[item.id];
-    if (item.value != eachUsrInfo.value) {
-      eachUsrInfo.value = item.value;
-      userInfo[item.id] = item.value;
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const loginUsers = JSON.parse(localStorage.getItem("login"));
+  const curUser = loginUsers.find(curUser => curUser.id === userInfo.id);
+  inputKeys.forEach(item => {
+    const curInputItem = document.getElementById(`user${userInfo.id}-${item}`);
+    if (curInputItem.value !== userInfo[item].value) {
+      userInfo[item] = curInputItem.value;
+      curUser[item] = curInputItem.value;
     }
-  })
-  localStorage.setItem(userInfo.id.toString(), JSON.stringify(userInfo));
+  });
+  localStorage.setItem("user", JSON.stringify(userInfo));
+  localStorage.setItem("login", JSON.stringify(loginUsers));
+  console.log(JSON.parse(localStorage.getItem("login")));
 }
 
 function createInput(key, value) {
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  console.log(userInfo)
   let profileInput = document.createElement("input");
   profileInput.disabled = true;
-  profileInput.id = key;
+  profileInput.id = `user${userInfo.id}-${key}`;
   profileInput.value = value;
-  profileInput.name = "profleInput"
   profileInput.className = "rounded-lg w-full ml-2 border border-slate-200 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40";
   let editSpan = document.getElementById("editBtn");
   let editSpanClone = editSpan.cloneNode(true);

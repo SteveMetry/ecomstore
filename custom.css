@@ -136,9 +136,9 @@ body {
 
 @media only screen and (min-width: 550px) {
   .login {
-    margin: 5rem;
+    margin: 3rem;
     width: 60vw;
-    height: 70vh;
+    height: 75vh;
   }
   .profile-container {
     height: 65vh;
@@ -195,5 +195,6 @@ body {
 @media only screen and (min-width: 1050px) {
   .login {
     width: 30vw;
+    margin: 0px;
   }
 }

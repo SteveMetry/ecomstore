@@ -58,7 +58,7 @@ function chkoutLoad() {
     cartItemQuantity.className="text-right font-thin";
     cartItemQuantity.innerText = "Quantity: " + cartItemList[i].amount + starIcon;
     let cartItemThumbnail = document.createElement("img");
-    cartItemThumbnail.className = "cart-img mx-auto my-6";
+    cartItemThumbnail.className = "w-24 mx-auto my-6";
     cartItemThumbnail.src = cartItemList[i].thumbnail;
     let cartItemTitleThumbnail = document.createElement("div")
     cartItemTitleThumbnail.className = "text-center text-xl";

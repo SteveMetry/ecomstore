@@ -55,7 +55,9 @@ hr {
   margin: 1rem 2rem;
   margin-bottom: 6rem;
 }
-
+.profile-img {
+  height: 10rem;
+}
 @media only screen and (min-width: 550px) {
   .confirm-container {
     grid-template-rows: 0.7fr 0.3fr;
@@ -73,27 +75,32 @@ hr {
 
 @media only screen and (min-width: 650px) {
   .confirm-container {
-    grid-template-columns: 0.7fr 0.3fr;
+    grid-template-columns: 0.9fr 0.1fr;
     height: 60vh;
   }
   .login {
     width: 45vw;
   }
   .profile-container {
-    width: 55%;
+    width: 80%;
     height: 90%;
   }
   .confrm-checkout-page {
     margin: 2.5rem 0rem;
     padding: 1rem;
-    width:24vw;
+    width:100%;
     height: 30vh;
     max-height: 70vh;
   }
 }
 @media only screen and (min-width: 800px) {
+  .profile-img {
+    width: 10rem;
+    height: auto;
+  }
   .profile-container {
     grid-template-columns: 1fr 1fr;
     height: 40vh;
+    width: 38vw;
   }
 }
