@@ -24,14 +24,20 @@ function closeModal() {
 
 function categoryBtns() {
   categoriesContainer.innerText = "";
-    fetch(`https://dummyjson.com/products/categories`)
+  const petsButton = document.createElement('button');
+  petsButton.onclick = () => onCategoryClick("pets");
+  petsButton.innerText = "pets";
+  petsButton.style.backgroundColor = "#90999903";
+  petsButton.className = "category-button text-gray-700 leading-tight uppercase bg-slate-50 rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";//bg-gray-200
+  categoriesContainer.appendChild(petsButton);
+  fetch(`https://dummyjson.com/products/categories`)
     .then((response) => response.json())
     .then((categories) => {
       for (let i = 0; i < categories.length; i++) {
         const categoryButton = document.createElement('button');
         categoryButton.onclick = () => onCategoryClick(categories[i]);
         categoryButton.innerText = categories[i];
-        categoryButton.style.backgroundColor="#90999903";
+        categoryButton.style.backgroundColor = "#90999903";
         categoryButton.className = "category-button text-gray-700 leading-tight uppercase bg-slate-50 rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";//bg-gray-200
         categoriesContainer.appendChild(categoryButton);
       }
@@ -42,15 +48,27 @@ function onCategoryClick(category) {
   pageHeader.innerText = category;
   productPage.innerText = "";
   //fetch chosen information
-  fetch(`https://dummyjson.com/products/category/${category}`)
-    .then((response) => response.json())
-    .then((results) => {
-      resultProducts = results.products;
-      for (let i = 0; i < resultProducts.length; i++) {
-        // creating each product-card element & add element to productPage
-        singleProduct(resultProducts[i]);
-      }
-    });
+  if (category === "pets") {
+    fetch("https://ecomstore-demo.vercel.app/petProducts.json")
+      .then(response => response.json())
+      .then(results => {
+        resultProducts = results.products;
+        for (let i = 0; i < resultProducts.length; i++) {
+          // creating each product-card element & add element to productPage
+          singleProduct(resultProducts[i]);
+        }
+      });
+  } else {
+    fetch(`https://dummyjson.com/products/category/${category}`)
+      .then((response) => response.json())
+      .then((results) => {
+        resultProducts = results.products;
+        for (let i = 0; i < resultProducts.length; i++) {
+          // creating each product-card element & add element to productPage
+          singleProduct(resultProducts[i]);
+        }
+      });
+  }
 }
 
 function populateCart(cartItem) {
@@ -324,3 +342,7 @@ function openLogin() {
     window.open("console.html", "_self");
   }
 };
+
+function toggleCategorySection() {
+  document.getElementById("categoriesContainer").classList.toggle("hide");
+}

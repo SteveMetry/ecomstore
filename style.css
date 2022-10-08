@@ -7,13 +7,29 @@ hr {
   border: 1px solid aliceblue;
 }
 
+.hide {
+  display: none !important;
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 1rem;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 1.5rem;
+}
+
 .custom-navbar {
   height: 5rem;
   padding: 0.3rem;
   font-size: 12px;
   background-color: #000021;
   display: grid;
-  grid-template-columns: 0.5fr 0.8fr 2.8fr 0.8fr 0.8fr 0.5fr;
+  grid-template-columns: 0.5fr 0.8fr 2.8fr 0.8fr 0.5fr;
   align-items: center;
   gap: 1rem;
   min-height:4rem;
