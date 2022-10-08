@@ -29,12 +29,11 @@
       "stock": 20,
       "brand": "Ancai",
       "category": "pets",
-      "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
+      "thumbnail": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71kNiFE0N9L._AC_SL1001_.jpg",
       "images": [
-        "https://dummyjson.com/image/i/products/2/1.jpg",
-        "https://dummyjson.com/image/i/products/2/2.jpg",
-        "https://dummyjson.com/image/i/products/2/3.jpg",
-        "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/61Oq531YfPL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/81jpgTBAWLL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71kNiFE0N9L._AC_SL1001_.jpg"
       ]
     },
     {
