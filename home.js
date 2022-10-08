@@ -9,6 +9,7 @@ const cartProducts = document.getElementById("cartProducts");
 const horizontalLine = document.createElement("hr");
 const cartPageContainer = document.getElementById("cartPageContainer");
 const categoriesContainer = document.getElementById("categoriesContainer");
+const categoryList = ["pets", "makeup"]
 
 function toggleCart(){
   cartContainer.style = "";
@@ -24,12 +25,15 @@ function closeModal() {
 
 function categoryBtns() {
   categoriesContainer.innerText = "";
-  const petsButton = document.createElement('button');
-  petsButton.onclick = () => onCategoryClick("pets");
-  petsButton.innerText = "pets";
-  petsButton.style.backgroundColor = "#90999903";
-  petsButton.className = "category-button text-gray-700 leading-tight uppercase bg-slate-50 rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";//bg-gray-200
-  categoriesContainer.appendChild(petsButton);
+
+  for (let i = 0; i < categoryList.length; i++) {
+    const categoryButton = document.createElement('button');
+    categoryButton.onclick = () => onCategoryClick(categoryList[i]);
+    categoryButton.innerText = categoryList[i];
+    categoryButton.style.backgroundColor = "#90999903";
+    categoryButton.className = "category-button text-gray-700 leading-tight uppercase bg-slate-50 rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";//bg-gray-200
+    categoriesContainer.appendChild(categoryButton);
+  }
   fetch(`https://dummyjson.com/products/categories`)
     .then((response) => response.json())
     .then((categories) => {
@@ -48,23 +52,29 @@ function onCategoryClick(category) {
   pageHeader.innerText = category;
   productPage.innerText = "";
   //fetch chosen information
-  if (category === "pets") {
-    fetch("https://ecomstore-demo.vercel.app/petProducts.json")
+  let dummyProducts = false;
+  categoryList.forEach(item => {
+   if (category == item){
+    fetch(`https://ecomstore-demo.vercel.app/${category}.json`)
       .then(response => response.json())
       .then(results => {
         resultProducts = results.products;
         for (let i = 0; i < resultProducts.length; i++) {
-          // creating each product-card element & add element to productPage
+          // creating each product-card element & add append element
           singleProduct(resultProducts[i]);
         }
       });
-  } else {
+   } else {
+    dummyProducts = true;
+   }
+  })
+  if (dummyProducts) {
     fetch(`https://dummyjson.com/products/category/${category}`)
       .then((response) => response.json())
       .then((results) => {
         resultProducts = results.products;
         for (let i = 0; i < resultProducts.length; i++) {
-          // creating each product-card element & add element to productPage
+          // creating each product-card element & add to productPage
           singleProduct(resultProducts[i]);
         }
       });
@@ -190,7 +200,6 @@ function searchProducts()  {
 
 function addToCartOnClick(resultProducts, productQuantitySelect) {
   let eachUser = JSON.parse(localStorage.getItem("user"));
-  
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;
@@ -223,7 +232,6 @@ function addToCartOnClick(resultProducts, productQuantitySelect) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
       });
   }
-  
   cartAmountSpan.innerText = cartAmount;
   closeModal();
 }

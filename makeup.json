@@ -1,0 +1,53 @@
+{
+  "products": [
+    {
+      "id": 104,
+      "title": "GHD style gift set stocking filler",
+      "description": "ghd style gift set is everything you need for perfect styler and hair protection. Give your hair protection from the heat and finish your look with ghd's limited edition hair clips all included in a luxury velvet wash bag.",
+      "price": 44.99,
+      "discountPercentage": 15,
+      "rating": 3.9,
+      "stock": 16,
+      "brand": "GHD",
+      "category": "makeup",
+      "thumbnail": "https://bb-cdn.azureedge.net/images/27598/?Width=600&Height=600&wp=1",
+      "images": [
+        "https://bb-cdn.azureedge.net/images/27599/",
+        "https://bb-cdn.azureedge.net/images/27605/",
+        "https://bb-cdn.azureedge.net/images/27600/?Width=600&Height=600&wp=1"
+      ]
+    },
+    {
+      "id": 105,
+      "title": "Good Hair Day Glide hot brush in champagne gold",
+      "description": "Save time on styling and get festive instead with the ghd glide hot brush, now in a limited edition champagne gold with a vibrant red velvet vanity case.",
+      "price": 309.99,
+      "discountPercentage": 15.46,
+      "rating": 4.8,
+      "stock": 11,
+      "brand": "GHD",
+      "category": "makeup",
+      "thumbnail": "https://bb-cdn.azureedge.net/images/27513/?Width=600&Height=600&wp=1",
+      "images": [
+        "https://bb-cdn.azureedge.net/images/27514/?Width=600&Height=600&wp=1",
+        "https://bb-cdn.azureedge.net/images/27515/?Width=600&Height=600&wp=1",
+        "https://bb-cdn.azureedge.net/images/27516/?Width=600&Height=600&wp=1"
+      ]
+    },
+    {
+      "id": 103,
+      "title": "FOXGLOW Perfume Oil - Darling",
+      "description": "This delicious new scent from Foxglow has top notes of Black Currant and Pear, middle notes of Iris",
+      "price": 29.99,
+      "discountPercentage": 15.46,
+      "rating": 4.8,
+      "stock": 21,
+      "brand": "FOXGLOW",
+      "category": "makeup",
+      "thumbnail": "https://bb-cdn.azureedge.net/images/27982",
+      "images": [
+        "https://bb-cdn.azureedge.net/images/27983"
+      ]
+    }
+  ]
+}
