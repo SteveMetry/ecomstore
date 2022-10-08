@@ -1,0 +1,57 @@
+{
+  "products": [
+    {
+      "id": 101,
+      "title": "PETKIT, Dog Walking Leash. 14.8 ft",
+      "description": "PETKIT is a high-tech company founded in 2013,committed to developing an all-in-one solution through the product line consisting of “eat,drink,clean,sleep,and fun” to encourage an intelligent life with your fur pal. PETKIT proudly creates elegant,sustainable,and cost-effective products that won Red Dot Design Award,iF Design Award,and a number of patents,which have provided to over 30 countries all over the world.",
+      "price": 19.99,
+      "discountPercentage": 15,
+      "rating": 4.2,
+      "stock": 26,
+      "brand": "PETKIT",
+      "category": "pets",
+      "thumbnail": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/41ju3ifzlkL._AC_SL1000_.jpg",
+      "images": [
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/61+j4IcW3BL._AC_SL1200_.jpg",
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/61pojxgFN+L._AC_SL1200_.jpg",
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/51kEg6QuLoL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/41Az+wr6kIL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/61lg69-+L6L._AC_SL1500_.jpg"
+      ]
+    },
+    {
+      "id": 102,
+      "title": "Fluff Remover",
+      "description": "Easily removes pet hair, crumbs, lint and more without leaving a sticky residue behind, Great for cleaning your clothing, bedding, furniture, and car upholstery. Pure copper head, ensures a long service time",
+      "price": 15,
+      "discountPercentage": 15,
+      "rating": 3.8,
+      "stock": 20,
+      "brand": "Ancai",
+      "category": "pets",
+      "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
+      "images": [
+        "https://dummyjson.com/image/i/products/2/1.jpg",
+        "https://dummyjson.com/image/i/products/2/2.jpg",
+        "https://dummyjson.com/image/i/products/2/3.jpg",
+        "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
+      ]
+    },
+    {
+      "id": 103,
+      "title": "PAWISE Automatic Pet Feeder",
+      "description": "Smart Feeding: Automatic pet feeder allows you to schedule meals up to 48 hours in advance for convenience and peace of mind. BPA-free plastic, feeder holds up to 1.5 cups of food, the tray is dishwasher-safe",
+      "price": 19.99,
+      "discountPercentage": 15.46,
+      "rating": 4.6,
+      "stock": 36,
+      "brand": "PAWISE",
+      "category": "pets",
+      "thumbnail": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71-emOOG5ML._AC_SL1500_.jpg",
+      "images": [
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/61wrv0AzNJL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71eheFSJ2lL._AC_SL1500_.jpg"
+      ]
+    }
+  ]
+}
