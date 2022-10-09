@@ -8,7 +8,7 @@
 <body onload="onLoad()">
   <nav class="custom-navbar shadow-2xl">
     <img class="nav-img" src="img/Logo.png">
-    <button onclick="onLoad()">Home</button>
+    <button onclick="onLoad()" class="home-icon">&#8962;</button>
     <div class="flex flex-wrap items-stretch searchbar"> 
       <input
         type="search"
@@ -17,14 +17,14 @@
         placeholder=" S E A R C H  T H E  S I T E . . "
       />
       <button
-        type="button"
+
         class="btn text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
         onclick="searchProducts()"
       >
         &#128270
       </button>
     </div>
-    <button>
+    <button onclick="document.location='contact.html'">
       contact
     </button>
     <div class="menu-container">
@@ -43,12 +43,22 @@
   <span id="starIcon" style="display: none;">&#127775</span>
   <span id="closeIcon" style="display: none;">&#8984</span>
   <span id="cartIcon" style="display: none;">&#128717</span>
-  <main>
-    <div id="pageHeader" class="page-header"></div>
-    <div id="productCardsContainer" class="product-cards-container"></div>
-    <div id="overlay" class="bg-black opacity-70 fixed top-0 w-screen h-screen" onclick="closeModal()" style="display: none;"></div>
-    <div id="customModal" class="fixed top-1/2 left-1/2 bg-white custom-modal" style="display: none;"></div>
-  </main>
+
+  <div id="overlay" class="bg-black opacity-70 fixed top-0 w-screen h-screen" onclick="closeModal()" style="display: none;"></div>
+  <div id="customModal" class="fixed top-1/2 left-1/2 bg-white custom-modal" style="display: none;"></div>
+
+  <div class="main-page-container">
+    <div class="ads-container">
+     
+    </div>
+    <main>
+      <div id="pageHeader" class="page-header"></div>
+      <div id="productCardsContainer" class="product-cards-container"></div>
+    </main>
+    <div class="ads-container">
+      
+    </div>
+  </div>
   <div id="cartContainer" class="preview-cart-container" style="display:none;">
     <h3
       style="

@@ -130,6 +130,43 @@ function deleteItem(cartItem) {
   }
 }
 
+function singleAd(ad, side) {
+  const adsContainers = document.getElementsByClassName("ads-container");
+  let eachAdContainer = document.createElement("div");
+  eachAdContainer.className = "each-ad-container";
+  let adTitle = document.createElement("h1");
+  adTitle.innerText = ad.title;
+  let adImage = document.createElement("img");
+  adImage.src = ad.image;
+  let adDescription = document.createElement("p");
+  adDescription.innerText = ad.description;
+  let adButton = document.createElement("a");
+  adButton.innerText = ad.buttonName;
+  adButton.href = ad.link;
+  eachAdContainer.appendChild(adTitle);
+  eachAdContainer.appendChild(adImage);
+  eachAdContainer.appendChild(adDescription);
+  eachAdContainer.appendChild(adButton);
+  adsContainers[side].appendChild(eachAdContainer);
+}
+
+function loadAds(){
+  fetch(`https://ecomstore-demo.vercel.app/ads.json`)
+  .then(response => response.json())
+  .then(adsList => {
+    resultAds = adsList.ads;
+    let side = 0;
+    for (let i = 0; i < resultAds.length; i++) {
+      if (side == 0) {
+        side = 1
+       } else { 
+        side = 0;
+       }
+     singleAd(resultAds[i], side);
+    }
+  });
+}
+
 function onLoad() {
   if (localStorage.getItem("user") != null) {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -178,6 +215,7 @@ function onLoad() {
       cartAmountSpan.innerText = totalAmount;
     }
   }
+  loadAds()
 }
 
 function searchProducts()  {
@@ -199,7 +237,6 @@ function searchProducts()  {
 }
 
 function addToCartOnClick(resultProducts, productQuantitySelect) {
-  let eachUser = JSON.parse(localStorage.getItem("user"));
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;

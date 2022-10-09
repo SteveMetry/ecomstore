@@ -10,7 +10,7 @@ navUsrnameDiv.appendChild(navUsrSpan);
 const body = document.getElementById("body");
 const editSpan = document.getElementById("editBtn");
 const profileImg = document.getElementById("profileImg");
-const inputKeys = ["username","password","email","firstname","lastname"];
+const inputKeys = ["username","password","email","firstname","lastname", "age"];
 
 function consoleLoad() {
   const userInfo = JSON.parse(localStorage.getItem("user"));

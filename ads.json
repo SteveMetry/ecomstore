@@ -1,0 +1,94 @@
+{
+  "ads":[
+    {
+      "id": 1,
+      "title": "Saint John's",
+      "image": "https://www.stjohn.org.nz/globalassets/images/img_5280.jpg?width=280",
+      "description": "the front line of St John live in your city. They are ambulance officers, first aid tutors, events first aiders.",
+      "link": "https://www.stjohn.org.nz/support-us/donate/sept-appeal-2022/",
+      "buttonName": "Donate Now",
+      "meta-tags": ["ambulace", "donate"]
+    },
+    {
+      "id": 2,
+      "title": "NZ Blood",
+      "image": "https://pbs.twimg.com/media/FPw9GkFXMAMt2K0.jpg",
+      "description": "the front line of St John live in your city. They are ambulance officers, first aid tutors, events first aiders.",
+      "link": "https://www.nzblood.co.nz/give-plasma/",
+      "buttonName": "view quiz",
+      "meta-tags": ["blood", "test", "charity"]
+    },
+    {
+      "id": 3,
+      "title": "GHD style gift set stocking filler",
+      "image": "https://bb-cdn.azureedge.net/images/27598/?Width=600&Height=600&wp=1",
+      "description": "GHD style gift set is everything you need for perfect styler and hair protection. Give your hair protection from the heat. Comes with luxury velvet bag.",
+      "link": "https://www.ghdhair.com/nz/limited-edition-collections/ghd-glide-champagne-gold-hair-straightening-brush-p-600",
+      "buttonName": "View More",
+      "meta-tags": ["makeup", "health"]
+    },
+    {
+      "id": 4,
+      "title": "Salvation Army",
+      "image": "https://secure.flo2cash.co.nz/donations/salvationarmyappeals/images/SA2022_Banner-1350-X-485.jpg",
+      "description": "Transforming lives, since 1865",
+      "link": "https://secure.flo2cash.co.nz/donations/salvationarmyappeals/DonateSecure.aspx",
+      "buttonName": "Help NOW",
+      "meta-tags": ["clothes", "Donate", "charity"]
+    },
+    {
+      "id": 5,
+      "title": "Health Line",
+      "image": "https://www.health.govt.nz/sites/default/files/images/Promotiles/healthline.png",
+      "description": "Phone Healthline for free on 0800 611 116 any time of the day or night for advice on any health issue, no matter how small.",
+      "link": "http://www.health.govt.nz/your-health/services-and-support/health-care-services/healthline",
+      "buttonName": "HELP HERE",
+      "meta-tags": ["clothes", "Donate", "charity"]
+    },
+    {
+      "id": 6,
+      "title": "Care on Call",
+      "image": "https://www.careoncall.nz/portals/2/Images/about-us.jpg",
+      "description": "Care On Call in-home care is available, with offices in Auckland, and rest of the Northland. PHONE: 0800 66 44 22",
+      "link": "http://www.health.govt.nz/your-health/services-and-support/health-care-services/healthline",
+      "buttonName": "Send them here",
+      "meta-tags": ["clothes", "Donate", "charity"]
+    },
+    {
+      "id": 7,
+      "title": "Good Hair Day Glide hot brush",
+      "image": "https://bb-cdn.azureedge.net/images/27513/?Width=600&Height=600&wp=1",
+      "description": "Save time on styling and get festive instead with the ghd glide hot brush, now in a limited edition champagne gold with a vibrant red velvet vanity case.",
+      "link": "https://media.ghdhair.com/images/product/470_Gallery_Image_1.jpg",
+      "buttonName": "Sale NOW",
+      "meta-tags": ["GHD", "brush", "electric"]
+    },
+    {
+      "id": 8,
+      "title": "FOXGLOW Perfume Oil - Darling",
+      "image": "https://bb-cdn.azureedge.net/images/27982",
+      "description": "This delicious new scent from Foxglow has top notes of Black Currant and Pear, middle notes of Iris",
+      "link": "https://www.foxglowperfumes.com/collections/perfume/products/opulent-10ml",
+      "buttonName": "Half Price Now",
+      "meta-tags": ["perfume", "fragrance"]
+    },
+    {
+      "id": 9,
+      "title": "PETKIT",
+      "image": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71-emOOG5ML._AC_SL1500_.jpg",
+      "description": "Care On Call in-home care is available, with offices in Auckland, and rest of the Northland. PHONE: 0800 66 44 22",
+      "link": "https://www.alibaba.com/product-detail/Dog-Walker-Automatic-Retractable-Dog-Tractor_1600571026534.html",
+      "buttonName": "Get Giggly",
+      "meta-tags": ["Pets", "leash", "walker"]
+    },
+    {
+      "id": 10,
+      "title": "Fluff Remover",
+      "image": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71kNiFE0N9L._AC_SL1001_.jpg",
+      "description": "Smart Feeding: Automatic pet feeder allows you to schedule meals up to 48 hours in advance for convenience and peace of mind. BPA-free plastic, feeder holds up to 1.5 cups of food, the tray is dishwasher-safe",
+      "link": "https://www.alibaba.com/product-detail/Lint-Wooden-Roller-Amazon-Top-Seller_1600576641269.html",
+      "buttonName": "FIX IT NOW",
+      "meta-tags": ["Pets", "hair"]
+    }
+  ]
+}
