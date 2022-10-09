@@ -9,7 +9,8 @@ const cartProducts = document.getElementById("cartProducts");
 const horizontalLine = document.createElement("hr");
 const cartPageContainer = document.getElementById("cartPageContainer");
 const categoriesContainer = document.getElementById("categoriesContainer");
-const categoryList = ["pets", "makeup"]
+let dummyJsonCategoryList = [];
+const customCategoryList = ["pets", "makeup"];
 
 function toggleCart(){
   cartContainer.style = "";
@@ -26,10 +27,10 @@ function closeModal() {
 function categoryBtns() {
   categoriesContainer.innerText = "";
 
-  for (let i = 0; i < categoryList.length; i++) {
+  for (let i = 0; i < customCategoryList.length; i++) {
     const categoryButton = document.createElement('button');
-    categoryButton.onclick = () => onCategoryClick(categoryList[i]);
-    categoryButton.innerText = categoryList[i];
+    categoryButton.onclick = () => onCategoryClick(customCategoryList[i]);
+    categoryButton.innerText = customCategoryList[i];
     categoryButton.style.backgroundColor = "#90999903";
     categoryButton.className = "category-button text-gray-700 leading-tight uppercase bg-slate-50 rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";//bg-gray-200
     categoriesContainer.appendChild(categoryButton);
@@ -37,6 +38,7 @@ function categoryBtns() {
   fetch(`https://dummyjson.com/products/categories`)
     .then((response) => response.json())
     .then((categories) => {
+      dummyJsonCategoryList = [...categories];
       for (let i = 0; i < categories.length; i++) {
         const categoryButton = document.createElement('button');
         categoryButton.onclick = () => onCategoryClick(categories[i]);
@@ -49,36 +51,26 @@ function categoryBtns() {
 }
 
 function onCategoryClick(category) {
+  if (!dummyJsonCategoryList.find(curCategory => curCategory === category) && !customCategoryList.find(curCategory => curCategory === category)) {
+    console.error("Category doesn't exist!");
+    return;
+  }
   pageHeader.innerText = category;
   productPage.innerText = "";
-  //fetch chosen information
-  let dummyProducts = false;
-  categoryList.forEach(item => {
-   if (category == item){
-    fetch(`https://ecomstore-demo.vercel.app/${category}.json`)
-      .then(response => response.json())
-      .then(results => {
-        resultProducts = results.products;
-        for (let i = 0; i < resultProducts.length; i++) {
-          // creating each product-card element & add append element
-          singleProduct(resultProducts[i]);
-        }
-      });
-   } else {
-    dummyProducts = true;
-   }
-  })
-  if (dummyProducts) {
-    fetch(`https://dummyjson.com/products/category/${category}`)
-      .then((response) => response.json())
-      .then((results) => {
-        resultProducts = results.products;
-        for (let i = 0; i < resultProducts.length; i++) {
-          // creating each product-card element & add to productPage
-          singleProduct(resultProducts[i]);
-        }
-      });
+  // fetch chosen information
+  let url = `https://dummyjson.com/products/category/${category}`;
+  if (customCategoryList.find(curCategory => curCategory === category)) {
+    url = `https://ecomstore-demo.vercel.app/${category}.json`;
   }
+  fetch(url)
+    .then((response) => response.json())
+    .then((results) => {
+      const resultProducts = results.products;
+      for (let i = 0; i < resultProducts.length; i++) {
+        // creating each product-card element & add to productPage
+        singleProduct(resultProducts[i]);
+      }
+    });
 }
 
 function populateCart(cartItem) {
@@ -229,51 +221,46 @@ function searchProducts()  {
   fetch(`https://dummyjson.com/products/search?q=${userSearch}`)
     .then((response) => response.json())
     .then((searchResults) => {
-      resultProducts = searchResults.products;
+      const resultProducts = searchResults.products;
       for (let i = 0; i < resultProducts.length; i++) {
         singleProduct(resultProducts[i]);
       }
     });
 }
 
-function addToCartOnClick(resultProducts, productQuantitySelect) {
+function addToCartOnClick(resultProduct, productQuantitySelect) {
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;
   cartAmountSpan.style = "";
   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
-  const currentItem = cartItems.find(item => item.id === resultProducts.id);
+  const currentItem = cartItems.find(item => item.id === resultProduct.id && item.category === resultProduct.category);
   let userChsnQuantity = parseInt(productQuantitySelect.value);
   if (currentItem) {
     currentItem.amount += userChsnQuantity;
   } else {
-    cartItems.push({
-      id: resultProducts.id,
-      title: "",
+    const newCartItem = {
+      id: parseInt(resultProduct.id),
+      title: resultProduct.title,
+      category: resultProduct.category,
       amount: userChsnQuantity,
-      price: 0,
-      thumbnail: "",
-      description: ""
-    });
+      price: parseInt(resultProduct.price),
+      thumbnail: resultProduct.thumbnail,
+      description: resultProduct.description,
+      discountPercentage: parseInt(resultProduct.discountPercentage)
+    };
+    cartItems.push(newCartItem);
   };
-  for (let i = 0; i < cartItems.length; i++) {
-    cartAmount += cartItems[i].amount;
-    fetch(`https://dummyjson.com/products/${cartItems[i].id}`)
-      .then((response) => response.json())
-      .then((aProduct) => {
-        cartItems[i].title = aProduct.title;
-        cartItems[i].price = parseInt(aProduct.price);
-        cartItems[i].thumbnail = aProduct.thumbnail;
-        cartItems[i].description = aProduct.description;
-        populateCart(cartItems[i]);
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      });
-  }
+  cartAmount = cartItems.map(curCartItem => {
+    populateCart(curCartItem);
+    return curCartItem.amount;
+  }).reduce((prevValue, curValue) => prevValue + curValue, 0);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
   cartAmountSpan.innerText = cartAmount;
   closeModal();
 }
 
-function singleProduct(resultProducts) {
+function singleProduct(resultProduct) {
   //creating each product-card element and attaching a class
   const eachProduct = document.createElement("div");
   const eachProductContainer = document.createElement("div");
@@ -295,14 +282,14 @@ function singleProduct(resultProducts) {
   eachProductDescription.className = "product-description lowercase";
   const viewMoreButton = document.createElement('button');
   viewMoreButton.innerText = "Click Me";
-  //inserting the information into the element
-  eachProductTitle.innerText = resultProducts.title;
-  eachProductDescription.innerText = resultProducts.description;
-  eachProductPrice.innerText = `inc GST: $${resultProducts.price}`;
-  eachProductBrand.innerText = resultProducts.brand;
-  eachProductThumbnail.src = resultProducts.thumbnail;
-  viewMoreButton.onclick = () => openModal(resultProducts, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
-  //Appending the Children
+  // inserting the information into the element
+  eachProductTitle.innerText = resultProduct.title;
+  eachProductDescription.innerText = resultProduct.description;
+  eachProductPrice.innerText = `inc GST: $${resultProduct.price}`;
+  eachProductBrand.innerText = resultProduct.brand;
+  eachProductThumbnail.src = resultProduct.thumbnail;
+  viewMoreButton.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
+  // appending the Children
   eachProduct.appendChild(eachProductThumbnail);
   eachProduct.appendChild(eachProductBrand);
   eachProduct.appendChild(eachProductTitlePrice);
@@ -312,14 +299,14 @@ function singleProduct(resultProducts) {
   productPage.appendChild(eachProductContainer);
 }
 
-function openModal(resultProducts, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription) {
+function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription) {
   const eachProductStock = document.createElement("p");
   const eachProductRating = document.createElement("p");
   const modalBottom = document.createElement("div");
   const productAddToCartBtn = document.createElement("button");
   let productQuantitySelect = document.createElement("select");
   productQuantitySelect.className = "modal-select rounded p-1 mx-1";
-  let stckNum =  resultProducts.stock;
+  let stckNum =  resultProduct.stock;
   if (stckNum > 90){
     stckNum = stckNum / 4;
   }else if (stckNum > 30) {
@@ -334,12 +321,12 @@ function openModal(resultProducts, eachProductBrand, eachProductTitlePrice, each
   modalBottom.className="cart-container justify-between flex p-8";
   productAddToCartBtn.className="add-to-cart ";
   productAddToCartBtn.innerText="Add to Cart " + cartIcon.innerText;
-  productAddToCartBtn.onclick = () => addToCartOnClick(resultProducts, productQuantitySelect);
+  productAddToCartBtn.onclick = () => addToCartOnClick(resultProduct, productQuantitySelect);
   const eachProductCategory = document.createElement("p");
-  eachProductStock.innerText = "Stock: " + resultProducts.stock + " LEFT IN STOCK!";
+  eachProductStock.innerText = "Stock: " + resultProduct.stock + " LEFT IN STOCK!";
   const starIcon = document.getElementById("starIcon").cloneNode(true);
-  eachProductRating.innerText = "Rating: " + resultProducts.rating + starIcon.innerText;
-  eachProductCategory.innerText = "Category: " + resultProducts.category;
+  eachProductRating.innerText = "Rating: " + resultProduct.rating + starIcon.innerText;
+  eachProductCategory.innerText = "Category: " + resultProduct.category;
   const modalBrand = eachProductBrand.cloneNode(true);
   modalBrand.style.textAlign = "left";
   const closeButton = document.createElement("button");

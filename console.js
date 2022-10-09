@@ -44,12 +44,10 @@ function onSave() {
   });
   localStorage.setItem("user", JSON.stringify(userInfo));
   localStorage.setItem("login", JSON.stringify(loginUsers));
-  console.log(JSON.parse(localStorage.getItem("login")));
 }
 
 function createInput(key, value) {
   const userInfo = JSON.parse(localStorage.getItem("user"));
-  console.log(userInfo)
   let profileInput = document.createElement("input");
   profileInput.disabled = true;
   profileInput.id = `user${userInfo.id}-${key}`;
