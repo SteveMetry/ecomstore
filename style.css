@@ -408,7 +408,7 @@ hr {
   display:none;
 }
 
-@media only screen and (min-width: 600px) {
+@media screen and (min-device-width: 600px) {
   .contact-container{
     display: grid;
     grid-template-columns: 0.6fr 0.4fr;
@@ -453,7 +453,7 @@ hr {
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media screen and (min-device-width: 900px) {
   .categories-container {
     font-size: 0.8rem;
   }
@@ -507,7 +507,7 @@ hr {
   }
 }
 
-@media only screen and (min-width: 980px) {
+@media screen and (min-device-width: 980px) {
   .product-cards-container {
     width: 98vw;
     grid-template-columns: repeat(3, 1fr);
@@ -518,7 +518,7 @@ hr {
   }
 }
 
-@media only screen and (min-width: 1000px) {
+@media screen and (min-device-width: 1000px) {
   .product-cards-container {
     width: 100%;
   }

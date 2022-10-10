@@ -58,7 +58,7 @@ hr {
 .profile-img {
   height: 10rem;
 }
-@media only screen and (min-width: 550px) {
+@media screen and (min-device-width: 550px) {
   .confirm-container {
     grid-template-rows: 0.7fr 0.3fr;
     height: 120%;
@@ -73,7 +73,7 @@ hr {
   }
 }
 
-@media only screen and (min-width: 650px) {
+@media screen and (min-device-width: 650px) {
   .confirm-container {
     grid-template-columns: 0.9fr 0.1fr;
     height: 60vh;
@@ -93,7 +93,7 @@ hr {
     max-height: 70vh;
   }
 }
-@media only screen and (min-width: 800px) {
+@media screen and (min-device-width: 800px) {
   .profile-img {
     width: 10rem;
     height: auto;
