@@ -70,6 +70,7 @@ function onCategoryClick(category) {
         singleProduct(resultProducts[i]);
       }
     });
+    toggleCategorySection()
 }
 
 function populateCart(cartItem) {
@@ -268,18 +269,16 @@ function singleProduct(resultProduct) {
   const eachProductBrand = document.createElement("h1");
   eachProductBrand.className = "capitalize product-brand";
   const eachProductThumbnail = document.createElement('img'); 
-  eachProductThumbnail.className = "mx-auto product-thumbnail";
+  eachProductThumbnail.className = "product-thumbnail";
   const eachProductTitle = document.createElement("h2");
   eachProductTitle.className = "uppercase text-left product-title";
   const eachDiscountContainer = document.createElement("div");
-  const eachPriceTitle = document.createElement("h2");
-  eachPriceTitle.innerText = "inc GST: ";
   const eachProductPrice = document.createElement("span");
   eachProductPrice.innerText = `$${resultProduct.price} `;
   eachProductPrice.className = "line-through";
   const eachProductDiscountPercentage = document.createElement("span");
   const eachProductTitlePrice = document.createElement("div");
-  eachProductTitlePrice.className = "product-price";
+  eachProductTitlePrice.className = "flex justify-between product-price";
   const eachProductDescription = document.createElement("p");
   eachProductDescription.className = "product-description lowercase";
   const viewMoreButton = document.createElement('button');
@@ -291,7 +290,6 @@ function singleProduct(resultProduct) {
   eachProductThumbnail.src = resultProduct.thumbnail;
   let discountedPercentage = Math.ceil(resultProduct.price / resultProduct.discountPercentage)
   eachProductDiscountPercentage.innerText = `Now $${resultProduct.price - discountedPercentage}`;
-  eachDiscountContainer.appendChild(eachPriceTitle)
   eachDiscountContainer.appendChild(eachProductPrice)
   eachDiscountContainer.appendChild(eachProductDiscountPercentage)
   eachProductTitlePrice.appendChild(eachProductTitle);
@@ -299,8 +297,8 @@ function singleProduct(resultProduct) {
   // viewMoreButton.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
   eachProductContainer.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
   // appending the Children
-  eachProduct.appendChild(eachProductThumbnail);
   eachProduct.appendChild(eachProductBrand);
+  eachProduct.appendChild(eachProductThumbnail);
   eachProduct.appendChild(eachProductTitlePrice);
   eachProduct.appendChild(eachProductDescription);
   eachProductContainer.appendChild(eachProduct);
