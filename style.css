@@ -146,10 +146,9 @@ hr {
 .custom-modal {
   transform: translate(-50%, -50%);
   border-radius: 15px;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
+  padding: 1rem;
   min-width: 60%;
-  min-height: 80%;
+  min-height: 80vh;
 }
 .custom-modal img {
   height: 20rem;

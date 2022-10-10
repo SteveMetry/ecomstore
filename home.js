@@ -26,7 +26,6 @@ function closeModal() {
 
 function categoryBtns() {
   categoriesContainer.innerText = "";
-
   for (let i = 0; i < customCategoryList.length; i++) {
     const categoryButton = document.createElement('button');
     categoryButton.onclick = () => onCategoryClick(customCategoryList[i]);
@@ -272,12 +271,15 @@ function singleProduct(resultProduct) {
   eachProductThumbnail.className = "mx-auto product-thumbnail";
   const eachProductTitle = document.createElement("h2");
   eachProductTitle.className = "uppercase text-left product-title";
-  const eachProductPrice = document.createElement("h2");
-  eachProductPrice.className = "product-price";
+  const eachDiscountContainer = document.createElement("div");
+  const eachPriceTitle = document.createElement("h2");
+  eachPriceTitle.innerText = "inc GST: ";
+  const eachProductPrice = document.createElement("span");
+  eachProductPrice.innerText = `$${resultProduct.price} `;
+  eachProductPrice.className = "line-through";
+  const eachProductDiscountPercentage = document.createElement("span");
   const eachProductTitlePrice = document.createElement("div");
-  eachProductTitlePrice.appendChild(eachProductTitle);
-  eachProductTitlePrice.appendChild(eachProductPrice);
-  eachProductTitlePrice.className = "flex justify-between";
+  eachProductTitlePrice.className = "product-price";
   const eachProductDescription = document.createElement("p");
   eachProductDescription.className = "product-description lowercase";
   const viewMoreButton = document.createElement('button');
@@ -285,9 +287,15 @@ function singleProduct(resultProduct) {
   // inserting the information into the element
   eachProductTitle.innerText = resultProduct.title;
   eachProductDescription.innerText = resultProduct.description;
-  eachProductPrice.innerText = `inc GST: $${resultProduct.price}`;
   eachProductBrand.innerText = resultProduct.brand;
   eachProductThumbnail.src = resultProduct.thumbnail;
+  let discountedPercentage = Math.ceil(resultProduct.price / resultProduct.discountPercentage)
+  eachProductDiscountPercentage.innerText = `Now $${resultProduct.price - discountedPercentage}`;
+  eachDiscountContainer.appendChild(eachPriceTitle)
+  eachDiscountContainer.appendChild(eachProductPrice)
+  eachDiscountContainer.appendChild(eachProductDiscountPercentage)
+  eachProductTitlePrice.appendChild(eachProductTitle);
+  eachProductTitlePrice.appendChild(eachDiscountContainer);
   viewMoreButton.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
   // appending the Children
   eachProduct.appendChild(eachProductThumbnail);
