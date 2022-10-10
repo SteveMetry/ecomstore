@@ -7,24 +7,22 @@ hr {
 .hide {
   display: none !important;
 }
+
 .collapsible {
+  font-size: 3rem;
   background-color: #444;
   color: rgb(245, 245, 245);
-  font-size: 1.8rem;
   letter-spacing: 1px;
   width: 100%;
   padding: 1rem;
   text-align: center;
   cursor: pointer; 
 }
-.main-page-container {
-  display: grid;
-  grid-template-columns: 0.13fr 0.76fr 0.13fr;
-}
+
 .custom-navbar {
-  height: 5rem;
-  padding: 0.3rem;
-  font-size: 12px;
+  height: 6vh;
+  padding: 0.5rem;
+  font-size: 0.8rem;
   background-color: #000021;
   display: grid;
   grid-template-columns: 0.5fr 0.8fr 2.8fr 0.8fr 0.5fr;
@@ -45,8 +43,9 @@ hr {
   cursor: pointer;
   filter: invert(85%);
 }
+
 .home-icon {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .navgap {
@@ -61,11 +60,6 @@ hr {
 }
 
 .categories-container {
-  /* position: fixed;
-  width: 100vw;
-  background-color: #E7F0FE;
-  opacity: 97%;
-  box-shadow: 0px 1px 3px #000029; */
   font-size: 0.5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -300,8 +294,9 @@ hr {
 }
 
 .proceed-to-checkout { 
-  font-size: 0.7rem;
-  height: 3.2rem;
+  font-size: 1.2rem;
+  height: 3.2vh;
+  width: 95%;
   margin: 1rem;
   padding: 1rem;
   border-radius: 3px;
@@ -313,7 +308,7 @@ hr {
 .each-cart-container {
   align-items: center;
   background-color: aliceblue;
-  margin: 5px;
+  margin: 0.5rem;
   display: grid;
   text-align: right;
   width: 90%;
@@ -379,7 +374,7 @@ hr {
 }
 
 .cart-page-checkout {
-  font-size: 0.8rem;
+  font-size: 1.6rem;
   display: flex;
   flex-direction: column;
   justify-self: center;
@@ -389,9 +384,9 @@ hr {
   border: royalblue solid 1.4px;
   border-radius: 5px;
   box-shadow: 0 2px 8px 6px rgb(171, 186, 251);
-  height: 40vh;
+  height: 20vh;
   width: 85%;
-  max-height: 70vh;
+  max-height: 40vh;
 }
 
 .cart-info-row td {
@@ -409,6 +404,14 @@ hr {
 }
 
 @media screen and (min-device-width: 600px) {
+  .collapsible {
+    font-size: 1.5rem;
+  }
+
+.main-page-container {
+  display: grid;
+  grid-template-columns: 0.13fr 0.76fr 0.13fr;
+}
   .contact-container{
     display: grid;
     grid-template-columns: 0.6fr 0.4fr;
@@ -451,9 +454,13 @@ hr {
     height: 50vh;
     max-height: 60vh;
   }
+  .home-icon {
+    font-size: 1.5rem;
+  }
 }
 
 @media screen and (min-device-width: 900px) {
+  
   .categories-container {
     font-size: 0.8rem;
   }
@@ -508,6 +515,7 @@ hr {
 }
 
 @media screen and (min-device-width: 980px) {
+  
   .product-cards-container {
     width: 98vw;
     grid-template-columns: repeat(3, 1fr);
@@ -537,7 +545,7 @@ hr {
     height: 3rem;
   }
   .nav-profile{
-    width: 50%;
+    width: 40%;
     height: 40%;
   }
   .cart-page-checkout {

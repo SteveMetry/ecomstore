@@ -41,8 +41,8 @@ body {
   height: 100%;
 }
 .profile-container {
-  width: 60%;
-  height: 75vh;
+  width: 80%;
+  height: 50vh;
   justify-self: center;
   display: grid;
   margin: 1rem;

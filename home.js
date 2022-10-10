@@ -296,14 +296,15 @@ function singleProduct(resultProduct) {
   eachDiscountContainer.appendChild(eachProductDiscountPercentage)
   eachProductTitlePrice.appendChild(eachProductTitle);
   eachProductTitlePrice.appendChild(eachDiscountContainer);
-  viewMoreButton.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
+  // viewMoreButton.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
+  eachProductContainer.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
   // appending the Children
   eachProduct.appendChild(eachProductThumbnail);
   eachProduct.appendChild(eachProductBrand);
   eachProduct.appendChild(eachProductTitlePrice);
   eachProduct.appendChild(eachProductDescription);
   eachProductContainer.appendChild(eachProduct);
-  eachProductContainer.appendChild(viewMoreButton);
+  // eachProductContainer.appendChild(viewMoreButton);
   productPage.appendChild(eachProductContainer);
 }
 
