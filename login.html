@@ -8,12 +8,12 @@
 </head>
 <body onload="loadSite()">
   <nav class="login-nav">
-    <div style="cursor: pointer;" onclick="openIndex()">&#11152;</div>
+    <span style="cursor: pointer;" onclick="openIndex()">&#11152;</span>
     <div >Steve Login Demo</div>
     <div >right</div>
   </nav>
   <div id="login" class="login">
-    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">THE Username:</label>
+    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Username:</label>
     <input id="userNameInput" type="text" class="
       w-full
       px-3
@@ -27,9 +27,9 @@
       transition
       ease-in-out
       m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Enter Username">
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="The Username..">
 
-    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">THE Password:</label>
+    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Password:</label>
     <input id="passwordInput" type="password" class="
       w-full
       px-3
@@ -43,21 +43,19 @@
       transition
       ease-in-out
       m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Enter Password">
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Password Please..">
 
     <span id ="onInvalid" class="text-xs"></span>
 
-    <small class="block mt-1 text-xs text-gray-600">We'll never share your information with anyone else.</small>
+    <small class="block mt-1 text-gray-600">We'll never share your information with anyone else.</small>
 
     <div id="loginBtn"></div>
 
     <button onclick="openNewUser()" class="
-    inline-block 
+    login-btns
     px-6 py-2.5 
     bg-gray-200 
     text-gray-700 
-    font-medium 
-    text-xs 
     leading-tight 
     uppercase 
     w-full
@@ -74,7 +72,26 @@
     </div>
 
     <!-- Facebook -->
-    <a class="px-7 py-3 text-white font-medium text-xs leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
+    <a class="
+    login-btns 
+    px-7 py-3
+    text-white 
+    leading-snug 
+    uppercase 
+    rounded 
+    shadow-md hover:shadow-lg 
+    focus:shadow-lg 
+    focus:outline-none 
+    focus:ring-0 
+    active:shadow-lg 
+    transition 
+    duration-150 
+    ease-in-out 
+    w-full 
+    flex 
+    justify-center 
+    items-center 
+    mb-5"
     style="background-color: #3b5998"
     role="button"
     data-mdb-ripple="true"
@@ -83,7 +100,7 @@
     <!-- Facebook Logo-->
     <svg
       viewBox="0 0 320 512"
-      class="w-3.5 h-3.5 mr-2">
+      class="w-5 h-5 mr-2">
       <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
       <path
         fill="currentColor"
@@ -92,15 +109,37 @@
     </a>
     <!-- Twitter logo-->
     <a
-    class="px-7 py-3 text-white font-medium text-xs leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
-    style="background-color: #55acee"
-    role="button"
+    class="
+    login-btns
+    px-7 
+    py-3 
+    text-white
+    leading-snug
+    uppercase 
+    rounded
+    shadow-md 
+    hover:shadow-lg 
+    focus:shadow-lg 
+    focus:outline-none 
+    focus:ring-0 
+    active:shadow-lg 
+    transition
+    duration-150 
+    ease-in-out 
+    w-full 
+    flex 
+    justify-center 
+    items-center
+    "
+    style = "
+    background-color: #55acee
+    "
     data-mdb-ripple="true"
     data-mdb-ripple-color="light">
     <!-- Twitter -->
     <svg
       viewBox="0 0 512 512"
-      class="w-3.5 h-3.5 mr-2">
+      class="w-5 h-5 mr-2">
       <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
       <path
         fill="currentColor"

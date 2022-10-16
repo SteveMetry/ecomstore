@@ -9,13 +9,12 @@
 <body class="confirm-body">
   <nav class="custom-navbar chkout shadow-2xl">
     <span onclick="document.location='login.html'" class="return-previous-page">&#11152</span>
-    <img class="nav-img cursor-not-allowed" src="img/Logo.png"> 
-    <button>Profile</button> 
+    <a href="index.html"><img class="nav-img" src="img/Logo.png"> </a>
     <div class="chkout-header"><span class="cursor-pointer">New User</span></div>
-    <button>about</button>
-    <button>contact</button> 
+    <button>contact</button>     
+    <button>Profile</button> 
   </nav>
-  <form id="newUser" class="grid gap-5 grid-cols-1 m-5 w-96" onsubmit="event.preventDefault(); validateNewUser();">
+  <form id="newUser" class="grid gap-5 grid-cols-1 m-auto w-96" onsubmit="event.preventDefault(); validateNewUser();">
     <div class="flex flex-col">
       <input name="username" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" placeholder="Username" />
       <p id="usernameError" class="text-red-600" style="display: none;">Invalid username!</p>

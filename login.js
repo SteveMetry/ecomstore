@@ -1,10 +1,10 @@
 const loginContainer = document.getElementById("loginBtn");
 const invalidSpan = document.getElementById("onInvalid");
 const invalidMsgElement = document.createElement('span');
-const loginBtn = document.createElement("div");
+const loginBtn = document.createElement("button");
 loginBtn.innerText = "Login";
 loginBtn.onclick = () => loginUsr();
-loginBtn.className = "text-center my-5 w-full px-6 py-2.5 bg-black text-sky-600 font-light text-xs leading-tight rounded shadow-md hover:bg-teal-300 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-250 ease-in-out";
+loginBtn.className = "login-btns mb-4 px-6 py-2.5 bg-black text-white leading-tight uppercase w-full rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out";
 loginContainer.appendChild(loginBtn);
 
 function loadSite() {

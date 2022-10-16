@@ -6,7 +6,6 @@ body {
   background-color: #ffecde;
 }
 
-
 .login-nav {
   padding: 2rem;
   width: 100%;
@@ -25,21 +24,38 @@ body {
   background-color: #e9deff;
   box-shadow: 2px 4px 15px 4px royalblue;
   width: 80vw;
-  height: 80vh;
+  height: 60vh;
 }
 
 .login label {
-  margin-top: 1rem;
+  font-weight: 200;
+  margin: 1.2rem 0rem;
+  font-size: 3rem;
 }
+
+.login input {
+  min-height: 5rem;
+  font-size: 2rem;
+}
+
+.login-btns {
+  height: 7rem;
+  font-size: 2rem;
+}
+
 .login small {
   text-align: center;
+  font-size: 2rem;
+  margin: 2rem 0rem;
 }
+
 .console-container {
   display: grid;
   grid-template-rows: 1fr 1fr;
   width: 100vw;
   height: 100%;
 }
+
 .profile-container {
   width: 80%;
   height: 50vh;
@@ -64,11 +80,13 @@ body {
   text-align: center;
   background-color: aliceblue;
 }
+
 .demo-sites-container {
   display: grid;
   grid-template-rows: 0.1fr 0.9fr;
   height: 100%;
 }
+
 .demo-sites {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
@@ -76,6 +94,7 @@ body {
   margin: 1rem;
   height: 100%;
 }
+
 .demo-sites a {
   font-weight: 150;
   color: white;
@@ -86,12 +105,14 @@ body {
   border: 1px solid rgb(173, 235, 255);
   text-align: center;
 }
+
 .parent-input-container{
   display: grid;
   grid-template-rows: 0.9fr 0.9fr 0.9fr 0.9fr 0.9fr 0.5fr;
   row-gap: 1rem;
   width: 100%;
 }
+
 .input-container {
   display: flex;
   height: 1.5rem;
@@ -134,11 +155,33 @@ body {
   width: 9px;
 }
 
-@media screen and (min-device-width: 550px) {
+@media screen and (min-device-width: 470px) {
   .login {
-    margin: 3rem;
-    width: 60vw;
+     height: 75vh;
+   }
+}
+@media screen and (min-device-width: 550px) {
+ .login {
+    width: 45vw;
     height: 75vh;
+  }
+  .login label {
+    font-weight: 200;
+    margin: 1.2rem 0rem;
+    font-size: 1.8rem;
+  }
+  .login input {
+    min-height: 5rem;
+    font-size: 1.8rem;
+  }
+  .login-btns {
+    height: 4rem;
+    font-size: 1rem;
+  }
+  .login small {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 2rem 0rem;
   }
   .profile-container {
     height: 65vh;
@@ -151,9 +194,6 @@ body {
 }
 
 @media screen and (min-device-width: 650px) {
-  .login {
-    width: 45vw;
-  }
   .console-container {
     margin: 1rem;
     grid-template-columns: 0.7fr 0.3fr;
@@ -173,9 +213,30 @@ body {
     width: 80%;
   }
 }
+
 @media screen and (min-device-width: 800px) {
   .login {
     width: 40vw;
+    height: 80vh;
+  }
+  .login label {
+    font-weight: 200;
+    margin:0;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+  }
+  .login input {
+    height: 2rem;
+    font-size: 1.8rem;
+  }
+  .login-btns {
+    height: 2.8rem;
+    font-size: 0.8rem;
+  }
+  .login small {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 1rem 0rem;
   }
   .demo-sites a {
     display: flex;
@@ -187,6 +248,15 @@ body {
 }
 
 @media screen and (min-device-width: 950px) {
+  .login label {
+    font-weight: 400;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+  .login input {
+    min-height: 2.7rem;
+    font-size: 0.8rem;
+  }
   .login {
     width: 30vw;
   }

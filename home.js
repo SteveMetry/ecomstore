@@ -160,6 +160,7 @@ function loadAds(){
 }
 
 function onLoad() {
+  pageHeader.innerText = "Home";
   if (localStorage.getItem("user") != null) {
     const user = JSON.parse(localStorage.getItem("user"));
     user.cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
@@ -226,6 +227,7 @@ function searchProducts()  {
         singleProduct(resultProducts[i]);
       }
     });
+    toggleCategorySection()
 }
 
 function addToCartOnClick(resultProduct, productQuantitySelect) {
@@ -310,7 +312,7 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
   const eachProductStock = document.createElement("p");
   const eachProductRating = document.createElement("p");
   const modalBottom = document.createElement("div");
-  const productAddToCartBtn = document.createElement("button");
+  const productAddToCartBtn = document.createElement("div");
   let productQuantitySelect = document.createElement("select");
   productQuantitySelect.className = "modal-select rounded p-1 mx-1";
   let stckNum =  resultProduct.stock;
@@ -325,8 +327,8 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
     productQuantityOption.innerText = i;
     productQuantitySelect.appendChild(productQuantityOption);
   }
-  modalBottom.className="cart-container justify-between flex p-8";
-  productAddToCartBtn.className="add-to-cart ";
+  modalBottom.className="cart-container ";
+  productAddToCartBtn.className="pt-3 quantity-container text-white border border-solid border-gray-300 rounded";
   productAddToCartBtn.innerText="Add to Cart " + cartIcon.innerText;
   productAddToCartBtn.onclick = () => addToCartOnClick(resultProduct, productQuantitySelect);
   const eachProductCategory = document.createElement("p");
