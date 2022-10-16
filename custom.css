@@ -17,6 +17,7 @@ body {
 
 .login {
   margin: 0.5rem;
+  margin-bottom: 15rem;
   padding: 1.2rem;
   border-radius: 5px;
   border: 0.01rem solid black;
@@ -30,7 +31,7 @@ body {
 .login label {
   font-weight: 200;
   margin: 1.2rem 0rem;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .login input {
@@ -155,10 +156,11 @@ body {
   width: 9px;
 }
 
-@media screen and (min-device-width: 470px) {
+@media screen and (min-device-width: 400px) {
   .login {
-     height: 75vh;
+     height: 80vh;
    }
+
 }
 @media screen and (min-device-width: 550px) {
  .login {
@@ -168,14 +170,14 @@ body {
   .login label {
     font-weight: 200;
     margin: 1.2rem 0rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .login input {
     min-height: 5rem;
     font-size: 1.8rem;
   }
   .login-btns {
-    height: 4rem;
+    height: 3rem;
     font-size: 1rem;
   }
   .login small {
@@ -194,6 +196,23 @@ body {
 }
 
 @media screen and (min-device-width: 650px) {
+  .login {
+    width: 45vw;
+    height: 80vh;
+  }
+  .login label {
+    font-weight: 200;
+    margin: 1.2rem 0rem;
+    font-size: 1.5rem;
+  }
+  .login input {
+    min-height: 5rem;
+    font-size: 1rem;
+  }
+  .login-btns {
+    height: 3rem;
+    font-size: 1rem;
+  }
   .console-container {
     margin: 1rem;
     grid-template-columns: 0.7fr 0.3fr;
@@ -227,7 +246,7 @@ body {
   }
   .login input {
     height: 2rem;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
   }
   .login-btns {
     height: 2.8rem;
@@ -251,7 +270,7 @@ body {
   .login label {
     font-weight: 400;
     margin-top: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .login input {
     min-height: 2.7rem;
@@ -265,6 +284,6 @@ body {
 @media screen and (min-device-width: 1050px) {
   .login {
     width: 30vw;
-    margin: 0px;
+
   }
 }

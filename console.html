@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="img/Logo.png">
   <title>ECOM STORE BY STEVE</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="style.css" rel="stylesheet"/>
   <link href="custom.css" rel="stylesheet"/>
+  <link href="footer.css" rel="stylesheet"/>
 </head>
 <body onload="consoleLoad()">
-<nav class="login-nav" onmouseenter="disableInput()">
+<nav class="login-nav">
   <div style="cursor: pointer;" onclick="openLogin()">&#11152;</div>
   <div id="navUsrnameDiv" >WELCOME <span id ="navUsrnameSpan"></span></div>
   <div >&#129730;</div>
@@ -20,7 +22,7 @@
       <a onclick="onSave()" class="save-btn">Save this</a>
     </div>
   </div>
-  <div class="demo-sites-container" onmouseenter="disableInput()">
+  <div class="demo-sites-container">
     <h1>View Demo Sites</h1>
     <div class="demo-sites">
       <a>Dating Registration</a>
@@ -30,8 +32,26 @@
       <a>Next JS</a>
     </div>
   </div>
-  <button onclick="clearLocal()">Clear all changes</button>
+    <button onclick="clearLocal()" style="display: none;">Clear all changes</button>
 </div>
+
+<footer class="h-96 w-full" style="background-color: #feffff;">
+  <div class="footer-left bg-slate-100 p-8 text-blue-800">
+    <a href="index.html">home</a>
+    <a href="checkout.html">cart</a>
+    <a href="console.html">profile</a>
+    <a href="login.html">login</a> 
+    <a href="new_user.html">Create Account</a> 
+    <a href="contact.html">contact</a>
+    <br>
+    <span class="text-black text-sm">@2022 sendnet.co&#8482;</span>
+  </div>
+  <div class="main-footer p-8">
+      <p>This is a profile page. It show cases my work, includes Demo Sites & more by Steven Metry</p>    
+    <span class="self-end">i reserve all my rights. this site does use cookies. view our <a class="text-blue-800 underline" href="cookies.html">cookies policies</a> for more information, thanks</span>
+  </div>
+</footer>
+
 <span id="editBtn" style="display:none;">&#9998;</span>
 <script src="console.js"></script>
 </body>

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="img/Logo.png">
   <title>STORE BY STEVE M</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="style.css" rel="stylesheet"/>
+  <link href="footer.css" rel="stylesheet"/>
 </head>
 <body onload="chkoutLoad()">
   <nav class="custom-navbar chkout shadow-2xl">
@@ -42,7 +44,24 @@
     <div id="overlay" class="bg-black opacity-70 fixed top-0 w-screen h-screen" onclick="closeModal()" style="display: none;"></div>
     <div id="customModal" class="fixed top-1/2 left-1/2 bg-white custom-modal" style="display: none;"></div>
   </main>
-  <footer></footer>
+ 
+  <footer class="h-96 w-full" style="background-color: #feffff;">
+    <div class="footer-left bg-slate-100 p-8 text-blue-800">
+      <a href="index.html">home</a>
+      <a href="checkout.html">cart</a>
+      <a href="console.html">profile</a>
+      <a href="login.html">login</a> 
+      <a href="new_user.html">Create Account</a> 
+      <a href="contact.html">contact</a>
+      <br>
+      <span class="text-black text-sm">@2022 sendnet.co&#8482;</span>
+    </div>
+    <div class="main-footer p-8">
+        <p>This is a profile page. It show cases my work, includes Demo Sites & more by Steven Metry</p>    
+      <span class="self-end">i reserve all my rights. this site does use cookies. view our <a class="text-blue-800 underline" href="cookies.html">cookies policies</a> for more information, thanks</span>
+    </div>
+  </footer>
+
   <script src="checkout.js"></script>
 </body>
 </html>
