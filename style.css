@@ -410,12 +410,8 @@ hr {
   padding: 0.5rem;
 }
 .modal-select {
-  width: 5rem;
-  font-size: 1.8rem;
   text-align: center;
-  filter: invert(85%);
 }
-
 @media screen and (min-device-width: 500px) {
   .quantity-container {
     font-size: 1rem;
@@ -447,9 +443,6 @@ hr {
     width: 100%;
     height:3rem;
     align-items: center;
-  }
-  .modal-select {
-    filter: invert(85%);
   }
 }
 
@@ -607,9 +600,6 @@ hr {
     width: 100%;
     height:3rem;
     align-items: center;
-  }
-  .modal-select {
-    filter: invert(85%);
   }
 }
 

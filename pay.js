@@ -1,9 +1,19 @@
 const postalform = document.getElementById("postalForm")
+const formInputs = postalform.elements;
 if (localStorage.getItem("user") == null) {
   window.open("login.html?redirect=pay", "_self");
 }
+const user = JSON.parse(localStorage.getItem("user"));
+let isAddress = false;
+isAddress = user.address['line1'].trim() !== "";
+if (isAddress) {
+  for (const [key, value] of Object.entries(user.address)) {
+    formInputs[`${key}`].value = value;
+    console.log(`${value}`)
+  }
+}
 
-function isInfoSet(infoType, infoInput) {
+  function isInfoSet(infoType, infoInput) {
   let isValid = false;
   switch (infoType) {
     case 'number':
@@ -22,9 +32,7 @@ function isInfoSet(infoType, infoInput) {
 }
 
 function validatePostalAddress() {
-  const user = JSON.parse(localStorage.getItem("user"));
   const loginData = JSON.parse(localStorage.getItem("login"));
-  const formInputs = postalform.elements;
   const isline1Valid = isInfoSet(formInputs['line1'].type, formInputs['line1'].value);
   document.getElementById("line1Error").style.display = isline1Valid ? 'none' : 'block';
   // const isline2Valid = isInfoSet(formInputs['line2'].type, formInputs['line2'].value);

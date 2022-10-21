@@ -230,14 +230,15 @@ function searchProducts()  {
     toggleCategorySection()
 }
 
-function addToCartOnClick(resultProduct, productQuantitySelect) {
+function addToCartOnClick(resultProduct, QuantitySelect) {
+  console.log("11:01am")
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;
   cartAmountSpan.style = "";
   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
   const currentItem = cartItems.find(item => item.id === resultProduct.id && item.category === resultProduct.category);
-  let userChsnQuantity = parseInt(productQuantitySelect.value);
+  let userChsnQuantity = parseInt(QuantitySelect.value);
   if (currentItem) {
     currentItem.amount += userChsnQuantity;
   } else {
@@ -283,8 +284,27 @@ function singleProduct(resultProduct) {
   eachProductTitlePrice.className = "flex justify-between product-price";
   const eachProductDescription = document.createElement("p");
   eachProductDescription.className = "product-description lowercase";
+  const productButtonsContainer = document.createElement('div');
+  let QuantitySelect = document.createElement("select");
+  QuantitySelect.className = "modal-select rounded p-1 mx-1";
+  let stckNum =  resultProduct.stock;
+  if (stckNum > 90){
+    stckNum = stckNum / 4;
+  }else if (stckNum > 30) {
+    stckNum = stckNum / 2;
+  }
+  for (let i = 1; i <= stckNum; i++) {
+    let productQuantityOption = document.createElement("option");
+    productQuantityOption.value = i;
+    productQuantityOption.innerText = i;
+    QuantitySelect.appendChild(productQuantityOption);
+  }
+  let productQuantitySelect = QuantitySelect.cloneNode(true);
   const addToCartButton = document.createElement('button');
   addToCartButton.innerText = "Buy";
+  addToCartButton.onclick = () => addToCartOnClick(resultProduct, productQuantitySelect);
+  productButtonsContainer.appendChild(productQuantitySelect)
+  productButtonsContainer.appendChild(addToCartButton)
   // inserting the information into the element
   eachProductTitle.innerText = resultProduct.title;
   eachProductDescription.innerText = resultProduct.description;
@@ -296,41 +316,41 @@ function singleProduct(resultProduct) {
   eachDiscountContainer.appendChild(eachProductDiscountPercentage)
   eachProductTitlePrice.appendChild(eachProductTitle);
   eachProductTitlePrice.appendChild(eachDiscountContainer);
-  addToCartButton.onclick = () => addToCartOnClick(resultProduct, productQuantitySelect);
-  eachProductContainer.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
+  eachProduct.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription, parseInt(productQuantitySelect.value));
   // appending the Children
   eachProduct.appendChild(eachProductBrand);
   eachProduct.appendChild(eachProductThumbnail);
   eachProduct.appendChild(eachProductTitlePrice);
   eachProduct.appendChild(eachProductDescription);
   eachProductContainer.appendChild(eachProduct);
-  eachProductContainer.appendChild(addToCartButton);
+  eachProductContainer.appendChild(productButtonsContainer);
   productPage.appendChild(eachProductContainer);
 }
 
-function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription) {
+function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription, selectQuantity) {
   const eachProductStock = document.createElement("p");
   const eachProductRating = document.createElement("p");
   const modalBottom = document.createElement("div");
   const productAddToCartBtn = document.createElement("button");
-  let productQuantitySelect = document.createElement("select");
-  productQuantitySelect.className = "modal-select rounded p-1 mx-1";
+  let modalQuantitySelect = document.createElement("select");
+  modalQuantitySelect.className = "modal-select rounded p-1 mx-1";
   let stckNum =  resultProduct.stock;
   if (stckNum > 90){
     stckNum = stckNum / 4;
   }else if (stckNum > 30) {
     stckNum = stckNum / 2;
   }
-  for (let i = 1; i <= stckNum; i++) {
+  for (let i = parseInt(selectQuantity); i <= stckNum; i++) {
     let productQuantityOption = document.createElement("option");
     productQuantityOption.value = i;
     productQuantityOption.innerText = i;
-    productQuantitySelect.appendChild(productQuantityOption);
+    modalQuantitySelect.appendChild(productQuantityOption);
   }
+  productAddToCartBtn.onclick = () => addToCartOnClick(resultProduct, modalQuantitySelect);
   modalBottom.className="cart-container ";
   productAddToCartBtn.className="pt-3 quantity-container text-white border border-solid border-gray-300 rounded";
   productAddToCartBtn.innerText="Add to Cart " + cartIcon.innerText;
-  productAddToCartBtn.onclick = () => addToCartOnClick(resultProduct, productQuantitySelect);
+
   const eachProductCategory = document.createElement("p");
   eachProductStock.innerText = "Stock: " + resultProduct.stock + " LEFT IN STOCK!";
   const starIcon = document.getElementById("starIcon").cloneNode(true);
@@ -366,7 +386,7 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
   productQuantityTitle.style.color = "white";
   productQuantityTitle.innerText = "Quantity: ";
   productQuantityContainer.appendChild(productQuantityTitle);
-  productQuantityContainer.appendChild(productQuantitySelect);
+  productQuantityContainer.appendChild(modalQuantitySelect);
   productBottom.appendChild(productQuantityContainer);
   productBottom.appendChild(productAddToCartBtn);
   modalBottom.appendChild(eachProductCategory);
