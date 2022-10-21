@@ -15,39 +15,66 @@ function loadSite() {
         mode:"client",
         username:"client",
         password:"client",
+        phone: 094256789,
         email: "client@example.com",
         firstname: "hello",
         lastname: "Smith",
         age: 19,
         gender: "Man",
         image: "https://robohash.org/client",
-        cartItems: []
-      },
+        cartItems: [],
+        address: {
+          line1: "",
+          line2: "",
+          suburb: "",
+          city: "",
+          postCode: "",
+          message:""
+        }
+      }, 
       {
         id: 006,
         mode:"customer",
         username:"customer",
         password:"customer",
+        phone: 094786183,
         email: "customer@example.com",
         firstname: "Kenny",
         lastname: "Smith",
         age: 19,
         gender: "Man",
         image: "https://robohash.org/customer",
-        cartItems: []
+        cartItems: [],
+        address: {
+          line1: "",
+          line2: "",
+          suburb: "",
+          city: "",
+          postCode: "",
+          message:""
+        }
       },
       {
         id: 007,
         mode:"admin",
         username:"steveM",
         password:"admin",
+        phone: 094721489,
         email: "steven.metry@gmail.com",
         firstname: "steven",
         lastname: "metry",
         age: 19,
         gender: "Man",
-        image: "https://robohash.org/admin",
-        cartItems: []
+        image: "https://robohash.org/prometheus",
+        cartItems: [],
+        address: {
+          line1: "",
+          line2: "",
+          suburb: "",
+          city: "",
+          postCode: "",
+          message:""
+        }
       },
       {
         id: 010,
@@ -59,8 +86,16 @@ function loadSite() {
         lastname: "yusif",
         age: 18,
         gender: "Man",
-        image: "https://robohash.org/techlife",
-        cartItems: []
+        image: "https://robohash.org/Morpheus",
+        cartItems: [],
+        address: {
+          line1: "",
+          line2: "",
+          suburb: "",
+          city: "",
+          postCode: "",
+          message:""
+        }
       }
     ];
     localStorage.setItem("login", JSON.stringify(loginData));
@@ -115,5 +150,5 @@ function openCreateUser() {
 
 function openNewUser() {
   const redirectVal = getParam();
-  window.open(`new_user.html${redirectVal != null ? "?redirect=confirm" : ""}`, "_self");
+  window.open(`new_user.html${redirectVal != null ? "?redirect=pay" : ""}`, "_self");
 }

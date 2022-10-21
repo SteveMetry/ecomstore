@@ -55,7 +55,8 @@ function validateNewUser() {
       age: parseInt(formInputs['age'].value),
       gender: formInputs['gender'].value,
       image: `https://robohash.org/${formInputs['username'].value}`,
-      cartItems: cartItems
+      cartItems: cartItems,
+      address:""
     };
     allUsers.push(newUserData);
     localStorage.setItem("login", JSON.stringify(allUsers));
@@ -65,7 +66,5 @@ function validateNewUser() {
     });
     const redirectVal = params.redirect;
     window.open(`${redirectVal != null ? redirectVal : "console"}.html`, "_self");
-    let emptyUser = JSON.parse(localStorage.getItem("user"));
-    console.log(emptyUser);
   }
 }

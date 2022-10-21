@@ -52,7 +52,8 @@ function chkoutLoad() {
     cartItemTitle.innerText = cartItemList[i].title;
     cartItemTitle.className = "font-thin";
     let cartItemPrice = document.createElement("p");
-    cartItemPrice.innerText = "Only $" + cartItemList[i].price + " EACH!";
+    // cartItemPrice.innerText = "Only $" + cartItemList[i].price + " EACH!";
+    cartItemPrice.innerText = `Only $${(cartItemList[i].price * cartItemList[i].amount)}! `;
     cartItemPrice.className = "text-right pr-3 font-thin";
     let cartItemQuantity = document.createElement("p");
     cartItemQuantity.className="text-right font-thin";

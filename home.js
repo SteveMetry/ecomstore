@@ -267,7 +267,7 @@ function singleProduct(resultProduct) {
   const eachProduct = document.createElement("div");
   const eachProductContainer = document.createElement("div");
   eachProductContainer.className = "product-container";  
-  eachProduct.className = "each-product";    
+  eachProduct.className = "each-product";
   const eachProductBrand = document.createElement("h1");
   eachProductBrand.className = "capitalize product-brand";
   const eachProductThumbnail = document.createElement('img'); 
@@ -283,8 +283,8 @@ function singleProduct(resultProduct) {
   eachProductTitlePrice.className = "flex justify-between product-price";
   const eachProductDescription = document.createElement("p");
   eachProductDescription.className = "product-description lowercase";
-  const viewMoreButton = document.createElement('button');
-  viewMoreButton.innerText = "Click Me";
+  const addToCartButton = document.createElement('button');
+  addToCartButton.innerText = "Buy";
   // inserting the information into the element
   eachProductTitle.innerText = resultProduct.title;
   eachProductDescription.innerText = resultProduct.description;
@@ -296,7 +296,7 @@ function singleProduct(resultProduct) {
   eachDiscountContainer.appendChild(eachProductDiscountPercentage)
   eachProductTitlePrice.appendChild(eachProductTitle);
   eachProductTitlePrice.appendChild(eachDiscountContainer);
-  // viewMoreButton.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
+  addToCartButton.onclick = () => addToCartOnClick(resultProduct, productQuantitySelect);
   eachProductContainer.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription);
   // appending the Children
   eachProduct.appendChild(eachProductBrand);
@@ -304,7 +304,7 @@ function singleProduct(resultProduct) {
   eachProduct.appendChild(eachProductTitlePrice);
   eachProduct.appendChild(eachProductDescription);
   eachProductContainer.appendChild(eachProduct);
-  // eachProductContainer.appendChild(viewMoreButton);
+  eachProductContainer.appendChild(addToCartButton);
   productPage.appendChild(eachProductContainer);
 }
 
@@ -312,7 +312,7 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
   const eachProductStock = document.createElement("p");
   const eachProductRating = document.createElement("p");
   const modalBottom = document.createElement("div");
-  const productAddToCartBtn = document.createElement("div");
+  const productAddToCartBtn = document.createElement("button");
   let productQuantitySelect = document.createElement("select");
   productQuantitySelect.className = "modal-select rounded p-1 mx-1";
   let stckNum =  resultProduct.stock;

@@ -55,7 +55,7 @@ function createInput(key, value) {
   profileInput.onchange = () => {
     disableInput();
   }
-  profileInput.className = "rounded-lg w-full ml-2 border border-slate-200 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40";
+  profileInput.className = "rounded-lg w-full ml-2 pl-2 border border-slate-200 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40";
   let editSpan = document.getElementById("editBtn");
   let editSpanClone = editSpan.cloneNode(true);
   let editFNSpan = document.createElement("span")

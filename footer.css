@@ -1,24 +1,27 @@
 footer {
-  background-color: #feffff;
+  border-top: 1px solid rgb(214,214,214);
 }
 
 .footer-left {
   grid-template-columns: repeat(6, 1fr);
   font-size: 1.7rem;
   width: 100%;
+  padding: 2rem;
   display: grid;
   min-height: 5vh;
 }
-
-sub {
-  position: static !important;
+.footer-left a {
+  padding-left: 3px;
+  margin: 1rem;
 }
-
+.footer-left span {
+  padding: 1rem;
+}
 .main-footer { 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #feffff;
+  background-color: rgb(251, 251, 251);
   min-height: 13vh;
 }
 
@@ -33,18 +36,17 @@ sub {
     min-height: 23vh;
     height: 100%;
     }
-    
-    .main-footer {
-      width: 100%;
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      grid-column: span 2 / span 2;
-      min-height: none;
-    }
-    .footer-left {
-      grid-template-rows: repeat(6, 1fr);
-      grid-template-columns: 1fr;
-      font-size: 1rem;
-      height: 100%;
-    }
+  .main-footer {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-column: span 2 / span 2;
+    min-height: none;
+  }
+  .footer-left {
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: 1fr;
+    font-size: 1rem;
+    height: 100%;
+  }
 }

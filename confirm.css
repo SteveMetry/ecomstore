@@ -1,5 +1,5 @@
 body {
-  background-color: #E7F0FE;
+  background-color: rgb(245, 245, 245);
 }
 
 hr {
@@ -24,36 +24,36 @@ header {
 }
 
 .profile-container {
-  margin: 0px 5vh;
-  font-size: 2.6rem;
   display: flex;
-  height: 30vh;
+  flex-direction: row;
   justify-self: center;
+  border-radius: 0.8rem;
+  background-color: rgb(255, 255, 255);
+  border: rgb(214, 214, 214) solid 1px;
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235);
+  margin: auto;
   padding: 1rem;
-  background-color: rgb(246, 233, 253);
-  border: rgb(173, 198, 249) solid 1px;
-  border-radius: 4px;
-  box-shadow: 2px 9px 10px #dfdfdf;
-  margin-bottom: 5rem;
+  font-weight: 200;
+  width: 90%;
 }
 
 .confrm-checkout-page {
-  font-size: 1.9rem;
+  font-size: 3rem;
   display: flex;
   flex-direction: column;
-  margin: 0.9rem;
+  margin: auto;
   padding: 1rem;
-  background-color: rgb(171, 186, 251);
-  border: royalblue solid 1.4px;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px 6px rgb(171, 186, 251);
-  height: 20vh;
-  margin: 0rem 5rem;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(214, 214, 214);
+  border-radius: 0.8rem;
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235);
+  height: 25vh;
+  width: 90%;
   margin-bottom: 5rem;
 }
 
 .profile-img {
-  height: 10vh;
+  width: 20vw;
 }
 
 .confrm-crt-container {
@@ -61,22 +61,34 @@ header {
   width: 90%;
   margin: 1rem 2rem;
   margin-bottom: 6rem;
+  border: 1px solid rgb(214, 214, 214);
+  background-color: rgb(255, 255, 255);
+}
+.confrm-crt-container h2 {
+  color: rgb(29, 29, 31);
+  padding: 1rem;
+  padding-bottom: 1.2rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+.confrm-crt-container h3 {
+  color: rgb(29, 29, 31);
+  margin: 1rem;
+  font-size: 1rem;
 }
 
 @media screen and (min-device-width: 400px) {
   .profile-img {
-    height: 16vh;
+    width: 30vw;
   }
   .profile-container {
-    font-size: 2.3rem;
-    height: 25vh;
+    padding: 1.3rem;
   }
 }
 
 @media screen and (min-device-width: 550px) {
   .profile-container {
-    font-size: 1.7rem;
-    height: 35vh;
+    height: 20vh;
   }
   .input-container {
     display: flex;
@@ -86,6 +98,9 @@ header {
 }
 
 @media screen and (min-device-width: 650px) {
+  .profile-img {
+    width: 100%;
+  }
   .confirm-body {
     margin-top: 13vh;
   }
@@ -98,32 +113,28 @@ header {
     width: 45vw;
   }
   .profile-container {
+    padding: 1rem;
     display: grid;
     grid-template-columns: 0.7fr 0.3fr;
-    width: 80%;
-    height: 30vh;
-    font-size: 1rem;
   }
   .confrm-checkout-page {
+    height: 20vh;
     font-size: 1rem;
-    margin: 2.5rem 0rem;
+    margin: auto;
     padding: 1rem;
     width:100%;
-    height: 25vh;
-    max-height: 70vh;
   }
 }
 @media screen and (min-device-width: 800px) {
   header { 
     font-size: 2rem;
   }
-  .profile-img {
-    width: 15rem;
-    height: 15rem;
-  }
   .profile-container {
-    grid-template-columns: 1fr 1fr;
-    height: 40vh;
-    width: 38vw;
+    grid-template-columns: 0.7fr 0.3fr;
+    height: 30vh;
+    width: 30vw;
+  }
+  .confrm-checkout-page {
+    height: 30vh;
   }
 }

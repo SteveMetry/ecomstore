@@ -3,7 +3,7 @@ body {
   grid-template-rows: 0.05fr 0.9fr 0.05fr;
   justify-items: center;
   align-content: center;
-  background-color: #ffecde;
+  background-color: rgb(245, 245, 245);
 }
 
 .login-nav {
@@ -11,7 +11,9 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: royalblue;
+  background-color: #000021;
+  color: white;
+  font-size: 1rem;
   margin-bottom: 1.5rem;
 }
 
@@ -64,9 +66,9 @@ body {
   display: grid;
   margin: 1rem;
   padding: 1rem;
-  background-color: rgb(246, 233, 253);
-  border: rgb(173, 198, 249) solid 1px;
-  border-radius: 4px;
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235,1);
+  border: rgb(214, 214, 214) solid 1px;
+  border-radius: 0.3rem;
   box-shadow: 2px 9px 10px #dfdfdf;
 }
 
@@ -102,9 +104,14 @@ body {
   margin: 0.5rem;
   padding: 0.2rem;
   border-radius: 5px;
-  background-color: rgb(173, 198, 249);
-  border: 1px solid rgb(173, 235, 255);
+  background-color: rgb(44, 115, 219);
+  border: 1px solid rgb(214,214,214);
   text-align: center;
+}
+
+.demo-sites a:hover {
+  cursor: pointer;
+  background-color: rgb(46, 121, 229);
 }
 
 .parent-input-container{
@@ -133,16 +140,16 @@ body {
   width: 8rem;
   height: 1.5rem;
   font-size: 0.9rem;
-  font-weight: 140;
-  color: royalblue;
-  background-color: rgb(173, 198, 249);;
-  border: 1px solid rgb(173, 235, 255);
+  font-weight: 250;
+  background-color: rgb(44, 115, 219);
+  border: 1px solid rgb(214,214,214);
+  color: white;
   border-radius: 0.2rem;
   cursor: pointer;
 }
 
 .save-btn:hover {
-  color: green;
+  background-color: rgb(46, 121, 229);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -173,7 +180,7 @@ body {
     font-size: 1.5rem;
   }
   .login input {
-    min-height: 5rem;
+    min-height: 4rem;
     font-size: 1.8rem;
   }
   .login-btns {
@@ -206,7 +213,7 @@ body {
     font-size: 1.5rem;
   }
   .login input {
-    min-height: 5rem;
+    min-height: 3rem;
     font-size: 1rem;
   }
   .login-btns {
