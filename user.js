@@ -56,7 +56,14 @@ function validateNewUser() {
       gender: formInputs['gender'].value,
       image: `https://robohash.org/${formInputs['username'].value}`,
       cartItems: cartItems,
-      address:""
+      address: {
+        line1: "",
+        line2: "",
+        suburb: "",
+        city: "",
+        postCode: "",
+        message:""
+      }
     };
     allUsers.push(newUserData);
     localStorage.setItem("login", JSON.stringify(allUsers));

@@ -65,7 +65,7 @@ function loadSite() {
         lastname: "metry",
         age: 19,
         gender: "Man",
-        image: "https://robohash.org/prometheus",
+        image: "https://robohash.org/bbirch",
         cartItems: [],
         address: {
           line1: "",
@@ -86,7 +86,7 @@ function loadSite() {
         lastname: "yusif",
         age: 18,
         gender: "Man",
-        image: "https://robohash.org/Morpheus",
+        image: "https://robohash.org/bbirch",
         cartItems: [],
         address: {
           line1: "",

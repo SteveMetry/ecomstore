@@ -85,6 +85,8 @@ hr {
   text-align: center;
   font-family: arial;
   display: grid;
+  width: 90%;
+  margin: auto;
   grid-template-rows: 1fr;
   grid-template-rows: 1fr 0.1fr;
 }

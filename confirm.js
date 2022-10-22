@@ -27,6 +27,7 @@ function loadConfirm(user) {;
   });
   taxTotal.innerText = `$${(tempTotal / 10).toFixed(2)}`;
   overallTotal.innerText = `$${tempTotal.toFixed(2)}`;
+  console.log("hello")
   let tempAddress = "";
   for (const [key, value] of Object.entries(user.address)) {
     if (key == "postCode") {
@@ -34,6 +35,7 @@ function loadConfirm(user) {;
     } else if (key !== "line2" && key !== "message") {
       tempAddress += `${value}, `
     }
+    
   }
   userNameHeader.innerText = `Name: ${user.firstname} ${user.lastname}`;
   userEmailHeader.innerText = `Email: ${user.email}`
