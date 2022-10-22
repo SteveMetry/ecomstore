@@ -38,11 +38,11 @@
       </div>
       <div>
       <input type="number" name="postCode" placeholder="Postcode" class="postal-input mb-3 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
-      <label id="postCodeError" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an number</label>
+      <label id="postCodeError" class="pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an number</label>
       </div>
       <div>
       <input name="suburb" placeholder="Suburb" class="postal-input mb-3 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
-      <label id="suburbError" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an suburb</label>
+      <label id="suburbError" class="pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an suburb</label>
       </div>
       <div class="col-span-2">
       <input name="city" placeholder="City" class="mb-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
@@ -53,7 +53,10 @@
     <div class="payment-container">
       <h1>Payment Details Here:</h1>
       <p>we are working on making this feature available</p>
-      <button id="processInfo" onclick="validatePostalAddress()">Process!</button>
+      <div class="process-container">
+        <div id="emptyCartNotification" class="hide empty-notification">Oops your Cart is Empty!</div>
+        <button id="processInfo" onclick="validatePostalAddress()">Process!</button>
+      </div>
     </div>
   </main>
 

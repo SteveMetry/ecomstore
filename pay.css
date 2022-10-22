@@ -16,7 +16,8 @@
   padding: 0rem 0rem 0rem 0.5rem;
   max-height: 180px;
   margin: 0.5rem 0.5rem 0.5rem 0.5rem;
-  width: 70vw;
+  width: 78vw;
+  font-size: 2rem;
   min-height: 4rem;
   background-color: inherit;
   border: 1px solid rgb(214,214,214);
@@ -31,7 +32,7 @@
 }
 
 .postal-container .postal-input {
-  width: 30vw;
+  width: 38vw;
 }
 
 .payment-container {
@@ -42,16 +43,31 @@
   background-color: rgb(44, 115, 219);
   border: 1px solid rgb(214,214,214);
   color: white;
-  width: 13vw;
-  margin: 2rem;
-  padding: 0.6rem;
-  font-weight: 220;
+  font-weight: 300;
+  font-size: 3rem;
   border-radius: 0.3rem;
+  width: 78vw;
+  height: 6vh;
+  margin: 2rem;
+  margin-top:1rem;
+  padding: 0.6rem;
   cursor: pointer;
 }
+
 .payment-container button:hover {
   cursor: pointer;
   background-color: rgb(46, 121, 229);
+}
+.process-container {
+  position: relative;
+  margin-top: 5rem;
+}
+.empty-notification {
+  font-size: 2.2rem;
+  padding: 0.5rem;
+  text-align: center;
+  color: rgb(46, 121, 229);
+  border: 1px solid rgb(214,214,214);
 }
 
 @media screen and (min-device-width: 500px) {
@@ -62,13 +78,35 @@
     display: grid;
     grid-template-columns: 0.65fr 0.35fr;
     margin-top: 18vh;
-  }  
+  }
+  .payment-container button {
+    font-weight: 250;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    width: 13vw;
+    height: auto;
+    margin-left: 5rem;
+    padding: 0.6rem;
+  }
+
+  .process-container {
+    position: relative;
+    margin-top: 5rem;
+  }
+  .empty-notification {
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: rgb(46, 121, 229);
+    border: 1px solid rgb(214,214,214);
+  }
+
   .postal-container {
     width: 45vw;
   }
   .postal-container input, .postal-container select,  .postal-container textarea{
     width: 40vw;
     min-height: 2rem;
+    font-size: 1rem;
   }
   .postal-container .postal-input {
     width: 17.5vw;

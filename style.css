@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(255, 255, 255);
 }
 
 hr {
@@ -15,11 +15,13 @@ hr {
   width: 100%;
   height: 7vh;
   padding: 1.2rem;
-  background-color: #444;
-  color: rgb(245, 245, 245);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235);
+  color: black;
   letter-spacing: 0.1rem;
   text-align: center;
   cursor: pointer; 
+  margin-top: 2vh;
 }
 
 
@@ -79,7 +81,7 @@ hr {
   padding: 1rem;
   border-radius: 0.8rem;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0px 0px 50px 10px rgb(235,235,235,1);
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235);
   text-align: center;
   font-family: arial;
   display: grid;
@@ -172,7 +174,7 @@ hr {
 .searchbar {
   width: 100%;
   height: 65%;
-  background-color: whitesmoke;
+  background-color: rgb(255, 255, 255);
   color: rgb(73, 73, 73);
   border-radius: 2px;
 }
@@ -318,7 +320,7 @@ hr {
   padding: 1rem;
   display: grid;
   grid-template-columns: 0.1fr 0.3fr 0.7fr;
-  background-color: rgb(245, 245, 245);
+  background-color: inherit;
   border-bottom: 1px solid rgb(210, 210, 215);
 }
 
@@ -730,9 +732,6 @@ hr {
     position: absolute;
     bottom: 5rem;
   }
-  .collapsible {
-    margin-top: 3.2vh;
-  }
   .product-cards-container {
     width: 100%;
   }
@@ -763,7 +762,8 @@ hr {
     margin-bottom: 6rem;
   }
   .ads-container {
-    background-color: #feffff;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2.5rem 50px 10px rgb(235,235,235);
     display: grid;
     grid-template-rows: repeat(6, 1fr);
     height: 100%;
@@ -778,6 +778,7 @@ hr {
     min-height: 15vh;
     height: 100%;
     padding: 1rem;
+    background-color: rgb(255, 255, 255);
   }
   .each-ad-container h1 {
     margin: 0.2rem 0;
@@ -798,6 +799,9 @@ hr {
   }
   .modal-btm-container {
     bottom: 1rem;
+  }
+  .collapsible {
+    margin-top: 4vh;
   }
 }
 

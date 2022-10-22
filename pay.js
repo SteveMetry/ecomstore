@@ -1,5 +1,7 @@
 const postalform = document.getElementById("postalForm")
 const formInputs = postalform.elements;
+const userCart = JSON.parse(localStorage.getItem("cartItems"))
+
 if (localStorage.getItem("user") == null) {
   window.open("login.html?redirect=pay", "_self");
 }
@@ -9,7 +11,6 @@ isAddress = user.address['line1'].trim() !== "";
 if (isAddress) {
   for (const [key, value] of Object.entries(user.address)) {
     formInputs[`${key}`].value = value;
-    console.log(`${value}`)
   }
 }
 
@@ -44,7 +45,9 @@ function validatePostalAddress() {
   const isCityValid = isInfoSet(formInputs['city'].type, formInputs['city'].value);
   document.getElementById("cityError").style.display = isCityValid ? 'none' : 'block';
   let allValid = isline1Valid  && isPostCodeValid && isSuburbValid && isCityValid;
-  if (allValid) {
+  const emptyCartNotification = document.getElementById("emptyCartNotification");
+  if (userCart.length !== 0 && allValid){
+    document.getElementById("emptyCartNotification").classList.add("hide");
     for (const [key, value] of Object.entries(user.address)) {
       user.address[key] = formInputs[`${key}`].value.trim();
     }
@@ -56,5 +59,7 @@ function validatePostalAddress() {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("login", JSON.stringify(loginData));
     window.open("confirm.html", "_self");
+  } else if(allValid) {
+    document.getElementById("emptyCartNotification").classList.toggle("hide");
   }
 }

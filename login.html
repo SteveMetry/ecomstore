@@ -15,7 +15,7 @@
     <div>@steveMetry</div>
   </nav>
   <div id="login" class="login">
-    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Username:</label>
+    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Sign in:</label>
     <input id="userNameInput" type="text" class="
       w-full
       px-3
@@ -30,9 +30,9 @@
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="The Username..">
-
-    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Password:</label>
-    <input id="passwordInput" type="password" class="
+      <br>
+      <br>
+      <input id="passwordInput" type="password" class="
       w-full
       px-3
       py-1
@@ -53,21 +53,13 @@
 
     <div id="loginBtn"></div>
 
-    <button onclick="openNewUser()" class="
-    login-btns
-    px-6 py-2.5 
-    bg-gray-200 
-    text-gray-700 
-    leading-tight 
-    uppercase 
-    w-full
-    rounded shadow-md 
-    hover:bg-gray-300 hover:shadow-lg 
-    focus:bg-gray-300 focus:shadow-lg 
-    focus:outline-none focus:ring-0 
-    active:bg-gray-400 active:shadow-lg 
-    transition duration-150 ease-in-out
-    ">Create Account</button>
+    <button onclick="openNewUser()" class = "
+    mb-4 px-6 py-2.5 l
+    eading-tight uppercase 
+    w-full shadow-md
+    login-btns 
+    "
+      >Create Account</button>
 
     <div class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
       <p class="text-center font-semibold mx-4 mb-0">OR</p>
@@ -75,25 +67,27 @@
 
     <!-- Facebook -->
     <a class="
-    login-btns 
-    px-7 py-3
-    text-white 
-    leading-snug 
+    px-7 
+    py-3 
+    text-white
+    leading-snug
     uppercase 
-    rounded 
-    shadow-md hover:shadow-lg 
+    shadow-md 
+    hover:shadow-lg 
     focus:shadow-lg 
     focus:outline-none 
     focus:ring-0 
     active:shadow-lg 
-    transition 
+    transition
     duration-150 
     ease-in-out 
     w-full 
     flex 
+    mb-3
     justify-center 
-    items-center 
-    mb-5"
+    items-center
+    login-btns
+    "
     style="background-color: #3b5998"
     role="button"
     data-mdb-ripple="true"
@@ -112,13 +106,11 @@
     <!-- Twitter logo-->
     <a
     class="
-    login-btns
     px-7 
     py-3 
     text-white
     leading-snug
     uppercase 
-    rounded
     shadow-md 
     hover:shadow-lg 
     focus:shadow-lg 
@@ -130,8 +122,10 @@
     ease-in-out 
     w-full 
     flex 
+    mb-0
     justify-center 
     items-center
+    login-btns
     "
     style = "
     background-color: #55acee

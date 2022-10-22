@@ -40,8 +40,8 @@
     </div>
   </nav>
   <div class="navgap"></div>
-  <button class="btn collapsible" onclick="toggleCategorySection()">Categories:</button>
-  <div id="categoriesContainer" class="categories-container hide" ></div>
+  <button class="btn collapsible" onmouseover="toggleCategorySection()">Categories:</button>
+  <div id="categoriesContainer" onmouseleave="toggleCategorySection()" class="categories-container hide"> </div>
   <div id="overlay" class="bg-black opacity-70 fixed top-0 w-screen h-screen" onclick="closeModal()" style="display: none;"></div>
   <div id="customModal" class="fixed top-1/2 left-1/2 bg-white custom-modal" style="display: none;"></div>
   <div class="main-page-container">
