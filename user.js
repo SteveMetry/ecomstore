@@ -33,6 +33,8 @@ function validateNewUser() {
   // document.getElementById("passwordError").style.display = isPasswordValid ? 'none' : 'block';
   const isEmailValid = isInfoSet('email', formInputs['email'].type, formInputs['email'].value);
   document.getElementById("emailError").style.display = isEmailValid ? 'none' : 'block';
+  const isPhoneValid = isInfoSet('phone', formInputs['phone'].type, formInputs['phone'].value);
+  document.getElementById("phoneError").style.display = isPhoneValid ? 'none' : 'block';
   const isFirstNameValid = isInfoSet('firstName', formInputs['firstName'].type, formInputs['firstName'].value);
   document.getElementById("firstNameError").style.display = isFirstNameValid ? 'none' : 'block';
   const isLastNameValid = isInfoSet('lastName', formInputs['lastName'].type, formInputs['lastName'].value);
@@ -63,7 +65,8 @@ function validateNewUser() {
         city: "",
         postCode: "",
         message:""
-      }
+      },
+      receipts: []
     };
     allUsers.push(newUserData);
     localStorage.setItem("login", JSON.stringify(allUsers));

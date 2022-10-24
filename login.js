@@ -30,7 +30,8 @@ function loadSite() {
           city: "",
           postCode: "",
           message:""
-        }
+        },
+        receipts: []
       }, 
       {
         id: 006,
@@ -52,7 +53,8 @@ function loadSite() {
           city: "",
           postCode: "",
           message:""
-        }
+        },
+        receipts: []
       },
       {
         id: 007,
@@ -74,13 +76,15 @@ function loadSite() {
           city: "",
           postCode: "",
           message:""
-        }
+        },
+        receipts: []
       },
       {
         id: 010,
         mode:"admin",
         username:"e",
         password:"e",
+        phone: 094721489,
         email: "Admin@tech.com",
         firstname: "e",
         lastname: "yusif",
@@ -89,13 +93,14 @@ function loadSite() {
         image: "https://robohash.org/bbirch",
         cartItems: [],
         address: {
-          line1: "",
-          line2: "",
-          suburb: "",
-          city: "",
-          postCode: "",
-          message:""
-        }
+          line1: "304 South Side",
+          line2: "911 York Street",
+          suburb: "north",
+          city: "Paris",
+          postCode: "304",
+          message:"ha ha"
+        },
+        receipts: []
       }
     ];
     localStorage.setItem("login", JSON.stringify(loginData));

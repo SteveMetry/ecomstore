@@ -10,7 +10,22 @@ navUsrnameDiv.appendChild(navUsrSpan);
 const body = document.getElementById("body");
 const editSpan = document.getElementById("editBtn");
 const profileImg = document.getElementById("profileImg");
-const inputKeys = ["username","password","email","firstname","lastname", "age"];
+const inputKeys = ["username","password", "phone", "email","firstname","lastname", "age"];
+const postalform = document.getElementById("postalForm")
+const formInputs = postalform.elements;
+if (localStorage.getItem("user") == null) {
+  window.open("login.html?redirect=pay", "_self");
+}
+const user = JSON.parse(localStorage.getItem("user"));
+const loginData = JSON.parse(localStorage.getItem("login"));
+const userCart = JSON.parse(localStorage.getItem("cartItems"))
+let isAddress = false;
+isAddress = user.address['line1'].trim() !== "";
+if (isAddress) {
+  for (const [key, value] of Object.entries(user.address)) {
+    formInputs[`${key}`].value = value;
+  }
+}
 
 function consoleLoad() {
   const userInfo = JSON.parse(localStorage.getItem("user"));
@@ -84,22 +99,6 @@ function openLogin() {
 function clearLocal() {
   localStorage.clear();
   openLogin();
-}
-
-const postalform = document.getElementById("postalForm")
-const formInputs = postalform.elements;
-if (localStorage.getItem("user") == null) {
-  window.open("login.html?redirect=pay", "_self");
-}
-const user = JSON.parse(localStorage.getItem("user"));
-const loginData = JSON.parse(localStorage.getItem("login"));
-const userCart = JSON.parse(localStorage.getItem("cartItems"))
-let isAddress = false;
-isAddress = user.address['line1'].trim() !== "";
-if (isAddress) {
-  for (const [key, value] of Object.entries(user.address)) {
-    formInputs[`${key}`].value = value;
-  }
 }
 
 function isInfoSet(infoKey, infoType, infoInput) {

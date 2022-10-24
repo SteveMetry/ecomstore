@@ -2,32 +2,29 @@ const userInfoContainer = document.getElementById("userInfoContainer");
 const prfleContainer = document.getElementById("profileContainer");
 const confrmedCartCntainer= document.getElementById("confrmedCartCntainer");
 const taxTotal = document.getElementById("taxTotal");
-const addressHeader = document.createElement("h3");
-const userNameHeader = document.createElement("h3");
-const userEmailHeader = document.createElement("h3");
 const purchsdProductHeader = document.getElementById("purchasedProductsHeader")
 function loadConfirm(user) {;
   let userImage = document.getElementById("confirmProfileImg");
   userImage.src = user.image;
   prfleContainer.appendChild(userImage);
   for (const [key, value] of Object.entries(user)) {
-    let unwanted = ["id", "mode", "password", "image", "cartItems", "address"]
-    if(key != unwanted[0] && key != unwanted[1] && key != unwanted[2] && key != unwanted[3] && key != unwanted[4] && key != unwanted[5]){
-      let itemElement = document.createElement("p");
-      itemElement.innerText = `${key}: ${value}`
-      userInfoContainer.appendChild(itemElement)
+    let unwanted = ["id", "mode", "password", "image", "cartItems", "address", "receipts"]
+    if(key != unwanted[0] && key != unwanted[1] && key != unwanted[2] && key != unwanted[3] && key != unwanted[4] && key != unwanted[5] && key != unwanted[6]){
+      let profileInfoElement = document.createElement("p");
+      profileInfoElement.innerText = `${key}: ${value}`
+      userInfoContainer.appendChild(profileInfoElement)
     }
   }
-  const cartItems = user.cartItems;
+  const userReceipts = user.receipts;
+  curReceipt = userReceipts[userReceipts.length-1]
+  const cartItems = curReceipt.purchased;
   let overallTotal = document.getElementById("overallTotal")
-  const cartItemList = cartItems
   tempTotal = 0;
-  cartItemList.forEach(item => {
+  cartItems.forEach(item => {
     tempTotal += item.price * item.amount;
   });
   taxTotal.innerText = `$${(tempTotal / 10).toFixed(2)}`;
   overallTotal.innerText = `$${tempTotal.toFixed(2)}`;
-  console.log("hello")
   let tempAddress = "";
   for (const [key, value] of Object.entries(user.address)) {
     if (key == "postCode") {
@@ -37,12 +34,18 @@ function loadConfirm(user) {;
     }
     
   }
-  userNameHeader.innerText = `Name: ${user.firstname} ${user.lastname}`;
-  userEmailHeader.innerText = `Email: ${user.email}`
-  addressHeader.innerText = `Address: ${tempAddress}`;
-  confrmedCartCntainer.appendChild(userNameHeader);
-  confrmedCartCntainer.appendChild(userEmailHeader);
-  confrmedCartCntainer.appendChild(addressHeader);
+  let idHeader = document.createElement("h3");
+  idHeader.innerText = `Receipt ID: ${curReceipt.id}`;
+  confrmedCartCntainer.appendChild(idHeader);
+  let timeHeader = document.createElement("h3");
+  tempTime = curReceipt.time.split('T')[1].split('.')[0].split(':')
+  timeHeader.innerText = `Date: ${curReceipt.time.split('T')[0]} Time: ${tempTime[0]}:${tempTime[1]}`;
+  confrmedCartCntainer.appendChild(timeHeader);
+  for (const [key, value] of Object.entries(curReceipt.user)) { 
+    let keyHeader = document.createElement("h3");
+    keyHeader.innerText = `${key}: ${value}`;
+    confrmedCartCntainer.appendChild(keyHeader);
+  }
   purchsdProductHeader.className = "border-t-2 solid";
   confrmedCartCntainer.appendChild(purchsdProductHeader)
   for(let i = 0; i < cartItems.length; i++){

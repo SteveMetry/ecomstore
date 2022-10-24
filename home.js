@@ -231,7 +231,7 @@ function searchProducts()  {
 }
 
 function addToCartOnClick(resultProduct, QuantitySelect) {
-  console.log("11:01am")
+
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;

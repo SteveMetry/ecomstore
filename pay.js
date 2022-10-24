@@ -5,7 +5,11 @@ if (localStorage.getItem("user") == null) {
 }
 const user = JSON.parse(localStorage.getItem("user"));
 const loginData = JSON.parse(localStorage.getItem("login"));
-const userCart = JSON.parse(localStorage.getItem("cartItems"))
+const userCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
+let tempTotal
+userCart.forEach(item => {
+  tempTotal += item.price * item.amount;
+});
 let isAddress = false;
 isAddress = user.address['line1'].trim() !== "";
 if (isAddress) {
@@ -13,7 +17,7 @@ if (isAddress) {
     formInputs[`${key}`].value = value;
   }
 }
-
+let userReceipts = user.receipts;
 function isInfoSet(infoKey, infoType, infoInput) {
   let isValid = false;
   switch (infoType) {
@@ -44,7 +48,7 @@ function savePostal() {
       item.address = user.address;
     }
   });
-}  
+}
 
 function validatePostalAddress() {
   const isline1Valid = isInfoSet('line1',formInputs['line1'].type, formInputs['line1'].value);
@@ -60,8 +64,30 @@ function validatePostalAddress() {
   let allValid = isline1Valid  && isPostCodeValid && isSuburbValid && isCityValid;
   const emptyCartNotification = document.getElementById("emptyCartNotification");
   if (userCart.length !== 0 && allValid){
+    let tempAddress = "";
+    for (const [key, value] of Object.entries(user.address)) {
+      if (key == "postCode") {
+        tempAddress += `${value}`
+      } else if (key !== "line2" && key !== "message") {
+        tempAddress += `${value}, `
+      }
+    }
     document.getElementById("emptyCartNotification").classList.add("hide");
     savePostal()
+    curDate = new Date();
+    let receipt = { 
+      id:`U:${user.id}-R:${(userReceipts.length - 1) + 1}`,
+      purchased: userCart,
+      total: tempTotal,
+      time: curDate,
+      user: {
+        name: `${user.firstname}, ${user.firstname}`,
+        address: tempAddress,
+        phone: user.phone,
+        email: user.email,
+      }
+    }
+    user.receipts.push(receipt)
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("login", JSON.stringify(loginData));
     window.open("confirm.html", "_self");
