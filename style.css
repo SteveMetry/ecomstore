@@ -30,7 +30,7 @@ hr {
   padding: 0.5rem 1rem;
   grid-template-columns: 0.5fr 2.5fr 1fr; 
   width: 100vw; 
-  background-color: #000021;
+  background-color: rgb(49, 49, 50);
   display: grid;
   align-items: center;
   gap: 3rem;
@@ -39,7 +39,7 @@ hr {
 
 .custom-navbar > button {
   display: none;
-  background-color: rgb(44, 115, 219);
+  background-color: inherit;
   color: white;
   height: 95%;
   font-weight: 150;
@@ -50,7 +50,8 @@ hr {
 
 .custom-navbar > button:hover {
   cursor: pointer;
-  background-color: rgb(46, 121, 229);
+  color: #000;
+  background-color: white;
 }
 
 .navgap {
@@ -87,7 +88,6 @@ hr {
   display: grid;
   width: 90%;
   margin: auto;
-  grid-template-rows: 1fr;
   grid-template-rows: 1fr 0.1fr;
 }
 .each-product {
@@ -416,6 +416,11 @@ hr {
 .modal-select {
   text-align: center;
 }
+.console-nav-img {
+  width: 5vw;
+  margin-left: 0.5rem;
+  filter: invert(0.9);
+}
 @media screen and (min-device-width: 500px) {
   .quantity-container {
     font-size: 1rem;
@@ -454,6 +459,10 @@ hr {
   .each-product {
     position: static;
     height: 100%;
+  }
+  .console-nav-img {
+    width: 50%;
+    height: auto;
   }
   .nav-profile {
     width: 60%;
@@ -684,6 +693,10 @@ hr {
     justify-content: flex-end;
     color: aliceblue;
   }
+  .console-nav-img {
+    width: 2.2rem;
+    height: 2.7rem;
+  }
   .nav-img {
     width: 2.8em;
     height: 2.7rem;
@@ -804,6 +817,10 @@ hr {
   }
   .collapsible {
     margin-top: 4vh;
+  }
+  .console-nav-img {
+    width: 2rem;
+    height: 2rem;
   }
 }
 

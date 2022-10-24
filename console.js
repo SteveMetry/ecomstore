@@ -13,9 +13,6 @@ const profileImg = document.getElementById("profileImg");
 const inputKeys = ["username","password", "phone", "email","firstname","lastname", "age"];
 const postalform = document.getElementById("postalForm")
 const formInputs = postalform.elements;
-if (localStorage.getItem("user") == null) {
-  window.open("login.html?redirect=pay", "_self");
-}
 const user = JSON.parse(localStorage.getItem("user"));
 const loginData = JSON.parse(localStorage.getItem("login"));
 const userCart = JSON.parse(localStorage.getItem("cartItems"))

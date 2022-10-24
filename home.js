@@ -231,7 +231,6 @@ function searchProducts()  {
 }
 
 function addToCartOnClick(resultProduct, QuantitySelect) {
-
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;
