@@ -16,6 +16,8 @@ const formInputs = postalform.elements;
 const user = JSON.parse(localStorage.getItem("user"));
 const loginData = JSON.parse(localStorage.getItem("login"));
 const userCart = JSON.parse(localStorage.getItem("cartItems"))
+const sidebarContainer = document.getElementById("sidebar")
+const sidebarDivList = ["orderContainer", "profileContainer", "postalForm"];
 let isAddress = false;
 isAddress = user.address['line1'].trim() !== "";
 if (isAddress) {
@@ -84,10 +86,6 @@ function createInput(key, value) {
   inputContainer.appendChild(usersFNameContainer);
 }
 
-function openIndex() {
-  window.open("index.html", "_self");
-}
-
 function openLogin() {
   localStorage.removeItem("user");
   window.open("login.html", "_self");
@@ -110,9 +108,6 @@ function isInfoSet(infoKey, infoType, infoInput) {
     default:
       isValid = infoInput.trim() !== "";
       if (isValid) {
-        if (infoKey == "suburb" && isValid !== isNaN(infoInput.trim())) {
-          return false
-        }
         return true;
       }
       return false;
@@ -148,4 +143,101 @@ function validatePostalAddress() {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("login", JSON.stringify(loginData));
   } 
+}
+
+function toggleSidebar() {
+  sidebarContainer.classList.toggle("hide");
+}
+
+const orderContainer = document.getElementById("orderContainer");
+const previewOrdersList = document.getElementById("previewOrdersList");
+const previewCurOrder = document.getElementById("previewCurOrder");
+const userReceipts = user.receipts;
+
+function toggleReceiptContainer(receiptContainer, eachReceiptDiv) {
+  for (let i = 0; i < receiptContainer.children.length; i++) {
+    if (receiptContainer.children[i] == eachReceiptDiv){
+    receiptContainer.children[i].classList.remove("hide")
+    } else {
+      receiptContainer.children[i].classList.add("hide")
+    }
+  }
+}
+
+if (userReceipts.length > 0) {
+  let receiptContainer = document.createElement("div");
+  userReceipts.forEach((item, index) => {
+    let eachReceiptButton = document.createElement("button");
+    eachReceiptButton.innerText = `Order ${index + 1}`;
+    previewOrdersList.appendChild(eachReceiptButton);
+    let eachReceiptDiv = document.createElement("div");
+    eachReceiptDiv.classList="hide";
+    let idHeader = document.createElement("h3");
+    idHeader.innerText = `Receipt ID: ${item.id}`;
+    eachReceiptDiv.appendChild(idHeader);
+    let timeHeader = document.createElement("h3");
+    tempTime = item.time.split('T')[1].split('.')[0].split(':')
+    timeHeader.innerText = `Date: ${item.time.split('T')[0]} Time: ${tempTime[0]}:${tempTime[1]}`;
+    eachReceiptDiv.appendChild(timeHeader);
+    for (const [key, value] of Object.entries(item.user)) { 
+      let keyHeader = document.createElement("h3");
+      keyHeader.innerText = `${key}: ${value}`;
+      eachReceiptDiv.appendChild(keyHeader);
+    }
+    // let productList = item.purchased;
+    // let purchasedProductsContainer = document.createElement("div")
+    // for (let i = 0; i < productList.length; i++) {
+    //   let eachCartContainer = document.createElement("div");
+    //   eachCartContainer.className = "grid grid-cols-5 cart-product bg-white";
+    //   for (const [key, value] of Object.entries(productList[i])) { 
+    //     if (key != "id" && key != "discountPercentage"){
+    //       if (key == "title") {
+    //         let eachCartData = document.createElement("p");
+    //         eachCartData.className = "font-thin h-12";
+    //         eachCartData.innerText = `${value} `;
+    //         eachCartContainer.appendChild(eachCartData);
+    //       } else if (key == "thumbnail") {
+    //         let eachCartImage = document.createElement("img");
+    //         eachCartImage.className = "cart-img h-40 row-span-2";
+    //         eachCartImage.src = value;
+    //         eachCartContainer.appendChild(eachCartImage);
+    //       } else if (key == "description") {
+    //         let eachCartData = document.createElement("p");
+    //         eachCartData.className = "font-thin col-span-4 text-center text-xl";
+    //         eachCartData.innerText = value;
+    //         eachCartContainer.appendChild(eachCartData);
+    //       } else if (key == "price") {
+    //         let eachCartData = document.createElement("p");
+    //         eachCartData.className = "font-thin h-12";
+    //         eachCartData.innerText = `${key}: $${value}`;
+    //         eachCartContainer.appendChild(eachCartData);
+    //       } else {
+    //         let eachCartData = document.createElement("p");
+    //         eachCartData.className = "font-thin h-12";
+    //         eachCartData.innerText = `${key}: ${value}`;
+    //         eachCartContainer.appendChild(eachCartData);
+    //       }
+    //     }
+    //   }
+    //   purchasedProductsContainer.appendChild(eachCartContainer)
+    // }
+    // eachReceiptDiv.appendChild(purchasedProductsContainer)
+    // Order Button Onclick
+    eachReceiptButton.onclick = () => { 
+      toggleReceiptContainer(receiptContainer, eachReceiptDiv);
+    }
+    receiptContainer.appendChild(eachReceiptDiv)
+  })
+  receiptContainer.className="receipt-container";
+  previewCurOrder.appendChild(receiptContainer)
+}
+
+function toggleConsoleInfo(divName) {
+  for (let i = 0; i < sidebarDivList.length; i++) {
+    if (divName == sidebarDivList[i]) {
+      document.getElementById(divName).classList.remove("hide");
+    } else {
+      document.getElementById(sidebarDivList[i]).classList.add("hide");
+    };
+  };
 }

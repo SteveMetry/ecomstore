@@ -17,8 +17,11 @@ body {
   justify-content: space-between;
   background-color: rgb(49,49,50);
   color: white;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  font-size: 3rem;
+  height:8vh;
+}
+.username-container {
+  align-self: center;
 }
 
 .login {
@@ -74,16 +77,17 @@ body {
 
 .console-container {
   display: flex;
-  flex-direction: column;
-  height: 120vh;
+  flex-direction: column-reverse;
+  width: 100%;
 }
-
+.main-console {
+  width: 100%;
+}
 .profile-container {
   width: 80%;
   height: 50vh;
-  justify-self: center;
   display: grid;
-  margin: auto;
+  margin: 10rem auto;
   padding: 1rem;
   box-shadow: 0px 0px 50px 10px rgb(235,235,235,1);
   border: rgb(214, 214, 214) solid 1px;
@@ -182,7 +186,7 @@ body {
 }
 
 .postal-container {
-  margin: auto;
+  margin: 8rem auto;
   border-radius: 0.4rem;
   width: 80vw;
   justify-items: center;
@@ -211,6 +215,46 @@ body {
 .postal-container .postal-input {
   width: 38vw;
 }
+
+.confrm-crt-container {
+  min-height: 80vh;
+  width: 90%;
+  margin: 1rem 2rem;
+  margin-bottom: 6rem;
+  border: 1px solid rgb(214, 214, 214);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235);
+}
+.confrm-crt-container p {
+  color: rgb(29, 29, 31);
+  padding: 1rem;
+  padding-bottom: 1.2rem;
+}
+.confrm-crt-container h2 {
+  color: rgb(29, 29, 31);
+  padding: 1rem;
+  padding-bottom: 1.2rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+.confrm-crt-container h3 {
+  color: rgb(29, 29, 31);
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+.order-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #000;
+  opacity: 0.7;
+  color: white;
+}
+
+/* .receipt-container {
+  overflow: hidden;
+} */
 
 @media screen and (min-device-width: 400px) {
   .login {
@@ -250,6 +294,9 @@ body {
   .profile-container {
     height: 60vh;
   }
+  .login-nav {
+    font-size: 1.8rem;
+  }
   .input-container {
     display: flex;
     height: 1.8rem;
@@ -276,10 +323,8 @@ body {
   }
   .console-container {
     flex-direction: row;
-    margin: 1rem;
-    margin-bottom: 5rem;
-    height:70vh;
-    width: 100%;
+    min-height: 100vh;
+    justify-content: space-between;
   }
   .profile-container {
     grid-template-columns: 0.7fr 0.3fr;
@@ -358,6 +403,9 @@ body {
   }
   .login {
     width: 30vw;
+  }
+  .login-nav {
+    font-size: 1.4rem;
   }
 }
 

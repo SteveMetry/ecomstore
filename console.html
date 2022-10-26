@@ -8,79 +8,73 @@
   <link href="custom.css" rel="stylesheet"/>
   <link href="footer.css" rel="stylesheet"/>
 </head>
-<body onload="consoleLoad()">
+<body onload="consoleLoad()"> 
 <nav class="login-nav">
   <img class="console-nav-img" src="img/poweroff.png" style="cursor: pointer;" onclick="openLogin()">
-  <a href="https://pokedex-five-vert.vercel.app/">PokeCard</a>
-  <div id="navUsrnameDiv" >&#129489; <span id ="navUsrnameSpan"></span></div>
-  <a>ReactJS</a>
-  <a onclick="openIndex()" style="cursor: pointer;">return to HOME</a>
+  <div id="navUsrnameDiv" class="username-container"><span id ="navUsrnameSpan"></span></div>
+  <div class="hamburger-icon" onclick="toggleSidebar()">&#8801;</div>
 </nav>
 <div id="consoleContainer" class="console-container">
-  <div id="profileContainer" class="profile-container">
-    <div id="inputContainer" class="parent-input-container"></div>
-    <div class="profile-image">
-      <img id="profileImg" class="m-auto"/>
-      <a onclick="onSave()" class="save-btn">Save this</a>
+  <div class ="main-console"> 
+    <div id="profileContainer" class="profile-container">
+      <div id="inputContainer" class="parent-input-container"></div>
+      <div class="profile-image">
+        <img id="profileImg" class="m-auto"/>
+        <a onclick="onSave()" class="save-btn">Save this</a>
+      </div>
+    </div>
+    <form id="postalForm" onsubmit="event.preventDefault(); validatePostalAddress();" method="POST" class="hide postal-container grid grid-cols-2 ">
+      <h2 class="col-span-2">Ship to</h2>
+      <div class="col-span-2 flex flex-col text-center">
+        <label>Select a Region</label>
+        <select class="my-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
+        <option value="NZ">New Zealand</option>
+        <option value="NZ">America</option>
+      </select>
+        </div>
+      <div class="col-span-2">
+      <input name="line1" placeholder="Address Line 1" class="my-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
+      <label id="line1Error" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an address</label>
+      </div>
+      <div class="col-span-2">
+      <input name="line2" placeholder="Address Line 2" class="my-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
+      <!-- <label id="line2Error" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an address</label> -->
+      </div>
+      <div>
+      <input type="number" name="postCode" placeholder="Postcode" class="postal-input mb-3 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
+      <label id="postCodeError" class="pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an number</label>
+      </div>
+      <div>
+      <input name="suburb" placeholder="Suburb" class="postal-input mb-3 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
+      <label id="suburbError" class="pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an suburb <sub>(no numbers)</sub></label>
+      </div>
+      <div class="col-span-2">
+      <input name="city" placeholder="City" class="mb-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
+      <label id="cityError" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an city</label>
+      </div>
+      <textarea name="message" placeholder="Additional Message" class="col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"></textarea>
+      <div class="col-span-2">
+      <button type="submit" class="save-btn mt-2 w-80 h-10">update address</button>
+      </div>
+    </form>
+    <div id="orderContainer" class="hide">
+      <div id="previewOrdersList" class="order-buttons"></div>
+      <div id="previewCurOrder" class="confrm-crt-container"></div>
     </div>
   </div>
-
-  <form id="postalForm" onsubmit="event.preventDefault(); validatePostalAddress();" method="POST" class="postal-container grid grid-cols-2 ">
-    <h2 class="col-span-2">Ship to</h2>
-    <div class="col-span-2 flex flex-col text-center">
-      <label>Select a Region</label>
-      <select class="my-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
-      <option value="NZ">New Zealand</option>
-      <option value="NZ">America</option>
-    </select>
-      </div>
-    <div class="col-span-2">
-    <input name="line1" placeholder="Address Line 1" class="my-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
-    <label id="line1Error" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an address</label>
-    </div>
-    <div class="col-span-2">
-    <input name="line2" placeholder="Address Line 2" class="my-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
-    <!-- <label id="line2Error" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an address</label> -->
-    </div>
-    <div>
-    <input type="number" name="postCode" placeholder="Postcode" class="postal-input mb-3 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
-    <label id="postCodeError" class="pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an number</label>
-    </div>
-    <div>
-    <input name="suburb" placeholder="Suburb" class="postal-input mb-3 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
-    <label id="suburbError" class="pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an suburb <sub>(no numbers)</sub></label>
-    </div>
-    <div class="col-span-2">
-    <input name="city" placeholder="City" class="mb-2 col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"/>
-    <label id="cityError" class="col-span-2 pl-2 pb-2 text-red-500" style="display: none;">&#42;please enter an city</label>
-    </div>
-    <textarea name="message" placeholder="Additional Message" class="col-span-2 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"></textarea>
-    <div class="col-span-2">
-    <button type="submit" class="save-btn mt-2 w-80 h-10">update address</button>
-    </div>
-  </form>
-</div>
-<div>
-  <a>Dating Registration</a>
-  <a href="https://pokedex-five-vert.vercel.app/">PokeCard</a>
-  <a onclick="openIndex()" style="cursor: pointer;">Ecommerce</a>
-  <a>React JS</a>
-  <a>Next JS</a>
-
-  <button>Purchased</button>
-  <button>Purchased</button>
-  <button>Purchased</button>
-  <button>Purchased</button>
-  <button>Purchased</button>
-
-      
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Return to Home</a>
+    <div class="cursor-pointer" onclick="toggleConsoleInfo('orderContainer')">My Orders</div>
+    <div class="cursor-pointer" onclick="toggleConsoleInfo('profileContainer')">Personal Info</div>
+    <div class="cursor-pointer" onclick="toggleConsoleInfo('postalForm')">Postal Address</div>
+  </div>
 </div>
   <!-- <div class="demo-sites-container">
     <h1>View Demo Sites</h1>
     <div class="demo-sites">
       <a>Dating Registration</a>
       <a href="https://pokedex-five-vert.vercel.app/">PokeCard</a>
-      <a onclick="openIndex()" style="cursor: pointer;">Ecommerce</a>
+      <a href="index.html()" style="cursor: pointer;">Ecommerce</a>
       <a>React JS</a>
       <a>Next JS</a>
     </div>
@@ -95,11 +89,9 @@
     <a href="login.html">login</a> 
     <a href="new_user.html">Create Account</a> 
     <a href="contact.html">contact</a>
-    <br>
-    <span class="text-black mt-4 text-sm">@2022 sendnet.co&#8482;</span>
   </div>
   <div class="main-footer p-3">
-      <p>This is a profile page. It show cases my work, includes Demo Sites & more by Steven Metry</p>    
+      <p>By Steven Metry. this site show cases my work, includes Demo Sites & more by <span class="text-black mt-4 text-sm">@2022 sendnet.co&#8482;</span></p>    
     <span class="self-end">i reserve all my rights. this site does use cookies. view our <a class="text-blue-800 underline" href="cookies.html">cookies policies</a> for more information, thanks</span>
   </div>
 </footer>

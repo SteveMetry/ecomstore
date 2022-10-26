@@ -1,15 +1,15 @@
 const postalform = document.getElementById("postalForm")
 const formInputs = postalform.elements;
+let tempTotal = 0;
+userCart.forEach(item => {
+  tempTotal += item.price * item.amount;
+});
 if (localStorage.getItem("user") == null) {
   window.open("login.html?redirect=pay", "_self");
 }
 const user = JSON.parse(localStorage.getItem("user"));
 const loginData = JSON.parse(localStorage.getItem("login"));
 const userCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
-let tempTotal
-userCart.forEach(item => {
-  tempTotal += item.price * item.amount;
-});
 let isAddress = false;
 isAddress = user.address['line1'].trim() !== "";
 if (isAddress) {
@@ -30,9 +30,6 @@ function isInfoSet(infoKey, infoType, infoInput) {
     default:
       isValid = infoInput.trim() !== "";
       if (isValid) {
-        if (infoKey == "suburb" && isValid !== isNaN(infoInput.trim())) {
-          return false
-        }
         return true;
       }
       return false;

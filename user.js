@@ -8,8 +8,6 @@ function isInfoSet(infoKey, infoType, infoInput) {
         return true;
       }
       return false;
-    case 'email':
-      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(infoInput.trim()) && !allUsers.find(curUser => curUser.email === infoInput.trim());
     case 'password':
       return true;  // need to implement later on
     default:
@@ -17,6 +15,12 @@ function isInfoSet(infoKey, infoType, infoInput) {
       if (isValid) {
         if (infoKey === "username") {
           return !allUsers.find(curUser => curUser.username === infoInput.trim());
+        } else if (infoKey === "email") {
+          return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(infoInput.trim()) && !allUsers.find(curUser => curUser.email === infoInput.trim());
+        } else if (infoKey === "firstName" || infoKey === "lastName") {
+          if (infoInput.trim() !== "") {
+           return /^[a-zA-Z]{3,}$/.test(infoInput.trim());
+          } 
         } else {
           return true;
         }
