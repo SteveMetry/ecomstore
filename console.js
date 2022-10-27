@@ -157,79 +157,105 @@ const userReceipts = user.receipts;
 function toggleReceiptContainer(receiptContainer, eachReceiptDiv) {
   for (let i = 0; i < receiptContainer.children.length; i++) {
     if (receiptContainer.children[i] == eachReceiptDiv){
-    receiptContainer.children[i].classList.remove("hide")
+    receiptContainer.children[i].classList.remove("hide");
     } else {
-      receiptContainer.children[i].classList.add("hide")
-    }
-  }
+      receiptContainer.children[i].classList.add("hide");
+    };
+  };
+}
+function scrollDivRight(purchasedProductsContainer) {
+  purchasedProductsContainer.scrollLeft += 600;
+}
+function scrollDivleft(purchasedProductsContainer) {
+  purchasedProductsContainer.scrollLeft -= 600;
 }
 
 if (userReceipts.length > 0) {
-  let receiptContainer = document.createElement("div");
+  previewCurOrder.innerText = "";
   userReceipts.forEach((item, index) => {
     let eachReceiptButton = document.createElement("button");
     eachReceiptButton.innerText = `Order ${index + 1}`;
     previewOrdersList.appendChild(eachReceiptButton);
     let eachReceiptDiv = document.createElement("div");
-    eachReceiptDiv.classList="hide";
+    eachReceiptDiv.className=`${index != (userReceipts.length - 1) ? "receipt-container hide" : "receipt-container"}`;
     let idHeader = document.createElement("h3");
+    idHeader.className = "receipt-header"
     idHeader.innerText = `Receipt ID: ${item.id}`;
     eachReceiptDiv.appendChild(idHeader);
     let timeHeader = document.createElement("h3");
-    tempTime = item.time.split('T')[1].split('.')[0].split(':')
+    timeHeader.className = "receipt-header"
+    tempTime = item.time.split('T')[1].split('.')[0].split(':');
     timeHeader.innerText = `Date: ${item.time.split('T')[0]} Time: ${tempTime[0]}:${tempTime[1]}`;
     eachReceiptDiv.appendChild(timeHeader);
+    let totalHeader = document.createElement("h3");
+    totalHeader.className = "receipt-header"
+    totalHeader.innerText = `Total: $${item.total}`;
+    eachReceiptDiv.appendChild(totalHeader);
     for (const [key, value] of Object.entries(item.user)) { 
       let keyHeader = document.createElement("h3");
+      keyHeader.className = "receipt-header"
       keyHeader.innerText = `${key}: ${value}`;
       eachReceiptDiv.appendChild(keyHeader);
+    };
+    if (item.purchased.length > 1) {
+      let receiptScrollButtons = document.createElement("div");
+      receiptScrollButtons.className = "scroll-btns-container";
+      let rightScrollButton = document.createElement("button");
+      rightScrollButton.className = "scroll-btn";    
+      rightScrollButton.onclick = () => { 
+        scrollDivRight(purchasedProductsContainer)
+      }
+      rightScrollButton.innerText = document.getElementById("rightBtn").innerText
+      let leftScrollButton = document.createElement("button");
+      leftScrollButton.onclick = () => { 
+        scrollDivleft(purchasedProductsContainer)
+      }
+      leftScrollButton.className = "scroll-btn";
+      leftScrollButton.innerText = document.getElementById("leftBtn").innerText
+      receiptScrollButtons.appendChild(leftScrollButton)
+      receiptScrollButtons.appendChild(rightScrollButton)
+      eachReceiptDiv.appendChild(receiptScrollButtons);
     }
-    // let productList = item.purchased;
-    // let purchasedProductsContainer = document.createElement("div")
-    // for (let i = 0; i < productList.length; i++) {
-    //   let eachCartContainer = document.createElement("div");
-    //   eachCartContainer.className = "grid grid-cols-5 cart-product bg-white";
-    //   for (const [key, value] of Object.entries(productList[i])) { 
-    //     if (key != "id" && key != "discountPercentage"){
-    //       if (key == "title") {
-    //         let eachCartData = document.createElement("p");
-    //         eachCartData.className = "font-thin h-12";
-    //         eachCartData.innerText = `${value} `;
-    //         eachCartContainer.appendChild(eachCartData);
-    //       } else if (key == "thumbnail") {
-    //         let eachCartImage = document.createElement("img");
-    //         eachCartImage.className = "cart-img h-40 row-span-2";
-    //         eachCartImage.src = value;
-    //         eachCartContainer.appendChild(eachCartImage);
-    //       } else if (key == "description") {
-    //         let eachCartData = document.createElement("p");
-    //         eachCartData.className = "font-thin col-span-4 text-center text-xl";
-    //         eachCartData.innerText = value;
-    //         eachCartContainer.appendChild(eachCartData);
-    //       } else if (key == "price") {
-    //         let eachCartData = document.createElement("p");
-    //         eachCartData.className = "font-thin h-12";
-    //         eachCartData.innerText = `${key}: $${value}`;
-    //         eachCartContainer.appendChild(eachCartData);
-    //       } else {
-    //         let eachCartData = document.createElement("p");
-    //         eachCartData.className = "font-thin h-12";
-    //         eachCartData.innerText = `${key}: ${value}`;
-    //         eachCartContainer.appendChild(eachCartData);
-    //       }
-    //     }
-    //   }
-    //   purchasedProductsContainer.appendChild(eachCartContainer)
-    // }
-    // eachReceiptDiv.appendChild(purchasedProductsContainer)
+    let productList = item.purchased;
+    let purchasedProductsContainer = document.createElement("div")
+    purchasedProductsContainer.className = "console-products";
+    for (let i = 0; i < productList.length; i++) {
+      let eachCartContainer = document.createElement("div");
+      eachCartContainer.className = "console-product-card ml-11 mt-24 mr-24 mb-24 grid grid-cols-3";
+      // eachCartContainer.className = "grid grid-cols-5 cart-product bg-white";
+      let eachCartCategory = document.createElement("p");
+      eachCartCategory.className = "font-thin h-12 justify-self-start";
+      eachCartCategory.innerText = productList[i].category;
+      eachCartContainer.appendChild(eachCartCategory);
+      let eachCartAmount = document.createElement("p");
+      eachCartAmount.className = "font-thin h-12";
+      eachCartAmount.innerText = `Amount: ${productList[i].amount}`;
+      eachCartContainer.appendChild(eachCartAmount);
+      let eachCartPrice = document.createElement("p");
+      eachCartPrice.className = "font-thin h-12 justify-self-end";
+      eachCartPrice.innerText = `Price: $${productList[i].price * productList[i].amount}`;
+      eachCartContainer.appendChild(eachCartPrice);
+      let eachCartImage = document.createElement("img");
+      eachCartImage.className = "cart-img my-4 h-40 col-span-3 m-auto";
+      eachCartImage.src = productList[i].thumbnail;
+      eachCartContainer.appendChild(eachCartImage);
+      let eachCartTitle = document.createElement("p");
+      eachCartTitle.className = " h-12 col-span-3 text-center";
+      eachCartTitle.innerText = productList[i].title;
+      eachCartContainer.appendChild(eachCartTitle);
+      let eachCartDescription = document.createElement("p");
+      eachCartDescription.className = "font-thin col-span-3 text-center text-xl";
+      eachCartDescription.innerText = productList[i].description;
+      eachCartContainer.appendChild(eachCartDescription);
+      purchasedProductsContainer.appendChild(eachCartContainer);
+    }
+    eachReceiptDiv.appendChild(purchasedProductsContainer);
     // Order Button Onclick
     eachReceiptButton.onclick = () => { 
-      toggleReceiptContainer(receiptContainer, eachReceiptDiv);
-    }
-    receiptContainer.appendChild(eachReceiptDiv)
-  })
-  receiptContainer.className="receipt-container";
-  previewCurOrder.appendChild(receiptContainer)
+      toggleReceiptContainer(previewCurOrder, eachReceiptDiv);
+    };
+    previewCurOrder.appendChild(eachReceiptDiv);
+  });
 }
 
 function toggleConsoleInfo(divName) {

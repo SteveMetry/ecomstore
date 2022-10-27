@@ -1,5 +1,10 @@
 body {
   background-color: rgb(255, 255, 255);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 
 hr {
@@ -234,10 +239,9 @@ hr {
 
 .preview-cart-container {
   display: grid;
-  grid-template-rows: 0.05fr 0.9fr 0.05fr;
   position: fixed;
   justify-items: center;
-  top: 5rem;
+  top: 10vh;
   right: 10vw;
   width: 80vw;
   font-size: 2rem;
@@ -324,6 +328,53 @@ hr {
   grid-template-columns: 0.1fr 0.3fr 0.7fr;
   background-color: inherit;
 }
+
+.console-products {
+  width: 80vw;
+  overflow-x: scroll;
+  display: -webkit-inline-box;
+  align-self: center;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
+}
+.receipt-container {
+  display: flex;
+  flex-direction: column;
+}
+.console-product-card {
+  border-radius: 0.8rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235);
+  border: 1px solid rgb(214, 214, 214);
+  padding: 1rem;
+  justify-items: center;
+  width:55vw;
+}
+
+.scroll-btns-container {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.scroll-btn {
+  width: 5rem;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+  color: white;
+  box-shadow: 0px 0px 50px 10px rgb(235,235,235);
+  border: 1px solid rgb(214, 214, 214);
+  background-color: rgb(46, 121, 229);
+}
+
+.console-products::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 .cart-title {
   color: #000021;
@@ -443,6 +494,7 @@ hr {
 
 .sidebar div, .sidebar a{
   border-bottom: 1px solid rgb(214, 214, 214);
+  padding: 0.5rem 0;
 }
 
 @media screen and (min-device-width: 500px) {
@@ -648,12 +700,29 @@ hr {
   .sidebar {
     flex-direction: column;
     width: 16vw;
-    height: 100%;
+    height: 195vh;
     align-items: flex-end;
     font-size: 1rem;
     padding: 0.5rem;
     justify-content: start;
   }  
+  .console-products {
+    width: 65vw;
+  }
+  .console-product-card { 
+    width:30vw;
+  }
+  .receipt-container h3 {
+    font-size: 1rem;
+  }
+  .sidebar div, .sidebar a{
+    font-size: 1rem;
+  }
+  .sidebar div:hover, .sidebar a:hover{
+    padding-bottom: 0.7rem;
+    font-size: 1.1rem;
+    margin: 0.2rem;
+  }
 }
 
 @media screen and (min-device-width: 750px) {

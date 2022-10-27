@@ -1,8 +1,4 @@
 body {
-  display: grid;
-  grid-template-rows: 0.05fr 0.9fr 0.05fr;
-  justify-items: center;
-  align-content: center;
   background-color: rgb(245, 245, 245);
   background-image: url("https://images.unsplash.com/photo-1509005338684-c2fb376b91cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80");
   background-repeat: no-repeat;
@@ -10,6 +6,7 @@ body {
   background-position: center; 
   backdrop-filter: blur(1.3rem);
 }
+
 .login-nav {
   padding: 2rem;
   width: 100%;
@@ -19,13 +16,15 @@ body {
   color: white;
   font-size: 3rem;
   height:8vh;
+  align-items: center;
 }
+
 .username-container {
   align-self: center;
 }
 
 .login {
-  margin: 0.5rem;
+  margin: 5rem auto;
   margin-bottom: 18rem;
   border-radius: 5px;
   border: 1px solid rgb(256, 256, 256);
@@ -38,6 +37,7 @@ body {
   width: 80vw;
   height: 60vh;
 }
+
 .login img {
   width: 8vh;
   margin: auto;
@@ -80,9 +80,11 @@ body {
   flex-direction: column-reverse;
   width: 100%;
 }
+
 .main-console {
   width: 100%;
 }
+
 .profile-container {
   width: 80%;
   height: 50vh;
@@ -217,19 +219,24 @@ body {
 }
 
 .confrm-crt-container {
+  width: 85vw;
+  display: flex;
+  flex-direction: column;
   min-height: 80vh;
-  width: 90%;
-  margin: 1rem 2rem;
+  margin: 5rem auto;
   margin-bottom: 6rem;
   border: 1px solid rgb(214, 214, 214);
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 50px 10px rgb(235,235,235);
+  border-radius: 0.5rem;
 }
+
 .confrm-crt-container p {
   color: rgb(29, 29, 31);
   padding: 1rem;
   padding-bottom: 1.2rem;
 }
+
 .confrm-crt-container h2 {
   color: rgb(29, 29, 31);
   padding: 1rem;
@@ -237,10 +244,21 @@ body {
   font-size: 1.5rem;
   border-bottom: 1px solid rgb(214, 214, 214);
 }
+
 .confrm-crt-container h3 {
   color: rgb(29, 29, 31);
   margin: 1rem;
   font-size: 1rem;
+}
+
+.confrm-crt-container .receipt-header {
+  font-size: 2rem;
+  font-weight: 200;
+}
+.no-purchases {
+  font-size: 3rem;
+  text-align: center;
+  margin: 3rem;
 }
 
 .order-buttons {
@@ -251,10 +269,6 @@ body {
   opacity: 0.7;
   color: white;
 }
-
-/* .receipt-container {
-  overflow: hidden;
-} */
 
 @media screen and (min-device-width: 400px) {
   .login {
@@ -268,6 +282,7 @@ body {
     border-radius: 8rem;
   }
 }
+
 @media screen and (min-device-width: 550px) {
  .login {
     width: 65vw;
@@ -305,6 +320,9 @@ body {
 }
 
 @media screen and (min-device-width: 650px) {
+  .no-purchases {
+    font-size: 1.2rem;
+  }
   .login {
     width: 45vw;
   }
@@ -325,6 +343,9 @@ body {
     flex-direction: row;
     min-height: 100vh;
     justify-content: space-between;
+  }
+  .confrm-crt-container {
+    width: 75vw;
   }
   .profile-container {
     grid-template-columns: 0.7fr 0.3fr;
@@ -355,6 +376,9 @@ body {
   }
   .input-container {
     width: 80%;
+  }
+  .confrm-crt-container .receipt-header {
+    font-size: 1.1rem;
   }
 }
 

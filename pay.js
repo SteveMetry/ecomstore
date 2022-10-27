@@ -1,9 +1,6 @@
 const postalform = document.getElementById("postalForm")
 const formInputs = postalform.elements;
-let tempTotal = 0;
-userCart.forEach(item => {
-  tempTotal += item.price * item.amount;
-});
+
 if (localStorage.getItem("user") == null) {
   window.open("login.html?redirect=pay", "_self");
 }
@@ -17,6 +14,10 @@ if (isAddress) {
     formInputs[`${key}`].value = value;
   }
 }
+let tempTotal = 0;
+userCart.forEach(item => {
+  tempTotal += item.price * item.amount;
+});
 let userReceipts = user.receipts;
 function isInfoSet(infoKey, infoType, infoInput) {
   let isValid = false;
@@ -64,13 +65,13 @@ function validatePostalAddress() {
     let tempAddress = "";
     for (const [key, value] of Object.entries(user.address)) {
       if (key == "postCode") {
-        tempAddress += `${value}`
+        tempAddress += `${value}`;
       } else if (key !== "line2" && key !== "message") {
-        tempAddress += `${value}, `
-      }
-    }
-    document.getElementById("emptyCartNotification").classList.add("hide");
-    savePostal()
+        tempAddress += `${value}, `;
+      };
+    };
+    emptyCartNotification.classList.add("hide");
+    savePostal();
     curDate = new Date();
     let receipt = { 
       id:`U:${user.id}-R:${(userReceipts.length - 1) + 1}`,
@@ -83,13 +84,18 @@ function validatePostalAddress() {
         phone: user.phone,
         email: user.email,
       }
-    }
-    user.receipts.push(receipt)
+    };
+    user.receipts.push(receipt);
+    loginData.forEach(item => {
+      if (user.id === item.id) {
+        item.receipts = user.receipts;
+      }
+    });
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("login", JSON.stringify(loginData));
     window.open("confirm.html", "_self");
   } else if(allValid) {
-    savePostal()
+    savePostal();
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("login", JSON.stringify(loginData));
     document.getElementById("emptyCartNotification").classList.toggle("hide");
