@@ -11,7 +11,10 @@
   <nav class="custom-navbar shadow-2xl">
     <a href="index.html"><img class="nav-img" src="img/Logo.png"> </a>
     <button onclick="onLoad()" class="home-icon">&#8962;</button>
-    <div class="flex flex-wrap items-stretch searchbar"> 
+    <div class="flex searchbar"> 
+      <select id="seachSelect">
+        <option value="dummyJSON">Dummy Products</option>
+      </select>
       <input
         type="search"
         id="userSearch"
@@ -21,7 +24,6 @@
       />
       <button
         class="btn text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
-        onclick="searchProducts()"
       >
         &#128270
       </button>
@@ -40,8 +42,8 @@
     </div>
   </nav>
   <div class="navgap"></div>
-  <button class="btn collapsible" onmouseover="toggleCategorySection()">Categories:</button>
-  <div id="categoriesContainer" onmouseleave="toggleCategorySection()" class="categories-container hide"> </div>
+  <button class="btn collapsible" onmouseover="toggleCategorySection(true)" id="categoryContainerButton">Categories:</button>
+  <div id="categoriesContainer" onmouseleave="toggleCategorySection(false)" class="categories-container hide"> </div>
   <div id="overlay" class="bg-black opacity-70 fixed top-0 w-screen h-screen" onclick="closeModal()" style="display: none;"></div>
   <div id="customModal" class="fixed top-1/2 left-1/2 bg-white custom-modal" style="display: none;"></div>
   <div class="main-page-container">

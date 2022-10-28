@@ -205,6 +205,10 @@ hr {
   filter: invert(62%);
 }
 
+.searchbar select {
+  font-size: 0.8rem;
+}
+
 .page-header {
   font-size: 4rem;
   color: rgb(73, 73, 73);
@@ -374,8 +378,6 @@ hr {
   display: none;
 }
 
-
-
 .cart-title {
   color: #000021;
 }
@@ -495,6 +497,12 @@ hr {
 .sidebar div, .sidebar a{
   border-bottom: 1px solid rgb(214, 214, 214);
   padding: 0.5rem 0;
+}
+
+.category-btm-container {
+  width: 100%;
+  height:1rem;
+  background-color: blue;
 }
 
 @media screen and (min-device-width: 500px) {

@@ -44,6 +44,9 @@ function loadConfirm(user) {
   let totalHeader = document.createElement("h3");
   totalHeader.innerText = `Total: $${curReceipt.total}`;
   confrmedCartCntainer.appendChild(totalHeader);
+  let totalProducts = document.createElement("h3");
+  totalProducts.innerText = `Total Products: ${cartItems.map(curCartItem => curCartItem.amount).reduce((prevValue, curValue) => prevValue + curValue, 0)}`;
+  confrmedCartCntainer.appendChild(totalProducts);
   for (const [key, value] of Object.entries(curReceipt.user)) { 
     let keyHeader = document.createElement("h3");
     keyHeader.innerText = `${key}: ${value}`;

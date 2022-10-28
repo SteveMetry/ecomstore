@@ -128,8 +128,6 @@ function savePostal() {
 function validatePostalAddress() {
   const isline1Valid = isInfoSet('line1',formInputs['line1'].type, formInputs['line1'].value);
   document.getElementById("line1Error").style.display = isline1Valid ? 'none' : 'block';
-  // const isline2Valid = isInfoSet('line2',formInputs['line2'].type, formInputs['line2'].value);
-  // document.getElementById("line2Error").style.display = isline2Valid ? 'none' : 'block';
   const isPostCodeValid = isInfoSet('postCode',formInputs['postCode'].type, formInputs['postCode'].value);
   document.getElementById("postCodeError").style.display = isPostCodeValid ? 'none' : 'block';
   const isSuburbValid = isInfoSet('suburb',formInputs['suburb'].type, formInputs['suburb'].value);
@@ -191,6 +189,10 @@ if (userReceipts.length > 0) {
     totalHeader.className = "receipt-header"
     totalHeader.innerText = `Total: $${item.total}`;
     eachReceiptDiv.appendChild(totalHeader);
+    let totalProducts = document.createElement("h3");
+    totalProducts.className = "receipt-header"
+    totalProducts.innerText = `Total Products: ${item.purchased.map(curCartItem => curCartItem.amount).reduce((prevValue, curValue) => prevValue + curValue, 0)}`;
+    eachReceiptDiv.appendChild(totalProducts);
     for (const [key, value] of Object.entries(item.user)) { 
       let keyHeader = document.createElement("h3");
       keyHeader.className = "receipt-header"

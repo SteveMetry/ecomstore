@@ -10,8 +10,14 @@ const horizontalLine = document.createElement("hr");
 const cartPageContainer = document.getElementById("cartPageContainer");
 const categoriesContainer = document.getElementById("categoriesContainer");
 let dummyJsonCategoryList = [];
+const seachSelect = document.getElementById("seachSelect");
 const customCategoryList = ["pets", "makeup"];
-
+for (let i = 0; i < customCategoryList.length; i++) {
+  let searchSelectOption = document.createElement("option")
+  searchSelectOption.innerText = customCategoryList[i]
+  searchSelectOption.value = customCategoryList[i]
+  seachSelect.appendChild(searchSelectOption)
+}
 function toggleCart(){
   cartContainer.style = "";
   overlay.style.display = ""
@@ -47,6 +53,14 @@ function categoryBtns() {
         categoriesContainer.appendChild(categoryButton);
       }
     });
+}
+
+function toggleCategorySection(result) {
+  if (result === true) {
+    document.getElementById("categoriesContainer").classList.remove("hide")
+  } else {
+    document.getElementById("categoriesContainer").classList.add("hide")
+  }
 }
 
 function onCategoryClick(category) {
@@ -215,29 +229,49 @@ function searchProducts()  {
   pageHeader.innerText = "";
   productPage.innerText = "";
   const userSearch = document.getElementById("userSearch").value;
+  let isSeachValid = /^[a-zA-Z]{3,}$/.test(userSearch.trim());
   const searchPageHeader= document.createElement("h1");
-  searchPageHeader.innerText = "Results for: " + userSearch;
-  pageHeader.appendChild(searchPageHeader);
-  //fetch chosen information
-  fetch(`https://dummyjson.com/products/search?q=${userSearch}`)
-    .then((response) => response.json())
-    .then((searchResults) => {
-      const resultProducts = searchResults.products;
-      for (let i = 0; i < resultProducts.length; i++) {
-        singleProduct(resultProducts[i]);
-      }
-    });
-    toggleCategorySection()
+  if (isSeachValid) {
+    searchPageHeader.innerText = "Results for: " + userSearch;
+    pageHeader.appendChild(searchPageHeader);
+    let selectedCategory = seachSelect.value
+    //fetch chosen information
+    if(selectedCategory === "dummyJSON") {
+      fetch(`https://dummyjson.com/products/search?q=${userSearch}`)
+      .then((response) => response.json())
+      .then((searchResults) => {
+        const resultProducts = searchResults.products;
+        for (let i = 0; i < resultProducts.length; i++) {
+          singleProduct(resultProducts[i]);
+        }
+      });
+    } else {
+      fetch(`https://ecomstore-demo.vercel.app/${selectedCategory}.json`)
+      .then((response) => response.json())
+      .then((searchResults) => {
+        let resultProducts = searchResults.products;
+        resultProducts = resultProducts.filter(item => item.title.toLowerCase().includes(userSearch.toLowerCase().trim()))
+        for (let i = 0; i < resultProducts.length; i++) {
+          singleProduct(resultProducts[i]);
+        }
+      });
+    } 
+  } else {
+    searchPageHeader.innerText = "Please Enter a Valid Search Query..";
+    searchPageHeader.style.fontSize = "2rem"
+    pageHeader.appendChild(searchPageHeader);
+  }
+    toggleCategorySection(false)
 }
 
-function addToCartOnClick(resultProduct, QuantitySelect) {
+function addToCartOnClick(resultProduct, quantitySelect) {
   cartProducts.innerText = "";
   cartProducts.appendChild(horizontalLine.cloneNode(true));
   let cartAmount = 0;
   cartAmountSpan.style = "";
   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
   const currentItem = cartItems.find(item => item.id === resultProduct.id && item.category === resultProduct.category);
-  let userChsnQuantity = parseInt(QuantitySelect.value);
+  let userChsnQuantity = parseInt(quantitySelect.value);
   if (currentItem) {
     currentItem.amount += userChsnQuantity;
   } else {
@@ -284,8 +318,8 @@ function singleProduct(resultProduct) {
   const eachProductDescription = document.createElement("p");
   eachProductDescription.className = "product-description lowercase";
   const productButtonsContainer = document.createElement('div');
-  let QuantitySelect = document.createElement("select");
-  QuantitySelect.className = "modal-select rounded p-1 mx-1";
+  let quantitySelect = document.createElement("select");
+  quantitySelect.className = "modal-select rounded p-1 mx-1";
   let stckNum =  resultProduct.stock;
   if (stckNum > 90){
     stckNum = stckNum / 4;
@@ -296,9 +330,9 @@ function singleProduct(resultProduct) {
     let productQuantityOption = document.createElement("option");
     productQuantityOption.value = i;
     productQuantityOption.innerText = i;
-    QuantitySelect.appendChild(productQuantityOption);
+    quantitySelect.appendChild(productQuantityOption);
   }
-  let productQuantitySelect = QuantitySelect.cloneNode(true);
+  let productQuantitySelect = quantitySelect.cloneNode(true);
   const addToCartButton = document.createElement('button');
   addToCartButton.innerText = "Buy";
   addToCartButton.onclick = () => addToCartOnClick(resultProduct, productQuantitySelect);
@@ -402,7 +436,3 @@ function openLogin() {
     window.open("console.html", "_self");
   }
 };
-
-function toggleCategorySection() {
-  document.getElementById("categoriesContainer").classList.toggle("hide");
-}
