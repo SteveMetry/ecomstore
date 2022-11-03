@@ -12,8 +12,8 @@ isAddress = user.address['line1'].trim() !== "";
 if (isAddress) {
   for (const [key, value] of Object.entries(user.address)) {
     formInputs[`${key}`].value = value;
-  }
-}
+  };
+};
 let tempTotal = 0;
 userCart.forEach(item => {
   tempTotal += item.price * item.amount;
@@ -26,13 +26,13 @@ function isInfoSet(infoKey, infoType, infoInput) {
       isValid = infoInput.trim() !== "" && !isNaN(infoInput.trim());
       if (isValid) {
         return true;
-      }
+      };
       return false;
     default:
       isValid = infoInput.trim() !== "";
       if (isValid) {
         return true;
-      }
+      };
       return false;
   }
 }
@@ -40,11 +40,11 @@ function isInfoSet(infoKey, infoType, infoInput) {
 function savePostal() {
   for (const [key, value] of Object.entries(user.address)) {
     user.address[key] = formInputs[`${key}`].value.trim();
-  }
+  };
   loginData.forEach(item => {
     if (user.id === item.id) {
       item.address = user.address;
-    }
+    };
   });
 }
 
@@ -72,25 +72,24 @@ function validatePostalAddress() {
     };
     emptyCartNotification.classList.add("hide");
     savePostal();
-    curDate = new Date();
-    let receipt = { 
+    user.receipts.push({ 
       id:`U:${user.id}-R:${(userReceipts.length - 1) + 1}`,
       purchased: userCart,
-      total: tempTotal,
-      time: curDate,
+      total: (tempTotal + (tempTotal / 10)),
+      time: new Date(),
       user: {
         name: `${user.firstname}, ${user.firstname}`,
         address: tempAddress,
         phone: user.phone,
         email: user.email,
       }
-    };
-    user.receipts.push(receipt);
+    });
     loginData.forEach(item => {
       if (user.id === item.id) {
         item.receipts = user.receipts;
-      }
+      };
     });
+    localStorage.setItem("cartItems", "[]");
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("login", JSON.stringify(loginData));
     window.open("confirm.html", "_self");

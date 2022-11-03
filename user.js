@@ -19,7 +19,7 @@ function isInfoSet(infoKey, infoType, infoInput) {
           return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(infoInput.trim()) && !allUsers.find(curUser => curUser.email === infoInput.trim());
         } else if (infoKey === "firstName" || infoKey === "lastName") {
           if (infoInput.trim() !== "") {
-           return /^[a-zA-Z]{3,}$/.test(infoInput.trim());
+           return /^[a-zA-Z ]{3,}$/.test(infoInput.trim());
           } 
         } else {
           return true;

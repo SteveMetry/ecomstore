@@ -93,7 +93,7 @@ function populateCart(cartItem) {
   cartProductTitle.innerText = cartItem.title;
   const cartProductPrice = document.createElement("p");
   cartProductPrice.className="cart-price";
-  cartProductPrice.innerText = "$" + cartItem.price + " EACH";
+  cartProductPrice.innerText = `$${cartItem.price} EACH`
   const cartProductQuantity = document.createElement("p");
   cartProductQuantity.innerText = `Quantity: ${cartItem.amount}`;
   const cartProductThumbnail = document.createElement("img");
@@ -283,7 +283,7 @@ function addToCartOnClick(resultProduct, quantitySelect) {
       price: parseInt(resultProduct.price),
       thumbnail: resultProduct.thumbnail,
       description: resultProduct.description,
-      discountPercentage: parseInt(resultProduct.discountPercentage)
+      discountPercentage: resultProduct.discountPercentage
     };
     cartItems.push(newCartItem);
   };
@@ -311,8 +311,8 @@ function singleProduct(resultProduct) {
   const eachDiscountContainer = document.createElement("div");
   const eachProductPrice = document.createElement("span");
   eachProductPrice.innerText = `$${resultProduct.price} `;
-  eachProductPrice.className = "line-through";
-  const eachProductDiscountPercentage = document.createElement("span");
+  // eachProductPrice.className = "line-through";
+  // const eachProductDiscountPercentage = document.createElement("span");
   const eachProductTitlePrice = document.createElement("div");
   eachProductTitlePrice.className = "flex justify-between product-price";
   const eachProductDescription = document.createElement("p");
@@ -343,10 +343,9 @@ function singleProduct(resultProduct) {
   eachProductDescription.innerText = resultProduct.description;
   eachProductBrand.innerText = resultProduct.brand;
   eachProductThumbnail.src = resultProduct.thumbnail;
-  let discountedPercentage = Math.ceil(resultProduct.price / resultProduct.discountPercentage)
-  eachProductDiscountPercentage.innerText = `Now $${resultProduct.price - discountedPercentage}`;
+  // eachProductDiscountPercentage.innerText = `Now $${resultProduct.price - discountedPercentage}`;
   eachDiscountContainer.appendChild(eachProductPrice)
-  eachDiscountContainer.appendChild(eachProductDiscountPercentage)
+  // eachDiscountContainer.appendChild(eachProductDiscountPercentage)
   eachProductTitlePrice.appendChild(eachProductTitle);
   eachProductTitlePrice.appendChild(eachDiscountContainer);
   eachProduct.onclick = () => openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription, parseInt(productQuantitySelect.value));

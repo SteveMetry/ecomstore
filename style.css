@@ -245,6 +245,7 @@ hr {
   display: grid;
   position: fixed;
   justify-items: center;
+  grid-template-rows: 0.05fr 0.9fr 0.05fr;
   top: 10vh;
   right: 10vw;
   width: 80vw;
@@ -392,7 +393,7 @@ hr {
   margin: auto;
 }
 
-#taxTotal, #discountTotal, #overallTotal {
+#taxTotal, #afterTotal, #overallTotal, #beforeTotal {
   text-align: right;
 }
 
@@ -545,7 +546,7 @@ hr {
     height: 100%;
   }
   .console-nav-img {
-    width: 5rem;
+    width: 4rem;
     height: auto;
   }
   .nav-profile {
@@ -648,7 +649,6 @@ hr {
   }
   .cart-page-checkout {
     font-size: 1rem;
-    height: 30vh;
   }
   .home-icon {
     font-size: 1.5rem;
@@ -744,6 +744,10 @@ hr {
   }
   .custom-modal img {
     height: 25rem;
+  }
+  .console-nav-img {
+    width: 2.5rem;
+    height: 3rem;
   }
 }
 

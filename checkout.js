@@ -2,10 +2,10 @@ const customModal = document.getElementById("customModal");
 const overlay = document.getElementById("overlay");
 const cartContainer = document.getElementById("cartContainer");
 const cartPageContainer = document.getElementById("cartPageContainer");
-const discountTotal = document.getElementById("discountTotal");
+const afterTotal = document.getElementById("afterTotal");
 const taxTotal = document.getElementById("taxTotal");
 const overallTotal = document.getElementById("overallTotal");
-let tempTotal = 0;
+const beforeTotal = document.getElementById("beforeTotal");
 
 function closeModal() {
   customModal.innerHTML = "";
@@ -16,11 +16,13 @@ function closeModal() {
 
 function calculateTotals() {
   const cartItemList = JSON.parse(localStorage.getItem("cartItems"));
-  tempTotal = 0;
+  let totalCartPrice = 0;
   cartItemList.forEach(item => {
-    tempTotal += item.price * item.amount;
+    totalCartPrice += item.price * item.amount;
   });
-  overallTotal.innerText = `$${tempTotal.toFixed(2)}`;
+  beforeTotal.innerText = `$${totalCartPrice.toFixed(2)}`
+  taxTotal.innerText = `$${(totalCartPrice / 10).toFixed(2)}`;
+  overallTotal.innerText = `$${(totalCartPrice + (totalCartPrice / 10)).toFixed(2)}`;
 }
 
 function deleteItem(cartItem) {
@@ -34,7 +36,6 @@ function chkoutLoad() {
   if (localStorage.getItem("user") != null) {
     const user = JSON.parse(localStorage.getItem("user"));
     user.cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-    localStorage.setItem(user.id.toString(), JSON.stringify(user));
   }
   let starIcon = document.getElementById("starIcon");
   starIcon = starIcon.cloneNode(true);
@@ -52,8 +53,7 @@ function chkoutLoad() {
     cartItemTitle.innerText = cartItemList[i].title;
     cartItemTitle.className = "font-thin";
     let cartItemPrice = document.createElement("p");
-    // cartItemPrice.innerText = "Only $" + cartItemList[i].price + " EACH!";
-    cartItemPrice.innerText = `Only $${(cartItemList[i].price * cartItemList[i].amount)}! `;
+    cartItemPrice.innerText = `Price: $${cartItemList[i].price} ${cartItemList[i].amount > 1 ? "EACH" : ""}`;
     cartItemPrice.className = "text-right pr-3 font-thin";
     let cartItemQuantity = document.createElement("p");
     cartItemQuantity.className="text-right font-thin";
@@ -78,5 +78,4 @@ function chkoutLoad() {
     cartPageContainer.appendChild(cartItem);
   }
   calculateTotals();
-  taxTotal.innerText = `$${(tempTotal / 10).toFixed(2)}`;
 }

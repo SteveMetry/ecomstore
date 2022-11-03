@@ -1,7 +1,10 @@
 const userInfoContainer = document.getElementById("userInfoContainer");
 const prfleContainer = document.getElementById("profileContainer");
 const confrmedCartCntainer= document.getElementById("confrmedCartCntainer");
+const afterTotal = document.getElementById("afterTotal");
 const taxTotal = document.getElementById("taxTotal");
+const overallTotal = document.getElementById("overallTotal");
+const beforeTotal = document.getElementById("beforeTotal");
 const purchsdProductHeader = document.getElementById("purchasedProductsHeader")
 
 function loadConfirm(user) {
@@ -19,13 +22,13 @@ function loadConfirm(user) {
   const userReceipts = user.receipts;
   curReceipt = userReceipts[userReceipts.length-1];
   const cartItems = curReceipt.purchased;
-  let overallTotal = document.getElementById("overallTotal");
-  tempTotal = 0;
+  let totalCartPrice = 0;
   cartItems.forEach(item => {
-    tempTotal += item.price * item.amount;
+    totalCartPrice += item.price * item.amount;
   });
-  taxTotal.innerText = `$${(tempTotal / 10).toFixed(2)}`;
-  overallTotal.innerText = `$${tempTotal.toFixed(2)}`;
+  beforeTotal.innerText = `$${totalCartPrice.toFixed(2)}`
+  taxTotal.innerText = `$${(totalCartPrice / 10).toFixed(2)}`;
+  overallTotal.innerText = `$${(totalCartPrice + (totalCartPrice / 10)).toFixed(2)}`;
   let tempAddress = "";
   for (const [key, value] of Object.entries(curReceipt.user.address)) {
     if (key == "postCode") {
@@ -71,7 +74,7 @@ function loadConfirm(user) {
     eachCartContainer.appendChild(eachCartAmount);
     let eachCartPrice = document.createElement("p");
     eachCartPrice.className = "font-thin h-12";
-    eachCartPrice.innerText = `Price: $${cartItems[i].price}`;
+    eachCartPrice.innerText = `Price: $${cartItems[i].price} ${cartItems[i].amount > 1 ? "EACH" : ""}`;
     eachCartContainer.appendChild(eachCartPrice);
     let eachCartImage = document.createElement("img");
     eachCartImage.className = "cart-img h-40 row-span-2";
