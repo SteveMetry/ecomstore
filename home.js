@@ -73,7 +73,7 @@ function onCategoryClick(category) {
   // fetch chosen information
   let url = `https://dummyjson.com/products/category/${category}`;
   if (customCategoryList.find(curCategory => curCategory === category)) {
-    url = `https://ecomstore-demo.vercel.app/${category}.json`;
+    url = `https://ecomstore-vanilla-demo.vercel.app/${category}.json`;
   }
   fetch(url)
     .then((response) => response.json())
@@ -157,7 +157,7 @@ function singleAd(ad, side) {
 }
 
 function loadAds(){
-  fetch(`https://ecomstore-demo.vercel.app/ads.json`)
+  fetch(`https://ecomstore-vanilla-demo.vercel.app/ads.json`)
   .then(response => response.json())
   .then(adsList => {
     resultAds = adsList.ads;
@@ -246,7 +246,7 @@ function searchProducts()  {
         }
       });
     } else {
-      fetch(`https://ecomstore-demo.vercel.app/${selectedCategory}.json`)
+      fetch(`https://ecomstore-vanilla-demo.vercel.app/${selectedCategory}.json`)
       .then((response) => response.json())
       .then((searchResults) => {
         let resultProducts = searchResults.products;
