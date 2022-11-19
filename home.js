@@ -362,10 +362,9 @@ function singleProduct(resultProduct) {
 function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachProductThumbnail, eachProductDescription, selectQuantity) {
   const eachProductStock = document.createElement("p");
   const eachProductRating = document.createElement("p");
-  const modalBottom = document.createElement("div");
   const productAddToCartBtn = document.createElement("button");
   let modalQuantitySelect = document.createElement("select");
-  modalQuantitySelect.className = "modal-select rounded p-1 mx-1";
+  modalQuantitySelect.className = "modal-select rounded p-1";
   let stckNum =  resultProduct.stock;
   if (stckNum > 90){
     stckNum = stckNum / 4;
@@ -379,12 +378,12 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
     modalQuantitySelect.appendChild(productQuantityOption);
   }
   productAddToCartBtn.onclick = () => addToCartOnClick(resultProduct, modalQuantitySelect);
-  modalBottom.className="cart-container ";
   productAddToCartBtn.className="pt-3 quantity-container text-white border border-solid border-gray-300 rounded";
   productAddToCartBtn.innerText="Add to Cart " + cartIcon.innerText;
-
   const eachProductCategory = document.createElement("p");
+  eachProductCategory.className = "col-span-2"
   eachProductStock.innerText = "Stock: " + resultProduct.stock + " LEFT IN STOCK!";
+  eachProductStock.className = "col-span-2"
   const starIcon = document.getElementById("starIcon").cloneNode(true);
   eachProductRating.innerText = "Rating: " + resultProduct.rating + starIcon.innerText;
   eachProductCategory.innerText = "Category: " + resultProduct.category;
@@ -405,12 +404,18 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
   customModal.appendChild(modalTitlePrice);
   const modalThumbnail = eachProductThumbnail.cloneNode(true);
   customModal.appendChild(modalThumbnail);
+  const modalInfoContainer = document.createElement("div")
+  modalInfoContainer.className = "grid grid-cols-2";
   const modalDescription = eachProductDescription.cloneNode(true);
-  customModal.appendChild(modalDescription);
-  customModal.appendChild(eachProductStock);
-  customModal.appendChild(eachProductRating);
-  const productBottom = document.createElement("div");
-  productBottom.className = "modal-btm-container";
+  modalDescription.classList.add("col-span-2")
+  const modalReviewBtn = document.createElement("button")
+  modalReviewBtn.className = "pt-3 quantity-container text-white border border-solid border-gray-300 rounded text-black bg-slate-50"
+  modalReviewBtn.innerText = "Write a Review";
+  modalInfoContainer.appendChild(modalDescription);
+  modalInfoContainer.appendChild(eachProductStock);
+  modalInfoContainer.appendChild(eachProductCategory);
+  modalInfoContainer.appendChild(eachProductRating);
+  modalInfoContainer.appendChild(modalReviewBtn);
   const productQuantityContainer = document.createElement("div");
   productQuantityContainer.className = "quantity-container flex justify-between font-normal text-gray-700 border border-solid border-gray-300 rounded";
   const productQuantityTitle = document.createElement("span");
@@ -419,11 +424,9 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
   productQuantityTitle.innerText = "Quantity: ";
   productQuantityContainer.appendChild(productQuantityTitle);
   productQuantityContainer.appendChild(modalQuantitySelect);
-  productBottom.appendChild(productQuantityContainer);
-  productBottom.appendChild(productAddToCartBtn);
-  modalBottom.appendChild(eachProductCategory);
-  modalBottom.appendChild(productBottom);
-  customModal.appendChild(modalBottom);
+  modalInfoContainer.appendChild(productQuantityContainer)
+  modalInfoContainer.appendChild(productAddToCartBtn)
+  customModal.appendChild(modalInfoContainer)
   customModal.style.display = "block";
   overlay.style.display = "block";
 }
@@ -435,3 +438,9 @@ function openLogin() {
     window.open("console.html", "_self");
   }
 };
+
+function openProductReviews(product) {
+  const mainReviewContainer = document.createElement("div")
+  mainReviewContainer.className = "reviewContainer bg-white"
+  const productReviewTitle = document.createElement("h1");
+}
