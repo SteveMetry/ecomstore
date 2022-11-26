@@ -730,6 +730,39 @@ hr {
     font-size: 1.1rem;
     margin: 0.2rem;
   }
+  .modal-center {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-container {
+    overflow-y: scroll;
+    min-height: 10rem;
+    height: 45vh;
+    max-height: 50vh;
+    min-width: 10rem;
+    width: 35vw;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+}
+.custom-modal .each-review div{
+  display: grid;
+  grid-template-columns: 0.4fr 0.3fr 0.3fr;
+  grid-template-rows: repeat(2, 1fr);
+}
+.custom-modal .review-container h2{
+  text-align: right;
+  font-weight: 100;
+}
+.custom-modal .review-container h3{
+  text-align: right;
+  font-weight: 100;
+  font-size: 0.8rem;
+}
+.custom-modal .review-container img {
+  height: 10vh;
+}
 }
 
 @media screen and (min-device-width: 750px) {

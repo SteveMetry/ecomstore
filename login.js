@@ -31,7 +31,8 @@ function loadSite() {
           postCode: "",
           message:""
         },
-        receipts: []
+        receipts: [],
+        reviews: []
       }, 
       {
         id: 006,
@@ -54,7 +55,8 @@ function loadSite() {
           postCode: "",
           message:""
         },
-        receipts: []
+        receipts: [],
+        reviews: []
       },
       {
         id: 007,
@@ -77,7 +79,8 @@ function loadSite() {
           postCode: "",
           message:""
         },
-        receipts: []
+        receipts: [],
+        reviews: []
       },
       {
         id: 010,
@@ -100,7 +103,8 @@ function loadSite() {
           postCode: "304",
           message:"ha ha"
         },
-        receipts: []
+        receipts: [],
+        reviews: []
       }
     ];
     localStorage.setItem("login", JSON.stringify(loginData));

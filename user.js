@@ -70,7 +70,8 @@ function validateNewUser() {
         postCode: "",
         message:""
       },
-      receipts: []
+      receipts: [],
+      reviews: []
     };
     allUsers.push(newUserData);
     localStorage.setItem("login", JSON.stringify(allUsers));

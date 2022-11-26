@@ -11,13 +11,54 @@ const cartPageContainer = document.getElementById("cartPageContainer");
 const categoriesContainer = document.getElementById("categoriesContainer");
 let dummyJsonCategoryList = [];
 const seachSelect = document.getElementById("seachSelect");
-const customCategoryList = ["pets", "makeup"];
+const customCategoryList = ["pets", "makeup"]; 
+if (localStorage.getItem("ProductReviewsList") == null){
+  localStorage.setItem("ProductReviewsList", "[]")
+}
+let modalCenterContainer = document.createElement("div");
+modalCenterContainer.className = "modal-center"
+let practice = [
+  {
+    productId: 2,
+    userName: "kim kardashisan",
+    userPic: "https://robohash.org/kim",
+    time: `${new Date()}`,
+    review: "A+ service the delivery was quick, excellent communications would reccomend ",
+    rating: 3
+  },
+  {
+    productId: 2,
+    userName: "nick selwanis",
+    userPic: "https://robohash.org/foobar",
+    time: `${new Date()}`,
+    review: "best product ever i enjoyed the workers their very goodservice everyone needs to stop by when they are in town",
+    rating: 5
+  },
+  {
+    productId: 2,
+    userName: "steve Metry",
+    userPic: "https://robohash.org/gene",
+    time: `${new Date()}`,
+    review: "best product ever",
+    rating: 4
+  },
+  {
+    productId: 2,
+    userName: "johnny lee",
+    userPic: "https://robohash.org/bbirch",
+    time: `${new Date()}`,
+    review: "best product ever",
+    rating: 4
+  }
+
+]
 for (let i = 0; i < customCategoryList.length; i++) {
   let searchSelectOption = document.createElement("option")
   searchSelectOption.innerText = customCategoryList[i]
   searchSelectOption.value = customCategoryList[i]
   seachSelect.appendChild(searchSelectOption)
 }
+
 function toggleCart(){
   cartContainer.style = "";
   overlay.style.display = ""
@@ -28,6 +69,7 @@ function closeModal() {
   customModal.style.display = "none";
   overlay.style.display = "none";
   cartContainer.style.display = "none";
+  modalCenterContainer.innerText = "";
 }
 
 function categoryBtns() {
@@ -403,7 +445,8 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
   const modalTitlePrice = eachProductTitlePrice.cloneNode(true);
   customModal.appendChild(modalTitlePrice);
   const modalThumbnail = eachProductThumbnail.cloneNode(true);
-  customModal.appendChild(modalThumbnail);
+  modalCenterContainer.appendChild(modalThumbnail);
+  customModal.appendChild(modalCenterContainer);
   const modalInfoContainer = document.createElement("div")
   modalInfoContainer.className = "grid grid-cols-2";
   const modalDescription = eachProductDescription.cloneNode(true);
@@ -429,6 +472,7 @@ function openModal(resultProduct, eachProductBrand, eachProductTitlePrice, eachP
   customModal.appendChild(modalInfoContainer)
   customModal.style.display = "block";
   overlay.style.display = "block";
+  filterReviews({id:2})
 }
 
 function openLogin() {
@@ -439,8 +483,57 @@ function openLogin() {
   }
 };
 
-function openProductReviews(product) {
-  const mainReviewContainer = document.createElement("div")
-  mainReviewContainer.className = "reviewContainer bg-white"
-  const productReviewTitle = document.createElement("h1");
+function createReview(productViews) {
+
+}
+
+function openProductReviews(reviewsList) {
+  const reviewContainer = document.createElement("div")
+  reviewContainer.className = "review-container bg-white";
+  const reviewPopupTitle = document.createElement("h1");
+  reviewPopupTitle.innerText = "Reviews";
+  reviewsList.forEach(item =>{
+    let eachReview = document.createElement("div")
+    eachReview.className = "each-review"
+    let imgNameContainer = document.createElement("div")
+    let reviewerPic = document.createElement("img")
+    reviewerPic.className = "row-span-2"
+    reviewerPic.src = item.userPic;
+    imgNameContainer.appendChild(reviewerPic);
+    let reviewerName = document.createElement("h2");
+    reviewerName.innerText = item.userName;
+    reviewerName.className = "col-span-2"
+    imgNameContainer.appendChild(reviewerName);
+    let reviewRating = document.createElement("h2");
+    reviewRating.innerText = item.rating;
+    reviewRating.className = "col-span-2"
+    imgNameContainer.appendChild(reviewRating);
+    eachReview.appendChild(imgNameContainer);
+    let reviewTime = document.createElement("h3");
+    reviewTime.innerText = item.time;
+    eachReview.appendChild(reviewTime);
+    let review = document.createElement("p");
+    review.innerText = item.review;
+    eachReview.appendChild(review);
+    reviewContainer.appendChild(eachReview)
+    
+  }) 
+  let reviewInputContainer = document.createElement("div");
+  let reviewInput = document.createElement("input");
+  let reviewButton = document.createElement("button");
+  reviewButton.innerText = "Write Review"
+  reviewButton.onclick= () => createReview(reviewInput.value);
+  reviewInputContainer.appendChild(reviewInput);
+  reviewInputContainer.appendChild(reviewButton);
+  reviewContainer.appendChild(reviewInputContainer)
+  modalCenterContainer.appendChild(reviewContainer) 
+}
+
+
+function filterReviews(product) {
+  if (localStorage.ProductReviewsList) {
+    // let reviewsList = JSON.parse(localStorage.ProductReviewsList).filter(item => item.productId == product.id)
+    let reviewsList = practice.filter(item => item.productId == product.id)
+    openProductReviews(reviewsList)
+  }
 }
